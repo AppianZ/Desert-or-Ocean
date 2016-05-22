@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../../dest/css/May1/index.css?rev=@@hash"/>
+</head>
+<body>
+    <div class="noticeBox">
+        <header>
+            <h3>教学系统反馈</h3>
+            <p>你有什么更好的建议吗?请告诉我们</p>
+        </header>
+        <article class="content" >
+            <h3>请输入图片说明：</h3>
+            <textarea placeholder="请详细描述你的图片内容"></textarea>
+            <h3>上传图片</h3>
+            <section class="option">
+                <input type="file" class="value">
+                <img class="img">
+            </section>
+        </article>
+        <article class="buttons">
+            <a>确认提交</a>
+        </article>
+    </div>
+
+
+<script src="../../js/zj.js"></script>
+<script>
+    $('.value').click(function(){
+        alert('这里上传图片，图片显示在$img')
+    });
+
+    $('.buttons a').click(function () {
+        alert('提交事件');
+    });
+</script>
+
+</body>
+</html>

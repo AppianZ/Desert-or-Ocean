@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../../../dest/css/May1/chat.css?rev=@@hash">
+</head>
+<body>
+    <header id="header">
+        <figure><img src="http://7xqsim.com1.z0.glb.clouddn.com/filter.png"></figure>
+    </header>
+    <article id="article">
+        <script id="tpl" type="text/template">
+            <ul>
+                {@each list as it}
+                <li class="one">
+                    <h5>{{it.time}}</h5>
+                    <p>{{it.content}}</p>
+                </li>
+                {@/each}
+             </ul>
+        </script>
+    </article>
+    <article id="footer">
+        <input id="comment">
+        <button>评论</button>
+    </article>
+
+    <script src="../../js/zj.js"></script>
+    <script>
+        var $data = [{
+            content : '这里时候his等哈说的哈速度撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的挥洒地煞大花洒第三',
+            time : '2016-5-2 12:22:21'
+        },{
+            content : '这里时候his等哈说的哈速度撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的挥洒地煞大花洒第三',
+            time : '2016-5-2 12:22:21'
+        },{
+            content : '这里时候his等哈说的哈速度撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的撒打算敖德萨很大声的挥洒地煞大花洒第三',
+            time : '2016-5-2 12:22:21'
+        }];
+
+        juicer.set({
+            'tag::interpolateOpen': '{{',
+            'tag::interpolateClose': '}}'
+        });
+
+        var data = {
+            list: $data
+        };
+
+        var tpl = document.getElementById('tpl').innerHTML;
+        var html = juicer(tpl, data);
+        $('#article').html(html);
+
+        $('#footer button').click(function(){
+            var value = $('#comment').val();
+            alert(value);
+          /*  $.ajax({
+                url : '',
+                data : {
+                    value : value
+                },
+                type : 'post',
+                success : function(){
+                    window.location.reload();
+                }
+            })*/
+        })
+    </script>
+</body>
+</html>

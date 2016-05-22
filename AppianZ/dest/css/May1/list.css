@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+body {
+  background: #f3f3f3; }
+
+#contain {
+  margin: 30px 0 0 0; }
+  #contain ul {
+    float: left;
+    width: 100%;
+    list-style: none; }
+    #contain ul li {
+      position: relative;
+      margin: 0 20px 25px 20px;
+      padding: 5px 3px;
+      min-height: 90px;
+      border-radius: 6px;
+      background: #fff; }
+      #contain ul li a {
+        text-decoration: none; }
+      #contain ul li figure {
+        margin: 0 10px 0 8px;
+        border-radius: 10px;
+        float: left; }
+        #contain ul li figure img {
+          width: 60px;
+          height: 90px;
+          border-radius: 5px; }
+      #contain ul li .list-content {
+        margin: 0 0 0 85px;
+        line-height: 1.4; }
+        #contain ul li .list-content p {
+          margin: 20px 5px 0 0;
+          font-weight: bold;
+          font-size: 16px;
+          width: 100%;
+          color: #333;
+          max-height: 60px;
+          overflow: hidden; }
+
+/*# sourceMappingURL=list.css.map */
