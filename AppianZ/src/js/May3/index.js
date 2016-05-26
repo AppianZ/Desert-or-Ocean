@@ -8,12 +8,11 @@ var maxHeight = [];
 var yearUl = document.getElementById('year');
 var monthUl = document.getElementById('month');
 var dateUl = document.getElementById('date');
-
+var count = 100;//设置年份多少年
 var currentYear = new Date().getFullYear();//实际年份
-var resultArr = [currentYear,1,1];
+var resultArr = [currentYear - count + 1,1,1];
 
 window.onload = function () {
-    var count = 100;//设置年份多少年
     initArr.initYear(currentYear,count);
     initArr.initMonth();
     initArr.initDate(currentYear,1);
@@ -53,6 +52,16 @@ var initArr = (function(){
         'initDate' : function (year,month){//传入真实年份和月份
             var date = 0;
             var sum = new Date(year,month,0).getDate();
+            var sub = 0;
+            if(sum < resultArr[2]){
+                sub = sum - dateArr[dateArr.indexOf(resultArr[2])];
+                if(sub < 0){
+                    var y = dateUl.style.transform.split(',')[1].replace('px','');
+                    dateUl.style.transform = 'translate3d(0,' + (y - sub * liHeight) + 'px, 0)';
+                    dateUl.style.transition = 'all 0.15s ease-out';
+                    resultArr[2] = -( y / liHeight ) + sub + 1;
+                }
+            }
             dateArr　= [];
             while (date < sum) {
                 dateArr.push(date + 1);
@@ -60,6 +69,7 @@ var initArr = (function(){
             }
             this.initArr(dateArr,dateUl);
             maxHeight[2] = liHeight * (sum - 1);
+
         }
     }
 })();
@@ -78,6 +88,7 @@ var daySelector = (function(){
             Y : 0,
             index : 0
         },
+        distance : [0,0,0],
         initListener : function(ul,array,maxHeiIdx){
             var _this = this;
             ul.addEventListener('touchstart',function(){
@@ -95,18 +106,18 @@ var daySelector = (function(){
             this.initListener(monthUl,monthArr,1);
             this.initListener(dateUl,dateArr,2);
         },
-        initPosition: function(dis,max){  //位置格式化
+        initPosition: function(dis,max,idx){  //位置格式化
             dis = dis < 0 ? 0 : dis;
             dis = dis > max ? max : dis;
             var sub =  dis % liHeight;
             if(sub < liHeight/2){
-                this.distance = dis - sub ;
+                this.distance[idx] = dis - sub ;
             }else {
-                this.distance = dis + (liHeight - sub) ;
+                this.distance[idx] = dis + (liHeight - sub) ;
             }
             return this;
         },
-        initSpeed : function (arr,dir,max) { //速度Arr格式化
+        initSpeed : function (arr,dir,max,idx) { //速度Arr格式化
             var variance = 0;
             var sum = 0;
             for(var i in arr){
@@ -117,11 +128,13 @@ var daySelector = (function(){
             }
             console.log('方差:' + (variance/arr.length).toFixed(2));
 
+            var rate = 0;
             if((variance/arr.length).toFixed(2) > .1){ //可根据速度变化来调节滑动状态！！！
-                this.initPosition(this.distance + dir * 2, max);    
+                rate = max > 1500 ? dir * 1.8 : 0;
+                this.initPosition(this.distance[idx] + rate, max,idx);
                 this.move.speed[0] = .3;
             }else {
-                this.initPosition(this.distance,max);
+                this.initPosition(this.distance[idx],max,idx);
                 this.move.speed[0] = this.move.speed[0] > 0.3 ? .3 : this.move.speed[0];
             }
             return this;
@@ -136,13 +149,13 @@ var daySelector = (function(){
                     break;
                 case "touchend":
                     that.end.Y = event.changedTouches[0].clientY;
-                    var tempDis = that.distance + (that.start.Y - that.end.Y);
-                    that.distance = tempDis < 0 ? 0 : (tempDis < maxHeight[maxHeiIdx] ? tempDis : maxHeight[maxHeiIdx]);
+                    var tempDis = that.distance[maxHeiIdx] + (that.start.Y - that.end.Y);
+                    that.distance[maxHeiIdx] = tempDis < 0 ? 0 : (tempDis < maxHeight[maxHeiIdx] ? tempDis : maxHeight[maxHeiIdx]);
                     console.log(that.move.speed);
-                    this.initSpeed(that.move.speed,that.start.Y - that.end.Y,maxHeight[maxHeiIdx]);
-                    $selector.style.transform = 'translate3d(0,-' +  that.distance + 'px, 0)';
+                    this.initSpeed(that.move.speed,that.start.Y - that.end.Y,maxHeight[maxHeiIdx],maxHeiIdx);
+                    $selector.style.transform = 'translate3d(0,-' +  that.distance[maxHeiIdx] + 'px, 0)';
                     $selector.style.transition = 'all ' + that.move.speed[0] + 's ease-out';
-                    that.end.index = that.distance/liHeight + 2;
+                    that.end.index = that.distance[maxHeiIdx]/liHeight + 2;
                     if(maxHeiIdx == 0) {
                         resultArr[maxHeiIdx] = arrry[that.end.index];
                         initArr.initDate(resultArr[maxHeiIdx],resultArr[1]);
@@ -158,13 +171,13 @@ var daySelector = (function(){
                     event.preventDefault();
                     that.move.Y = event.touches[0].clientY;
                     var offset = that.start.Y - that.move.Y;
-                    if (that.distance == 0 && offset < 0) {
+                    if (that.distance[maxHeiIdx] == 0 && offset < 0) {
                         $selector.style.transform = 'translate3d(0,' + 1.5 * liHeight + 'px, 0)';
                         $selector.style.transition = 'all 0.3s ease-out';
                     }else {
-                        $selector.style.transform = 'translate3d(0,-'+ (offset + that.distance) +'px, 0)';
+                        $selector.style.transform = 'translate3d(0,-'+ (offset + that.distance[maxHeiIdx]) +'px, 0)';
                     }
-                    if(this.distance <= -maxHeight[maxHeiIdx]){
+                    if(this.distance[maxHeiIdx] <= -maxHeight[maxHeiIdx]){
                         $selector.style.transform = 'translate3d(0, -' + (max+liHeight) + 'px, 0)';
                         $selector.style.transition = 'all 0.3s ease-out';
                     }
