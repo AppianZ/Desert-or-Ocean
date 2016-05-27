@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="347cf48f-7413-4326-88f1-fdbf14fa08cf" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/Apr1/login.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/Apr1/login.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/Apr2/index.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/Apr2/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/Apr3/cal.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/Apr3/cal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/May1/chat.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/May1/chat.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/May1/index.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/May1/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/May1/list.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/May1/list.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/May2/userself.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/May2/userself.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppianZ/dest/css/May3/index.css" afterPath="$PROJECT_DIR$/AppianZ/dest/css/May3/index.css" />
+    </list>
+    <ignored path="Desert-or-Ocean.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Desert-or-Ocean" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Sass File" />
+        <option value="HTML File" />
+        <option value="sass" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Appian/Apr-1-2016/README.md" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-03/src/unitTest/login.js" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-03/dest/css/normalize.min.css" />
+        <option value="$PROJECT_DIR$/Appian/normalize.min.css" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-03/src/views/login.html" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-03/src/js/login.js" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-03/src/sass/login.scss" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-04/dest/css/login.css" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-04/src/views/login.html" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-04/src/js/login.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/Apr-1-2016/login.sass" />
+        <option value="$PROJECT_DIR$/AppianZ/src/js/Apr-1-2016/login.js" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/Apr-1-2016/login.html" />
+        <option value="$PROJECT_DIR$/Appian/2016-04-04/src/sass/login.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/Apr1/login.html" />
+        <option value="$PROJECT_DIR$/Appian/gulpfile.js" />
+        <option value="$PROJECT_DIR$/Appian/README.md" />
+        <option value="$PROJECT_DIR$/AppianZ/README.md" />
+        <option value="$PROJECT_DIR$/Alpha/2016-04-04/index.html" />
+        <option value="$PROJECT_DIR$/AppianZ/gulpfile.js" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/Apr1/login.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/dest/css/Apr2/index.css" />
+        <option value="$PROJECT_DIR$/AppianZ/src/unitTest/Apr2/index.js" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/Apr2/index.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/js/Apr2/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/Apr2/index.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/Apr3.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/js/Apr3/cal.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/Apr3/Apr3.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/Apr3/cal.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/Apr3/cal.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/js/Apr3/cal.js" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/May1/index.js" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/index.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/May1/index.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/May1/list.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/May1/index.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/May1/chat.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/May1/chat.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/May1/list.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/_iconfont.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/html/May2/userself.html" />
+        <option value="$PROJECT_DIR$/AppianZ/src/sass/May2/userself.scss" />
+        <option value="$PROJECT_DIR$/AppianZ/src/unitTest/May2/userself.js" />
+        <option value="$PROJECT_DIR$/Appian/app.js" />
+        <option value="$PROJECT_DIR$/Appian/myapp/package.json" />
+        <option value="$PROJECT_DIR$/Appian/myapp/app.js" />
+        <option value="$PROJECT_DIR$/Appian/myapp/routes/index.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="32" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Desert-or-Ocean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Desert-or-Ocean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Desert-or-Ocean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="Sass" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\js" />
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\sass" />
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\js\May2" />
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\unitTest\May2" />
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\sass\May2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Design\Desert-or-Ocean\AppianZ\src\sass\May1" />
+      <recent name="E:\Design\Desert-or-Ocean\Appian" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>D:/Program Files/nodejs/node.exe</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="347cf48f-7413-4326-88f1-fdbf14fa08cf" name="Default" comment="" />
+      <created>1459583144231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1459583144231</updated>
+      <workItem from="1460872332826" duration="10021000" />
+      <workItem from="1460942433683" duration="48000" />
+      <workItem from="1461215878842" duration="2564000" />
+      <workItem from="1461226502628" duration="12208000" />
+      <workItem from="1461311559842" duration="11840000" />
+      <workItem from="1461328173345" duration="1458000" />
+      <workItem from="1461373567479" duration="1822000" />
+      <workItem from="1461484223379" duration="1645000" />
+      <workItem from="1461547107442" duration="1685000" />
+      <workItem from="1461556146998" duration="605000" />
+      <workItem from="1461565735830" duration="56000" />
+      <workItem from="1461851375808" duration="677000" />
+      <workItem from="1461941651807" duration="39000" />
+      <workItem from="1462436167005" duration="3813000" />
+      <workItem from="1462624324045" duration="7734000" />
+      <workItem from="1462689009459" duration="1468000" />
+      <workItem from="1462706631272" duration="602000" />
+      <workItem from="1462758460897" duration="634000" />
+      <workItem from="1463197619567" duration="1470000" />
+      <workItem from="1463208219103" duration="5408000" />
+      <workItem from="1463361576026" duration="3493000" />
+      <workItem from="1463734851324" duration="3484000" />
+      <workItem from="1463894264503" duration="2941000" />
+      <workItem from="1463905767322" duration="6287000" />
+      <workItem from="1463968517225" duration="14000" />
+      <workItem from="1464349354736" duration="936000" />
+    </task>
+    <task id="LOCAL-00001" summary="write README">
+      <created>1459602805762</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1459602805762</updated>
+    </task>
+    <task id="LOCAL-00002" summary="write README2">
+      <created>1459608600168</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1459608600168</updated>
+    </task>
+    <task id="LOCAL-00003" summary="modify gulpfile">
+      <created>1459614071331</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1459614071331</updated>
+    </task>
+    <task id="LOCAL-00004" summary="modify gulpfile2">
+      <created>1459647079388</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1459647079388</updated>
+    </task>
+    <task id="LOCAL-00005" summary="test gulpfile">
+      <created>1459648045377</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1459648045377</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add normalize.min">
+      <created>1459650108379</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1459650108379</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add  browser-sync&#10;">
+      <created>1459651659530</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1459651659530</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add  browser-sync2&#10;">
+      <created>1459660240077</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1459660240077</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add  browser-sync2&#10;">
+      <created>1459660284554</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1459660284554</updated>
+    </task>
+    <task id="LOCAL-00010" summary="half&#10;">
+      <created>1459697153601</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1459697153601</updated>
+    </task>
+    <task id="LOCAL-00011" summary="half2&#10;">
+      <created>1459698552126</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1459698552126</updated>
+    </task>
+    <task id="LOCAL-00012" summary="登录完成&#10;">
+      <created>1459731097452</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1459731097452</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update readme&#10;&#10;">
+      <created>1459731358004</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1459731358004</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update readme2&#10;&#10;">
+      <created>1459731521563</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1459731521563</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update readme2&#10;&#10;">
+      <created>1459732134608</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1459732134608</updated>
+    </task>
+    <task id="LOCAL-00016" summary="test appianz gulpfile&#10;&#10;">
+      <created>1459735169519</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1459735169519</updated>
+    </task>
+    <task id="LOCAL-00017" summary="test appianz gulpfile2&#10;&#10;">
+      <created>1459735905555</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1459735905555</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update appianz readme&#10;&#10;&#10;">
+      <created>1459736299452</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1459736299452</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Apr2 never change&#10;&#10;&#10;">
+      <created>1461220191703</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1461220191703</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Apr2 change&#10;&#10;&#10;">
+      <created>1461327660472</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1461327660472</updated>
+    </task>
+    <task id="LOCAL-00021" summary="May1 change&#10;&#10;&#10;">
+      <created>1462691707618</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1462691707618</updated>
+    </task>
+    <task id="LOCAL-00022" summary="May2生成&#10;&#10;&#10;">
+      <created>1463742779392</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1463742779392</updated>
+    </task>
+    <task id="LOCAL-00023" summary="finish MAY2&#10;&#10;&#10;">
+      <created>1463904430603</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1463904430603</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="82952000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19072708" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.099673204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1928494" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24458875" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.171875" sideWeight="0.5057283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30555555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.099673204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30555555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1928494" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1332611" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21285564" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.171875" sideWeight="0.5057283" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="write README" />
+    <MESSAGE value="write README2" />
+    <MESSAGE value="modify gulpfile" />
+    <MESSAGE value="modify gulpfile2" />
+    <MESSAGE value="test gulpfile" />
+    <MESSAGE value="add normalize.min" />
+    <MESSAGE value="add  browser-sync&#10;" />
+    <MESSAGE value="add  browser-sync2&#10;" />
+    <MESSAGE value="half&#10;" />
+    <MESSAGE value="half2&#10;" />
+    <MESSAGE value="登录完成&#10;" />
+    <MESSAGE value="&#10;" />
+    <MESSAGE value="update readme&#10;&#10;" />
+    <MESSAGE value="update readme2&#10;&#10;" />
+    <MESSAGE value="test appianz gulpfile&#10;&#10;" />
+    <MESSAGE value="test appianz gulpfile2&#10;&#10;" />
+    <MESSAGE value="update appianz readme&#10;&#10;&#10;" />
+    <MESSAGE value="Apr2 never change&#10;&#10;&#10;" />
+    <MESSAGE value="Apr2 change&#10;&#10;&#10;" />
+    <MESSAGE value="May1 change&#10;&#10;&#10;" />
+    <MESSAGE value="May2生成&#10;&#10;&#10;" />
+    <MESSAGE value="finish MAY2&#10;&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish MAY2&#10;&#10;&#10;" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Alpha/2016-04-04/src/views/index.html" />
+    <entry file="file://$PROJECT_DIR$/Appian/2016-04-04/src/views/login.html" />
+    <entry file="file://$PROJECT_DIR$/Alpha/2016-04-04/src/unitTest/test.js" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/echarts.common.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Appian/gulpfile.js" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/normalize.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="54" column="6" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/_reset.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/zj.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="1" column="25337" selection-start-line="1" selection-start-column="25328" selection-end-line="1" selection-end-column="25337" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/juicer-min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/dest/css/Apr2/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/unitTest/Apr2/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/Apr2/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2821">
+          <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/Apr3.html" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/Apr2/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/Apr2/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="8" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/Apr3/cal.html" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/Apr3/cal.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4743">
+          <caret line="153" column="29" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/May1/index.js" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/Apr3/cal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/Apr3/cal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="15" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/May1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/May1/chat.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2046">
+          <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/May1/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/dest/css/Apr1/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/May1/chat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/May1/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="72" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/May1/list.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="20" column="23" selection-start-line="15" selection-start-column="6" selection-end-line="20" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/Apr1/login.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/vue.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/May2/userself.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/Apr1/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/_iconfont.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/Apr1/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/vue.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/js/hotcss.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/html/May2/userself.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/sass/May2/userself.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1209">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AppianZ/src/unitTest/May2/userself.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Appian/app.js" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/public/stylesheets/style.css" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/views/error.jade" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/routes/users.js" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/views/layout.jade" />
+    <entry file="file://$PROJECT_DIR$/AppianZ/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-294">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/package.json" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/bin/www" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/views/index.jade" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/app.js" />
+    <entry file="file://$PROJECT_DIR$/Appian/myapp/routes/index.js" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
