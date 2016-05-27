@@ -4,6 +4,7 @@
     <list default="true" id="347cf48f-7413-4326-88f1-fdbf14fa08cf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dateSelector.html" afterPath="$PROJECT_DIR$/dateSelector.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="Desert-or-Ocean.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,21 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="403">
+              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dateSelector.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dateSelector.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dateSelector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+            <state relative-caret-position="0">
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -117,8 +118,8 @@
         <option value="$PROJECT_DIR$/AppianZ/dest/css/May3/index.css" />
         <option value="$PROJECT_DIR$/AppianZ/src/js/May3/index.js" />
         <option value="$PROJECT_DIR$/pages/dateSelector.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/dateSelector.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -320,7 +321,7 @@
       <workItem from="1464246015969" duration="524000" />
       <workItem from="1464250195682" duration="12253000" />
       <workItem from="1464312261697" duration="8802000" />
-      <workItem from="1464329504735" duration="599000" />
+      <workItem from="1464329504735" duration="2482000" />
     </task>
     <task id="LOCAL-00001" summary="write README">
       <created>1459602805762</created>
@@ -553,11 +554,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464318281669</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="fix&#10;&#10;&#10;">
+      <created>1464330116344</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1464330116344</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169947000" />
+    <option name="totallyTimeSpent" value="171830000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -707,18 +715,18 @@
     <entry file="file://$PROJECT_DIR$/AppianZ/dest/css/May3/index.css" />
     <entry file="file://$PROJECT_DIR$/AppianZ/src/js/May3/index.js" />
     <entry file="file://$PROJECT_DIR$/pages/dateSelector.html" />
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/dateSelector.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dateSelector.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+        <state relative-caret-position="403">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding />
         </state>
       </provider>
