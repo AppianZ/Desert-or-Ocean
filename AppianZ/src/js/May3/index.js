@@ -130,7 +130,7 @@ var daySelector = (function(){
 
             var rate = 0;
             if((variance/arr.length).toFixed(2) > .1){ //可根据速度变化来调节滑动状态！！！
-                rate = max > liHeight * 35 ? dir * 1.8 : 0;
+                rate = max > liHeight * 35 ? dir * 2 : 0;
                 this.initPosition(this.distance[idx] + rate, max,idx);
                 this.move.speed[0] = .3;
             }else {
