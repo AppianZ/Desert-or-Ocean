@@ -13,9 +13,8 @@ var password = (function(){
             }
              return this;
         },
-        'moveLeft' : function(){
-            document.getElementById('password').setAttribute('class','left');
-            document.getElementById('pinword').setAttribute('class','right');
+        'moveToRight' : function(){
+            document.getElementById('wrap').setAttribute('class','right');
         }
     }
 })();
@@ -42,8 +41,7 @@ var pin = (function(){
                         fin += pinArr[k];
                     }
                     if(fin == $data.pinword){
-                        document.getElementById('password').removeAttribute('class');
-                        document.getElementById('pinword').removeAttribute('class');
+                        document.getElementById('wrap').removeAttribute('class');
                         pinArr.length = 0;
                         this.init();
                     } else {
@@ -74,14 +72,52 @@ var pin = (function(){
                 document.getElementById('pin').getElementsByTagName('span')[i].setAttribute('class','on');
             }
         },
-        'moveRight' : function(){
-            document.getElementById('password').removeAttribute('class');
-            document.getElementById('pinword').removeAttribute('class');
+        'moveToLeft' : function(){
+            document.getElementById('wrap').removeAttribute('class');
             pinArr.length = 0;
             this.init();
         }
     }
 })();
+
+var touchMove = (function () {
+    return  {
+        start : 0,
+        move : 0,
+        end : 0,
+        distance : 0,
+        selector : document.getElementById('wrap'),
+        'readyLoad' : function () {
+            document.addEventListener('touchstart',this.touch.bind(this),false);
+            document.addEventListener('touchmove',this.touch.bind(this),false);
+            document.addEventListener('touchend',this.touch.bind(this),false);
+        },
+        'touch' : function(){
+            var event = event || window.event;
+            switch(event.type) {
+                case "touchstart":
+                    this.start = event.touches[0].clientX;
+                    break;
+                case "touchend":
+                    this.end = event.changedTouches[0].clientX;
+                    var tempDis = this.distance + (this.start - this.end);
+                    console.log('end ----' , tempDis);
+                    // this.selector.style.transform = 'translate3d(0,-' +  this.distance + 'px, 0)';
+                    break;
+                case "touchmove":
+                    event.preventDefault();
+                    this.move = event.touches[0].clientX;
+                    var offset = this.start - this.move;
+                    console.log('move------',offset);
+                    break;
+            }
+        }
+    }
+})();
+
+window.onload = function () {
+    touchMove.readyLoad();
+};
 
 
 window.onkeydown = function(ev){
@@ -90,12 +126,11 @@ window.onkeydown = function(ev){
     }
 };
 
-document.getElementsByClassName('iconfont')[1].onclick = function(){
-    password.moveLeft();
+document.getElementById('toRight').onclick = function(){
+    password.moveToRight();
 };
 
 var $td = document.getElementsByTagName('td');
-console.log($td);
 
 for(var i = 0; i < $td.length; i ++){
     $td[i].onclick = function(){
@@ -103,7 +138,7 @@ for(var i = 0; i < $td.length; i ++){
         if(value >= 0){
             pin.click(value);
         }else if (value == -1){
-            pin.moveRight();
+            pin.moveToLeft();
         }else {
             pin.delete();
         }

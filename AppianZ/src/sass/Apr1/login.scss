@@ -4,138 +4,37 @@ $white : rgba(255,255,255,96);
 $dark  : rgba(255,255,255,0.5);
 $green : rgb(121,194,180);
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html,body {
   height: 100%;
   overflow: hidden;
-
-}
-body::-webkit-scrollbar {
-  width: 0;
 }
 body {
   background: rgb(26,33,41);
 }
 
-body .wrap {
+body #wrap {
+  position: absolute;
+  right: 0;
   display: flex;
   height: 100%;
   width: 200%;
   overflow: auto;
-}
-
-
-#password {
-  width: 50%;
   transition: all .5s ease;
-  header{
-    display: inline-block;
-    width: 100%;
-    margin: 75px auto;
-    h2 {
-      position: relative;
-      text-align: center;
-      &:before {
-        content: '';
-        position: absolute;
-        width: 15px;
-        top: 50%;
-        left: 50%;
-        margin: 0 0 0 -45px;
-        border: 1px solid $white;
-      }
-      &:after {
-        content: '';
-        position: absolute;
-        width: 15px;
-        top: 50%;
-        right: 50%;
-        margin: 0 -45px 0 0;
-        border: 1px solid $white;
-      }
-    }
-    h3 {
-      position: relative;
-      color: $dark;
-      text-align: center;
-      font-weight: 100;
-      letter-spacing: 14px;
-      b {
-        font-weight: 100;
-        color: $white;
-      }
-      &:before {
-        content: '';
-        position: absolute;
-        width: 60px;
-        height: 1px;
-        bottom: -20px;
-        left: 50%;
-        margin: 0 0 0 -30px;
-        background: $dark;
-      }
-      &:after {
-        content: '';
-        position: absolute;
-        width: 40px;
-        height: 3px;
-        bottom: -21px;
-        left: 50%;
-        margin: 0 0 0 -20px;
-        background: $green;
-      }
-    }
-  }
-
-  section {
-    text-align: center;
-    line-height: 45px;
-    margin: 40px 0 20px;
-    input {
-      display: inline-block;
-      width: 80%;
-      text-align: center;
-      padding: 3px 7px;
-      color: $white;
-      letter-spacing: 1px;
-      font-size: 16px;
-      background: rgba(0,0,0,0);
-      border: 0;
-      border-bottom: 1px solid $dark;
-      outline: 0;
-      transition: all .3s ease;
-      &:hover,&:active {
-        border-bottom: 1px solid $white;
-      }
-      &[type=text]{
-      }
-      &[type=password]{
-      }
-    }
-  }
-
-  footer {
-    margin: 80px 0 0 0;
-    text-align: center;
-    h3 {
-      color: $green;
-    }
-    p {
-      color: $dark;
-    }
-  }
 }
 
 
-.left {
-  left: 100%!important;
-}
+
 .right {
-  left: 0!important;
+  transform: translate3d(50%,0,0);
 }
 
 #pinword {
   width: 50%;
-  transition: all .5s ease;
   header{
     display: inline-block;
     width: 100%;
@@ -282,6 +181,108 @@ body .wrap {
     }
   }
 }
+
+
+#password {
+  width: 50%;
+  header{
+    display: inline-block;
+    width: 100%;
+    margin: 75px auto;
+    h2 {
+      position: relative;
+      text-align: center;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        left: 50%;
+        margin: 0 0 0 -45px;
+        border: 1px solid $white;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        right: 50%;
+        margin: 0 -45px 0 0;
+        border: 1px solid $white;
+      }
+    }
+    h3 {
+      position: relative;
+      color: $dark;
+      text-align: center;
+      font-weight: 100;
+      letter-spacing: 14px;
+      b {
+        font-weight: 100;
+        color: $white;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        bottom: -20px;
+        left: 50%;
+        margin: 0 0 0 -30px;
+        background: $dark;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        bottom: -21px;
+        left: 50%;
+        margin: 0 0 0 -20px;
+        background: $green;
+      }
+    }
+  }
+
+  section {
+    text-align: center;
+    line-height: 45px;
+    margin: 40px 0 20px;
+    input {
+      display: inline-block;
+      width: 80%;
+      text-align: center;
+      padding: 3px 7px;
+      color: $white;
+      letter-spacing: 1px;
+      font-size: 16px;
+      background: rgba(0,0,0,0);
+      border: 0;
+      border-bottom: 1px solid $dark;
+      outline: 0;
+      transition: all .3s ease;
+      &:hover,&:active {
+        border-bottom: 1px solid $white;
+      }
+      &[type=text]{
+      }
+      &[type=password]{
+      }
+    }
+  }
+
+  footer {
+    margin: 80px 0 0 0;
+    text-align: center;
+    h3 {
+      color: $green;
+    }
+    p {
+      color: $dark;
+    }
+  }
+}
+
 
 
 @-webkit-keyframes shock {
