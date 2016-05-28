@@ -9,14 +9,26 @@
   font-family: 'iconfont';
   color: white; }
 
+html, body {
+  height: 100%;
+  overflow: hidden; }
+
+body::-webkit-scrollbar {
+  width: 0; }
+
 body {
   background: #1a2129; }
 
+body .wrap {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 200%;
+  overflow: auto; }
+
 #password {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 50%;
   transition: all .5s ease; }
   #password header {
     display: inline-block;
@@ -102,10 +114,7 @@ body {
   left: 0 !important; }
 
 #pinword {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
+  width: 50%;
   transition: all .5s ease; }
   #pinword header {
     display: inline-block;
