@@ -7,7 +7,7 @@
     <meta name="screen-orientation" content="portrait">
     <title>锁屏</title>
     <style>
-       @font-face {
+      @font-face {
           font-family: 'iconfont';
           src: url("//at.alicdn.com/t/font_1463738657_1735377.eot");
           /* IE9*/
@@ -38,11 +38,7 @@
           height: 100%;
           width: 200%;
           overflow: auto;
-          transition: all .5s ease; }
-        
-        .right {
-          -webkit-transform: translate3d(50%, 0, 0);
-                  transform: translate3d(50%, 0, 0); }
+          transition: all .5s ease-out; }
         
         #pinword {
           width: 50%; }
@@ -111,7 +107,7 @@
                 border-radius: 50%;
                 background: transparent;
                 border: 1px solid white;
-                transition: all .5s ease; }
+                transition: all .15s ease-out; }
               #pinword section #pin span.on {
                 background: white; }
             #pinword section #pin.shocks {
@@ -238,7 +234,7 @@
               border: 0;
               border-bottom: 1px solid rgba(255, 255, 255, 0.5);
               outline: 0;
-              transition: all .3s ease; 
+              transition: all .3s ease-out;
               -webkit-appearance: none; }
               #password section input:hover, #password section input:active {
                 border-bottom: 1px solid white; }
@@ -246,24 +242,27 @@
             margin: 60px 0 0 0;
             text-align: center; }
             #password footer h3 {
-              color: #79c2b4; }
+              color: #79c2b4;
+              height: 40px;
+              line-height: 40px; }
             #password footer p {
-              color: rgba(255, 255, 255, 0.5);
-              margin: 15px 0 0 0; }
+              margin: 15px 0 0 0;
+              color: rgba(255, 255, 255, 0.5); }
         
         @-webkit-keyframes shock {
           0% {
-            -webkit-transform: translateX(-10px); }
+            -webkit-transform: translateX(-15px); }
           20% {
             -webkit-transform: translateX(0); }
           40% {
-            -webkit-transform: translateX(10px); }
+            -webkit-transform: translateX(15px); }
           60% {
             -webkit-transform: translateX(0); }
           80% {
-            -webkit-transform: translateX(-10px); }
+            -webkit-transform: translateX(-15px); }
           100% {
             -webkit-transform: translateX(0); } }
+
     </style>
 </head>
 <body>
@@ -439,7 +438,7 @@
                             distance = 0;
                         }
                         $wrap.style.transform = 'translate3d(' +  distance + 'px, 0 , 0)';
-                        $wrap.style.transition = 'all .5s ease';
+                        $wrap.style.transition = 'all .5s ease-out';
                         break;
                     case "touchmove":
                         event.preventDefault();
@@ -470,7 +469,7 @@
     var $td = document.getElementsByTagName('td');
     
     for(var i = 0; i < $td.length; i ++){
-        $td[i].onclick = function(){
+        $td[i].addEventListener('touchstart',function(){
             var value = this.getAttribute('data-val') - 0;
             if(value >= 0){
                 pin.click(value);
@@ -479,7 +478,7 @@
             }else {
                 pin.delete();
             }
-        }
+        },false);
     }
 </script>
 </body>
