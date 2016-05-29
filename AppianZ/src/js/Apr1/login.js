@@ -17,29 +17,25 @@ var password = (function(){
                 $input[1].value = '';
             }
              return this;
-        },
-        'moveToRight' : function(){
-            $wrap.style= 'none';
-            $wrap.setAttribute('class','right');
-            distance = width;
         }
     }
 })();
 
 var pin = (function(){
     var pinArr = [];
+    var $pin = document.getElementById('pin');
+    var $span = document.getElementById('pin').getElementsByTagName('span');
     return {
         'init' : function(){
             for(var j = 0; j < 4; j++){
-                document.getElementById('pin').getElementsByTagName('span')[j].removeAttribute('class');
+                $span[j].removeAttribute('class');
             }
         },
         'click' : function(value){
-            var $pin = document.getElementById('pin');
             if(this.check()){
                 pinArr.push(value);
                 for(var i = 0; i < pinArr.length; i++){
-                    $pin.getElementsByTagName('span')[i].setAttribute('class','on');
+                    $span[i].setAttribute('class','on');
                 }
                 console.log(pinArr);
                 if(pinArr.length == 4){
@@ -78,7 +74,7 @@ var pin = (function(){
             pinArr.pop();
             this.init();
             for(var i = 0; i < pinArr.length; i++){
-                document.getElementById('pin').getElementsByTagName('span')[i].setAttribute('class','on');
+                $span[i].setAttribute('class','on');
             }
         },
         'moveToLeft' : function(){
@@ -142,10 +138,6 @@ window.onkeydown = function(ev){
     if(ev.keyCode == 13){
         password.check();
     }
-};
-
-document.getElementById('toRight').onclick = function(){
-    password.moveToRight();
 };
 
 var $td = document.getElementsByTagName('td');

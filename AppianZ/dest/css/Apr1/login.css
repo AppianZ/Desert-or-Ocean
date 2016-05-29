@@ -229,17 +229,20 @@ body #wrap {
       border: 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       outline: 0;
-      transition: all .3s ease; }
+      transition: all .3s ease;
+      -webkit-appearance: none; }
       #password section input:hover, #password section input:active {
         border-bottom: 1px solid white; }
   #password footer {
-    margin: 80px 0 0 0;
+    margin: 60px 0 0 0;
     text-align: center; }
     #password footer h3 {
-      color: #79c2b4; }
+      color: #79c2b4;
+      height: 40px;
+      line-height: 40px; }
     #password footer p {
-      color: rgba(255, 255, 255, 0.5);
-      margin: 12px 0 0 0; }
+      margin: 15px 0 0 0;
+      color: rgba(255, 255, 255, 0.5); }
 
 @-webkit-keyframes shock {
   0% {

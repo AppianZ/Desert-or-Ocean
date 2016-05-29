@@ -261,6 +261,7 @@ body #wrap {
       border-bottom: 1px solid $dark;
       outline: 0;
       transition: all .3s ease;
+      -webkit-appearance: none;
       &:hover,&:active {
         border-bottom: 1px solid $white;
       }
@@ -272,14 +273,16 @@ body #wrap {
   }
 
   footer {
-    margin: 80px 0 0 0;
+    margin: 60px 0 0 0;
     text-align: center;
     h3 {
       color: $green;
+      height: 40px;
+      line-height: 40px;
     }
     p {
+      margin: 15px 0 0 0;
       color: $dark;
-      margin: 12px 0 0 0;
     }
   }
 }
