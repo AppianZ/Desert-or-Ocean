@@ -112,7 +112,7 @@ var touchMove = (function () {
                         distance = 0;
                     }
                     $wrap.style.transform = 'translate3d(' +  distance + 'px, 0 , 0)';
-                    $wrap.style.transition = 'all .5s ease';
+                    $wrap.style.transition = 'all .5s ease-out';
                     break;
                 case "touchmove":
                     event.preventDefault();
@@ -143,7 +143,7 @@ window.onkeydown = function(ev){
 var $td = document.getElementsByTagName('td');
 
 for(var i = 0; i < $td.length; i ++){
-    $td[i].onclick = function(){
+    $td[i].addEventListener('touchstart',function(){
         var value = this.getAttribute('data-val') - 0;
         if(value >= 0){
             pin.click(value);
@@ -152,5 +152,6 @@ for(var i = 0; i < $td.length; i ++){
         }else {
             pin.delete();
         }
-    }
+    },false);
 }
+

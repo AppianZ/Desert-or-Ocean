@@ -29,7 +29,7 @@ body #wrap {
   height: 100%;
   width: 200%;
   overflow: auto;
-  transition: all .5s ease; }
+  transition: all .5s ease-out; }
 
 .right {
   -webkit-transform: translate3d(50%, 0, 0);
@@ -102,7 +102,7 @@ body #wrap {
         border-radius: 50%;
         background: transparent;
         border: 1px solid white;
-        transition: all .5s ease; }
+        transition: all .15s ease-out; }
       #pinword section #pin span.on {
         background: white; }
     #pinword section #pin.shocks {
@@ -229,7 +229,7 @@ body #wrap {
       border: 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       outline: 0;
-      transition: all .3s ease;
+      transition: all .3s ease-out;
       -webkit-appearance: none; }
       #password section input:hover, #password section input:active {
         border-bottom: 1px solid white; }
@@ -246,15 +246,15 @@ body #wrap {
 
 @-webkit-keyframes shock {
   0% {
-    -webkit-transform: translateX(-10px); }
+    -webkit-transform: translateX(-15px); }
   20% {
     -webkit-transform: translateX(0); }
   40% {
-    -webkit-transform: translateX(10px); }
+    -webkit-transform: translateX(15px); }
   60% {
     -webkit-transform: translateX(0); }
   80% {
-    -webkit-transform: translateX(-10px); }
+    -webkit-transform: translateX(-15px); }
   100% {
     -webkit-transform: translateX(0); } }
 
