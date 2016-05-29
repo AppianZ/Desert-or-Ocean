@@ -6,8 +6,235 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="screen-orientation" content="portrait">
     <title>锁屏</title>
+    <style>
+        
+    </style>
 </head>
 <body>
+<div id="wrap">
+    <article id="pinword">
+        <header>
+            <h2 class="iconfont">&#xe600;</h2>
+            <h3><b>APPLE</b>SHOP</h3>
+        </header>
+        <section>
+            <div id="pin">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <p>Enter Apple Shop Pin</p>
+            <table id="key">
+                <tr>
+                    <td data-val="1"><i>1</i></td>
+                    <td data-val="2"><i>2</i>ABC</td>
+                    <td data-val="3"><i>3</i>DEF</td>
+                </tr>
+                <tr>
+                    <td data-val="4"><i>4</i>GHI</td>
+                    <td data-val="5"><i>5</i>HKL</td>
+                    <td data-val="6"><i>6</i>MNO</td>
+                </tr>
+                <tr>
+                    <td data-val="7"><i>7</i>PQRS</td>
+                    <td data-val="8"><i>8</i>TUV</td>
+                    <td data-val="9"><i>9</i>WXYZ</td>
+                </tr>
+                <tr>
+                    <td data-val="-1"><span class="iconfont">&#xe602;</span></td>
+                    <td data-val="0"><i>0</i></td>
+                    <td data-val="-2"><span class="iconfont">&#xe601;</span></td>
+                </tr>
+            </table>
+        </section>
+        <footer>
+            <p>Forget PIN?</p>
+        </footer>
+    </article>
+    <article id="password">
+        <header>
+            <h2 class="iconfont">&#xe600;</h2>
+            <h3><b>Apple</b>SHOP</h3>
+        </header>
+        <section>
+            <input type="text" placeholder="username">
+            <input type="password" placeholder="password">
+        </section>
+        <footer>
+            <h3 id="toRight" class="iconfont">&#xe601;</h3>
+            <p>Forget Password?</p>
+        </footer>
+    </article>
+</div>
+<script>
+    var $data = {
+        username : 'zhang',
+        password : 123,
+        pinword : 1234
+    };
 
+    var $wrap = document.getElementById('wrap');
+    var distance = 0;
+    var width = document.body.offsetWidth;
+    
+    var password = (function(){
+        return {
+            'check' : function(){
+                var $input = document.getElementsByTagName('input');
+                if($input[0].value == $data.username && $input[1].value == $data.password){
+                    alert('ok');
+                } else {
+                    alert('fail');
+                    $input[0].value = '';
+                    $input[1].value = '';
+                }
+                 return this;
+            },
+            'moveToRight' : function(){
+                $wrap.style= 'none';
+                $wrap.setAttribute('class','right');
+                distance = width;
+            }
+        }
+    })();
+    
+    var pin = (function(){
+        var pinArr = [];
+        return {
+            'init' : function(){
+                for(var j = 0; j < 4; j++){
+                    document.getElementById('pin').getElementsByTagName('span')[j].removeAttribute('class');
+                }
+            },
+            'click' : function(value){
+                var $pin = document.getElementById('pin');
+                if(this.check()){
+                    pinArr.push(value);
+                    for(var i = 0; i < pinArr.length; i++){
+                        $pin.getElementsByTagName('span')[i].setAttribute('class','on');
+                    }
+                    console.log(pinArr);
+                    if(pinArr.length == 4){
+                        var fin = '';
+                        for(var k = 0 ; k < 4; k++){
+                            fin += pinArr[k];
+                        }
+                        if(fin == $data.pinword){
+                            $wrap.style= 'none';
+                            $wrap.removeAttribute('class');
+                            distance = 0;
+                            pinArr.length = 0;
+                            this.init();
+                        } else {
+                            $pin.setAttribute('class','shocks');
+                            var _this = this;
+                            setTimeout(function(){
+                                pinArr.length = 0;
+                                $pin.removeAttribute('class');
+                                _this.init();
+                            },500);
+                        }
+                    }else {}
+                }else {
+                    pinArr.length = 0;
+                    this.init();
+                }
+            },
+            'check': function(){
+                if(pinArr.length > 4){
+                }else {
+                    return true;
+                }
+            },
+            'delete' : function(){
+                pinArr.pop();
+                this.init();
+                for(var i = 0; i < pinArr.length; i++){
+                    document.getElementById('pin').getElementsByTagName('span')[i].setAttribute('class','on');
+                }
+            },
+            'moveToLeft' : function(){
+                $wrap.style= 'none';
+                $wrap.removeAttribute('class');
+                distance = 0;
+                pinArr.length = 0;
+                this.init();
+            }
+        }
+    })();
+    
+    var touchMove = (function () {
+        return  {
+            start : 0,
+            move : 0,
+            end : 0,
+            'readyLoad' : function () {
+                document.addEventListener('touchstart',this.touch.bind(this),false);
+                document.addEventListener('touchmove',this.touch.bind(this),false);
+                document.addEventListener('touchend',this.touch.bind(this),false);
+            },
+            'touch' : function(){
+                var event = event || window.event;
+                switch(event.type) {
+                    case "touchstart":
+                        this.start = event.touches[0].clientX;
+                        break;
+                    case "touchend":
+                        this.end = event.changedTouches[0].clientX;
+                        var tempDis = (this.end - this.start).toFixed(2);
+                        if(tempDis >=  width / 2){
+                            distance = width;
+                        }else if( tempDis <=  - width / 2){
+                            distance = 0;
+                        }
+                        $wrap.style.transform = 'translate3d(' +  distance + 'px, 0 , 0)';
+                        $wrap.style.transition = 'all .5s ease';
+                        break;
+                    case "touchmove":
+                        event.preventDefault();
+                        this.move = event.touches[0].clientX;
+                        var offset = (this.move - this.start).toFixed(2);
+                        var dis = distance + (offset - 0);
+                        if (distance == 0 && offset < 0 || dis > width){
+                        }else{
+                            $wrap.style.transform = 'translate3d(' + dis + 'px, 0 , 0)';
+                            $wrap.style.transition = 'none';
+                        }
+                        break;
+                }
+            }
+        }
+    })();
+    
+    window.onload = function () {
+        touchMove.readyLoad();
+    };
+    
+    window.onkeydown = function(ev){
+        if(ev.keyCode == 13){
+            password.check();
+        }
+    };
+    
+    document.getElementById('toRight').onclick = function(){
+        password.moveToRight();
+    };
+    
+    var $td = document.getElementsByTagName('td');
+    
+    for(var i = 0; i < $td.length; i ++){
+        $td[i].onclick = function(){
+            var value = this.getAttribute('data-val') - 0;
+            if(value >= 0){
+                pin.click(value);
+            }else if (value == -1){
+                pin.moveToLeft();
+            }else {
+                pin.delete();
+            }
+        }
+    }
+</script>
 </body>
 </html>
