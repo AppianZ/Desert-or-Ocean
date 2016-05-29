@@ -2,7 +2,7 @@
  * Created by JW on 2016/4/3.
  */
 var $data = {
-    username : 'zhang',
+    username : 'appian',
     password : 123,
     pinword : 1234
 };
