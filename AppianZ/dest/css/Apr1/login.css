@@ -65,7 +65,8 @@ body #wrap {
       color: rgba(255, 255, 255, 0.5);
       text-align: center;
       font-weight: 100;
-      letter-spacing: 14px; }
+      letter-spacing: 14px;
+      margin: 20px 0 0 0; }
       #pinword header h3 b {
         font-weight: 100;
         color: white; }
@@ -189,7 +190,8 @@ body #wrap {
       color: rgba(255, 255, 255, 0.5);
       text-align: center;
       font-weight: 100;
-      letter-spacing: 14px; }
+      letter-spacing: 14px;
+      margin: 20px 0 0 0; }
       #password header h3 b {
         font-weight: 100;
         color: white; }
@@ -236,7 +238,8 @@ body #wrap {
     #password footer h3 {
       color: #79c2b4; }
     #password footer p {
-      color: rgba(255, 255, 255, 0.5); }
+      color: rgba(255, 255, 255, 0.5);
+      margin: 12px 0 0 0; }
 
 @-webkit-keyframes shock {
   0% {

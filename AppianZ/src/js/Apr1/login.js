@@ -1,20 +1,27 @@
 /**
  * Created by JW on 2016/4/3.
  */
+var $wrap = document.getElementById('wrap');
+var distance = 0;
+var width = document.body.offsetWidth;
+
 var password = (function(){
     return {
         'check' : function(){
             var $input = document.getElementsByTagName('input');
             if($input[0].value == $data.username && $input[1].value == $data.password){
-                console.log('ok');
+                alert('ok');
             } else {
-                console.log($input[0].value + $input[1].value);
-                alert('login fail');
+                alert('fail');
+                $input[0].value = '';
+                $input[1].value = '';
             }
              return this;
         },
         'moveToRight' : function(){
-            document.getElementById('wrap').setAttribute('class','right');
+            $wrap.style= 'none';
+            $wrap.setAttribute('class','right');
+            distance = width;
         }
     }
 })();
@@ -41,7 +48,9 @@ var pin = (function(){
                         fin += pinArr[k];
                     }
                     if(fin == $data.pinword){
-                        document.getElementById('wrap').removeAttribute('class');
+                        $wrap.style= 'none';
+                        $wrap.removeAttribute('class');
+                        distance = 0;
                         pinArr.length = 0;
                         this.init();
                     } else {
@@ -73,7 +82,9 @@ var pin = (function(){
             }
         },
         'moveToLeft' : function(){
-            document.getElementById('wrap').removeAttribute('class');
+            $wrap.style= 'none';
+            $wrap.removeAttribute('class');
+            distance = 0;
             pinArr.length = 0;
             this.init();
         }
@@ -85,8 +96,6 @@ var touchMove = (function () {
         start : 0,
         move : 0,
         end : 0,
-        distance : 0,
-        selector : document.getElementById('wrap'),
         'readyLoad' : function () {
             document.addEventListener('touchstart',this.touch.bind(this),false);
             document.addEventListener('touchmove',this.touch.bind(this),false);
@@ -100,15 +109,25 @@ var touchMove = (function () {
                     break;
                 case "touchend":
                     this.end = event.changedTouches[0].clientX;
-                    var tempDis = this.distance + (this.start - this.end);
-                    console.log('end ----' , tempDis);
-                    // this.selector.style.transform = 'translate3d(0,-' +  this.distance + 'px, 0)';
+                    var tempDis = (this.end - this.start).toFixed(2);
+                    if(tempDis >=  width / 2){
+                        distance = width;
+                    }else if( tempDis <=  - width / 2){
+                        distance = 0;
+                    }
+                    $wrap.style.transform = 'translate3d(' +  distance + 'px, 0 , 0)';
+                    $wrap.style.transition = 'all .5s ease';
                     break;
                 case "touchmove":
                     event.preventDefault();
                     this.move = event.touches[0].clientX;
-                    var offset = this.start - this.move;
-                    console.log('move------',offset);
+                    var offset = (this.move - this.start).toFixed(2);
+                    var dis = distance + (offset - 0);
+                    if (distance == 0 && offset < 0 || dis > width){
+                    }else{
+                        $wrap.style.transform = 'translate3d(' + dis + 'px, 0 , 0)';
+                        $wrap.style.transition = 'none';
+                    }
                     break;
             }
         }
@@ -118,7 +137,6 @@ var touchMove = (function () {
 window.onload = function () {
     touchMove.readyLoad();
 };
-
 
 window.onkeydown = function(ev){
     if(ev.keyCode == 13){
