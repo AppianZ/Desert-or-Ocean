@@ -31,10 +31,6 @@ body #wrap {
   overflow: auto;
   transition: all .5s ease-out; }
 
-.right {
-  -webkit-transform: translate3d(50%, 0, 0);
-          transform: translate3d(50%, 0, 0); }
-
 #pinword {
   width: 50%; }
   #pinword header {
