@@ -2,15 +2,16 @@
  * Created by JW on 2016/5/23.
  */
 var yearArr = [],monthArr = [],dateArr=[];
-var liHeight = 40;
-var maxHeight = [];
+//存储了三个ul的值的数组
+var liHeight = 40;//一个数值的li的高度
+var maxHeight = [];//三个ul的最大高度
+var count = 100;//设置年份多少年
+var currentYear = new Date().getFullYear();//实际年份
+var resultArr = [currentYear - count + 1,1,1];//存储结果年，月，日
 
 var yearUl = document.getElementById('year');
 var monthUl = document.getElementById('month');
 var dateUl = document.getElementById('date');
-var count = 100;//设置年份多少年
-var currentYear = new Date().getFullYear();//实际年份
-var resultArr = [currentYear - count + 1,1,1];
 
 window.onload = function () {
     initArr.initYear(currentYear,count);
