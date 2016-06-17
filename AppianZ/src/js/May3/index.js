@@ -47,7 +47,7 @@ var initArr = (function(){
                 monthArr.push(month + 1);
                 month++;
             }
-            this.initArr(monthArr,monthUl);
+            this.initArr(monthArr,monthUl);A
             maxHeight[1] = liHeight * 11;
         },
         'initDate' : function (year,month){//传入真实年份和月份
