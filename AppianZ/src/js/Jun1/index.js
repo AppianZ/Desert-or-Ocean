@@ -46,7 +46,6 @@ function testGlass (g){
         glass--;
         console.log('[4]：money：' + MONEY + ';bottle：' + bottle + ';cover：' + cover + ';glass：' + glass);
         if(MONEY == 0 && cover < 4){
-            console.log(12);
         }
     }
 }
