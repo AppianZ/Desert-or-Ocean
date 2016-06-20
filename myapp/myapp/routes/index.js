@@ -4,7 +4,9 @@ var admin = express();
 var secret = express();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express123' });
+  res.render('index',
+      { title: 'my app 123',
+        content: 'GET request to homepage'});
 });
 
 admin.get('/', function (req, res) {
@@ -19,5 +21,26 @@ secret.get('/', function (req, res) {
 
 admin.use('/secr*t', secret);
 router.use(['/adm*n', '/manager'], admin);
-
 module.exports = router;
+
+
+// ----------------------------------------------------
+router.disable('parameter');
+console.log('1.1 ' + router.get('parameter'));//false
+
+router.disabled('parameter');
+console.log('2.1 ' + router.disabled('parameter'));//true
+console.log('2.2 ' + router.get('parameter'));//false
+
+router.enable('parameter');
+console.log('3.1 ' + router.get('parameter'));//true
+
+router.enabled('parameter');
+console.log('4.1 ' + router.enabled('parameter'));//true
+console.log('4.2 ' + router.get('parameter'));//true
+
+router.set('title', 'My Express App');
+console.log('5.1 ' + router.get('title'));//My Express App
+
+// ----------------------------------------------------
+
