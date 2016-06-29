@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url("//at.alicdn.com/t/font_1467165406_8704193.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/font_1467165406_8704193.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1467165406_8704193.woff") format("woff"), url("//at.alicdn.com/t/font_1467165406_8704193.ttf") format("truetype"), url("//at.alicdn.com/t/font_1467165406_8704193.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+.iconfont {
+  font-family: 'iconfont';
+  color: white; }
+
+* {
+  padding: 0;
+  margin: 0; }
+
+#main {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid #F17C9E;
+  height: 250px; }
+  #main span {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    height: 250px;
+    line-height: 250px;
+    padding: 0 10px;
+    color: #F17C9E;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer; }
+  #main ul {
+    list-style: none;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex; }
+  #main li {
+    border: 1px solid #F17C9E; }
+    #main li figure img {
+      display: inline-block;
+      width: 130px;
+      height: 130px;
+      background-position: center;
+      background-size: cover; }
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url("//at.alicdn.com/t/font_1467165406_8704193.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/font_1467165406_8704193.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1467165406_8704193.woff") format("woff"), url("//at.alicdn.com/t/font_1467165406_8704193.ttf") format("truetype"), url("//at.alicdn.com/t/font_1467165406_8704193.svg#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+.iconfont {
+  font-family: 'iconfont';
+  color: white; }
+
+* {
+  padding: 0;
+  margin: 0; }
+
+#main {
+  position: relative;
+  height: 250px;
+  border: 1px solid #F17C9E; }
+  #main span {
+    display: inline-block;
+    width: 50px;
+    height: 250px;
+    line-height: 250px;
+    color: #F17C9E;
+    text-align: center;
+    font-size: 20px; }
+    #main span:nth-child(2) {
+      float: right; }
+  #main article {
+    position: absolute;
+    top: 0;
+    padding: 20px 50px;
+    height: 250px;
+    width: 100%; }
+  #main ul {
+    position: absolute;
+    width: 100%;
+    list-style: none;
+    vertical-align: bottom; }
+  #main li {
+    position: absolute;
+    border: 1px dashed #F17C9E;
+    height: 210px;
+    width: 50%;
+    background: #fff;
+    overflow: hidden;
+    transition: -webkit-transform .8s ease;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); }
+    #main li figure {
+      display: inline-block; }
+      #main li figure img {
+        width: 130px;
+        height: 130px;
+        background-position: center;
+        background-size: cover; }
+    #main li.right {
+      right: 50px; }
+    #main li.center {
+      -webkit-transform: scale(1.1) translate3d(25%, 0, 0);
+              transform: scale(1.1) translate3d(25%, 0, 0);
+      z-index: 100; }
+
+/*# sourceMappingURL=index2.css.map */
