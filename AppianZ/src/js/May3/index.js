@@ -1,7 +1,7 @@
 /**
  * Created by JW on 2016/5/23.
  */
-var yearArr = [],monthArr = [],dateArr=[];
+var FirstArr = [],secondArr = [],thirdArr=[];
 //存储了三个ul的值的数组
 var liHeight = 40;//一个数值的li的高度
 var maxHeight = [];//三个ul的最大高度
@@ -9,9 +9,9 @@ var count = 100;//设置年份多少年
 var currentYear = new Date().getFullYear();//实际年份
 var resultArr = [currentYear - count + 1,1,1];//存储结果年，月，日
 
-var yearUl = document.getElementById('year');
-var monthUl = document.getElementById('month');
-var dateUl = document.getElementById('date');
+var yearUl = document.getElementById('date-selector-0');
+var monthUl = document.getElementById('date-selector-1');
+var dateUl = document.getElementById('date-selector-2');
 
 window.onload = function () {
     initArr.initYear(currentYear,count);
@@ -35,19 +35,19 @@ var initArr = (function(){
         'initYear' : function(current,count){
             var year = 0;
             while (year < count) {
-                yearArr.unshift(current - year);
+                FirstArr.unshift(current - year);
                 year++;
             }
-            this.initArr(yearArr,yearUl);
+            this.initArr(FirstArr,yearUl);
             maxHeight[0] = liHeight * (count - 1);
         },
         'initMonth' : function(){
             var month = 0;
             while (month < 12) {
-                monthArr.push(month + 1);
+                secondArr.push(month + 1);
                 month++;
             }
-            this.initArr(monthArr,monthUl);
+            this.initArr(secondArr,monthUl);
             maxHeight[1] = liHeight * 11;
         },
         'initDate' : function (year,month){//传入真实年份和月份
@@ -55,7 +55,7 @@ var initArr = (function(){
             var sum = new Date(year,month,0).getDate();
             var sub = 0;
             if(sum < resultArr[2]){
-                sub = sum - dateArr[dateArr.indexOf(resultArr[2])];
+                sub = sum - thirdArr[thirdArr.indexOf(resultArr[2])];
                 if(sub < 0){
                     var y = dateUl.style.transform.split(',')[1].replace('px','');
                     dateUl.style.transform = 'translate3d(0,' + (y - sub * liHeight) + 'px, 0)';
@@ -63,12 +63,12 @@ var initArr = (function(){
                     resultArr[2] = -( y / liHeight ) + sub + 1;
                 }
             }
-            dateArr　= [];
+            thirdArr　= [];
             while (date < sum) {
-                dateArr.push(date + 1);
+                thirdArr.push(date + 1);
                 date++;
             }
-            this.initArr(dateArr,dateUl);
+            this.initArr(thirdArr,dateUl);
             maxHeight[2] = liHeight * (sum - 1);
 
         }
@@ -89,7 +89,7 @@ var daySelector = (function(){
             Y : 0,
             index : 0
         },
-        distance : [0,0,0],
+        distance : [],
         initListener : function(ul,array,maxHeiIdx){
             var _this = this;
             ul.addEventListener('touchstart',function(){
@@ -103,9 +103,10 @@ var daySelector = (function(){
             }, false);
         },
         readyLoad : function(){
-            this.initListener(yearUl,yearArr,0);
-            this.initListener(monthUl,monthArr,1);
-            this.initListener(dateUl,dateArr,2);
+            this.initListener(yearUl,FirstArr,0);
+            this.initListener(monthUl,secondArr,1);
+            this.initListener(dateUl,thirdArr,2);
+            this.distance=[0,0,0];
         },
         initPosition: function(dis,max,idx){  //位置格式化
             dis = dis < 0 ? 0 : dis;
@@ -127,8 +128,6 @@ var daySelector = (function(){
             for(var j in arr){
                 variance += (arr[j]-(sum/arr.length)) * (arr[j]-(sum/arr.length));
             }
-            console.log('方差:' + (variance/arr.length).toFixed(2));
-
             var rate = 0;
             if((variance/arr.length).toFixed(2) > .1){ //可根据速度变化来调节滑动状态！！！
                 rate = max > liHeight * 35 ? dir * 2 : 0;
@@ -152,7 +151,7 @@ var daySelector = (function(){
                     that.end.Y = event.changedTouches[0].clientY;
                     var tempDis = that.distance[maxHeiIdx] + (that.start.Y - that.end.Y);
                     that.distance[maxHeiIdx] = tempDis < 0 ? 0 : (tempDis < maxHeight[maxHeiIdx] ? tempDis : maxHeight[maxHeiIdx]);
-                    console.log(that.move.speed);
+                    // console.log(that.move.speed);
                     this.initSpeed(that.move.speed,that.start.Y - that.end.Y,maxHeight[maxHeiIdx],maxHeiIdx);
                     $selector.style.transform = 'translate3d(0,-' +  that.distance[maxHeiIdx] + 'px, 0)';
                     $selector.style.transition = 'all ' + that.move.speed[0] + 's ease-out';
@@ -166,7 +165,6 @@ var daySelector = (function(){
                     }else {
                         resultArr[maxHeiIdx] = arrry[that.end.index];
                     }
-                    console.log(resultArr);
                     break;
                 case "touchmove":
                     event.preventDefault();
@@ -189,10 +187,45 @@ var daySelector = (function(){
                     }
                     break;
             }
+        },
+        submit : function(){
+            document.getElementById('date-selector-bg').removeAttribute('class');
+            document.getElementById('date-selector-container').removeAttribute('class');
+            console.log(resultArr);
+        },
+        cancel : function(){
+            document.getElementById('date-selector-bg').removeAttribute('class');
+            document.getElementById('date-selector-container').removeAttribute('class');
         }
     }
 })();
 
+document.getElementById('date-selector-input').onclick = function(){
+    document.getElementById('date-selector-bg').setAttribute('class','date-selector-bg');
+    document.getElementById('date-selector-container').setAttribute('class','date-selector-container')
+};
 
+document.getElementById('date-selector-btn-save').onclick = function(){
+    daySelector.submit();
+};
 
+document.getElementById('date-selector-btn-cancel').onclick = function(){
+    daySelector.submit();
+};
+
+document.getElementsByClassName('date-selector-tab')[0].onclick = function(){
+    document.getElementsByClassName('date-selector-tab')[0].setAttribute('class','date-selector-tab');
+    document.getElementsByClassName('date-selector-tab')[1].setAttribute('class','date-selector-tab');
+    this.setAttribute('class','date-selector-tab date-selector-tab-active');
+    document.getElementsByClassName('date-selector-content')[0].setAttribute('class','date-selector-content');
+    document.getElementsByClassName('date-selector-content')[1].setAttribute('class','date-selector-content date-selector-content-right');
+
+};
+document.getElementsByClassName('date-selector-tab')[1].onclick = function(){
+    document.getElementsByClassName('date-selector-tab')[0].setAttribute('class','date-selector-tab');
+    document.getElementsByClassName('date-selector-tab')[1].setAttribute('class','date-selector-tab');
+    this.setAttribute('class','date-selector-tab date-selector-tab-active');
+    document.getElementsByClassName('date-selector-content')[0].setAttribute('class','date-selector-content  date-selector-content-left');
+    document.getElementsByClassName('date-selector-content')[1].setAttribute('class','date-selector-content');
+};
 

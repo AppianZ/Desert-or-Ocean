@@ -13,19 +13,44 @@
   padding: 0;
   margin: 0; }
 
-body {
-  background: #f2f2f2; }
+/*body {
+  background: #f4f4f4 ;
+}*/
+/*#date-selector-input {
+  padding: 3px 5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin: 20px;
+}*/
+#date-selector-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(75, 75, 75, 0);
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  transition: background .3s ease;
+  z-index: -1; }
 
-.container {
+.date-selector-bg {
+  z-index: 999 !important;
+  background: rgba(75, 75, 75, 0.65) !important; }
+
+#date-selector-container {
   width: 100%;
   height: 250px;
   position: absolute;
-  bottom: 0;
+  bottom: -250px;
   left: 0;
   background-color: #FFF;
-  transition: all .2s; }
+  transition: all .2s ease; }
 
-.btn-box {
+.date-selector-container {
+  bottom: 0 !important;
+  transition-delay: .5s; }
+
+.date-selector-btn-box {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -34,41 +59,78 @@ body {
           justify-content: space-between;
   height: 50px;
   line-height: 50px;
-  background: #abcdef; }
-  .btn-box .btn {
-    margin: 0 20px; }
+  background: #40CCC0; }
+  .date-selector-btn-box .date-selector-btn {
+    margin: 0 20px;
+    color: #fff; }
 
-.content {
-  font-size: 0; }
-  .content .date-selector {
+.date-selector-tab-box {
+  border-radius: 10px;
+  margin: 10px 0;
+  height: 30px;
+  box-sizing: border-box;
+  line-height: 30px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  color: #40CCC0;
+  background: #fff;
+  border: 1px solid #fff; }
+  .date-selector-tab-box .date-selector-tab {
+    padding: 0 10px;
+    transition: all .3s ease; }
+    .date-selector-tab-box .date-selector-tab:first-child {
+      border-right: 1px solid #fff; }
+  .date-selector-tab-box .date-selector-tab-active {
+    color: #fff;
+    border-radius: 10px;
+    background: rgba(64, 204, 192, 0.5); }
+
+.date-selector-content-left {
+  left: -100% !important; }
+
+.date-selector-content-right {
+  left: 100% !important; }
+
+.date-selector-content {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  font-size: 0;
+  left: 0;
+  transition: left .3s ease; }
+  .date-selector-content .date-selector {
     display: inline-block;
-    width: 33.3%;
     height: 200px;
     overflow: hidden; }
-  .content ul::-webkit-scrollbar {
+  .date-selector-content .date-selector-left {
+    width: 33.33%; }
+  .date-selector-content .date-selector-right {
+    width: 50%; }
+  .date-selector-content ul::-webkit-scrollbar {
     display: none; }
-  .content li {
+  .date-selector-content li {
     height: 40px;
     text-align: center;
     font-size: 16px;
     line-height: 40px;
     list-style: none; }
-  .content .up-shadow, .content .down-shadow {
+  .date-selector-content .date-selector-up-shadow, .date-selector-content .date-selector-down-shadow {
     width: 100%;
     height: 80px;
     position: absolute;
     pointer-events: none;
     background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0)); }
-  .content .up-shadow {
+  .date-selector-content .date-selector-up-shadow {
     top: 50px; }
-  .content .down-shadow {
+  .date-selector-content .date-selector-down-shadow {
     bottom: 0;
     background-image: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0)); }
-  .content .line {
+  .date-selector-content .date-selector-line {
     width: 95%;
     height: 40px;
     position: absolute;
-    top: 130px;
+    top: 80px;
     left: 50%;
     pointer-events: none;
     box-sizing: border-box;
