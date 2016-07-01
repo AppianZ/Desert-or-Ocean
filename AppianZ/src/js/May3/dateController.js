@@ -20,6 +20,14 @@
         }
     }
 
+    function on(action,selector,callback){
+        doc.addEventListener(action,function(e){
+            if(selector == e.target.tagName.toLowerCase() ||selector == e.target.className || selector == e.target.id){
+                callback(e.toElement);
+            }
+        })
+    }
+
     function DateSelector(config){
         this.container = config.container;
         this.type = config.type;
@@ -27,8 +35,13 @@
         this.range = (config.type === 1 || config.param[0] === 1)?
             ((config.range.length == 2 && config.range[0] < config.range[1])?
                 config.range : [1950,new Date().getFullYear() + 1]): [];
-        this.ulCount = 0;
-        this.initFuc();
+        this.ulCount = 0;//更新后的ul的个数
+        this.ulDomArr = [];//存储
+        this.idxArr = [];//更新后的ul的下标
+        this.liHeight = 40;//li的高度
+        this.maxHeight = [];//每个ul的最大高度
+        this.initDomFuc();
+        this.initReady();
     }
 
     DateSelector.prototype = {
@@ -41,15 +54,14 @@
                     idxArr.push(i);
                 }
             });
-            console.log(this.param);
             this.ulCount = idxArr[idxArr.length - 1] - idxArr[0] + 1;
             loop(idxArr[0],idxArr[idxArr.length - 1] + 1,function (i) {
                 _this.param[i] = 1;
+                _this.idxArr.push(i);
             });
-            console.log(this.param);
-            console.log(this.ulCount);
+            console.log(_this.idxArr);
         },
-        initFuc : function(){
+        initDomFuc : function(){
             var _this = this;
             this.checkParam();
             var html = '';
@@ -57,43 +69,117 @@
                 '<div id="date-selector-container">' +
                 '<div class="date-selector-btn-box">' +
                 '<div class="date-selector-btn" id="date-selector-btn-cancel">返回</div>';
-            if(this.type == 1) {
+
+            if(this.type == 1) {//写死的固定死的tab和形式
                 html += '<div class="date-selector-tab-box">' +
                     '<div class="date-selector-tab date-selector-tab-active">年月日</div>' +
                     '<div class="date-selector-tab">时分</div>' +
                     '</div>';
             }
+
             html += '<div class="date-selector-btn" id="date-selector-btn-save">提交</div>' +
-                '</div>' +
-                '<div class="date-selector-content">';//27行
+                '</div>' +//26行
+                '<div class="date-selector-content">';
 
-            if(this.type == 0){//写死的固定死的
-                html += ''
-            }else if(this.type == 1){
-
-
+            if(_this.type == 0){
+                loop(0,_this.param.length,function(i){
+                    html += '<div class="date-selector date-selector-left">' +
+                                '<ul id="date-selector-' + i + '"></ul>' +
+                            '</div>';
+                });
+                html += '<div class="date-selector-up-shadow"></div>' +
+                        '<div class="date-selector-down-shadow"></div>' +
+                        '<div class="date-selector-line"></div>' +
+                        '</div>';
+                html += '</div></div>';
+                $id(_this.container).innerHTML = html;
+                loop(0,_this.ulCount,function (i) {
+                    $class('date-selector')[i].style.width = (100/_this.ulCount).toFixed(2) + '%';
+                    console.log($class('date-selector')[i].style.width);
+                });
+            }else if(_this.type == 1){//写死的固定死的
+                html += '<div class="date-selector date-selector-left">' +
+                            '<ul id="date-selector-0"></ul>' +
+                        '</div>' +
+                        '<div class="date-selector date-selector-left">' +
+                            '<ul id="date-selector-1"></ul>' +
+                        '</div>' +
+                        '<div class="date-selector date-selector-left">' +
+                            '<ul id="date-selector-2"></ul>' +
+                        '</div>' +
+                        '<div class="date-selector-up-shadow"></div>' +
+                        '<div class="date-selector-down-shadow"></div>' +
+                        '<div class="date-selector-line"></div>' +
+                    '</div>' +
+                    '<div class="date-selector-content date-selector-content-right">' +
+                        '<div class="date-selector date-selector-right">' +
+                            '<ul id="date-selector-3"></ul>' +
+                        '</div>' +
+                        '<div class="date-selector date-selector-right">' +
+                            '<ul id="date-selector-4"></ul>' +
+                        '</div>' +
+                        '<div class="date-selector-up-shadow"></div>' +
+                        '<div class="date-selector-down-shadow"></div>' +
+                        '<div class="date-selector-line"></div>' +
+                    '</div>';
+                html += '</div></div>';
+                $id(_this.container).innerHTML = html;
             }
+        },
+        initReady : function () {
+            var _this = this;
+            loop(0,_this.ulCount,function(i) {
 
-
-
-
-
-            /*loop(0,_this.ulCount - 1,function (i) {
-                $class('date-selector')[i].style.width = (100/_this.ulCount).toFixed(2) + '%';
-                console.log($class('date-selector')[i].style.width);
-            });*/
+            })
         }
     };
+
+
+
+
+
+    on('click','date-selector-input',function(){
+        $id('date-selector-bg').setAttribute('class','date-selector-bg');
+        $id('date-selector-container').setAttribute('class','date-selector-container');
+    }, false);
+
+    on('click','date-selector-btn-save',function(){
+        $id('date-selector-bg').removeAttribute('class');
+        $id('date-selector-container').removeAttribute('class');
+        // console.log(resultArr);
+    },false);
+
+    on('click','date-selector-btn-cancel',function(){
+        $id('date-selector-bg').removeAttribute('class');
+        $id('date-selector-container').removeAttribute('class');
+    },false);
+
+    on('click','date-selector-tab',function(event){
+        var tab = $class('date-selector-tab');
+        var content = $class('date-selector-content');
+        loop(0,tab.length,function(i){
+            tab[i].setAttribute('class','date-selector-tab');
+        });
+        event.setAttribute('class','date-selector-tab date-selector-tab-active');
+        if(event.innerHTML == '年月日'){
+            content[0].setAttribute('class','date-selector-content');
+            content[1].setAttribute('class','date-selector-content date-selector-content-right');
+        }else {
+            content[0].setAttribute('class','date-selector-content date-selector-content-left');
+            content[1].setAttribute('class','date-selector-content');
+        }
+    },false);
+
     win.DateSelector = DateSelector;
 })(window,document);
-
+  
 
 new DateSelector({
-    container : "",//插入的容器id
+    container : "targetContainer",//插入的容器id
     type : 0,
     //0：不需要tab切换，自定义滑动内容，建议小于三个；
     //1：需要tab切换，年月日时分完全展示，固定死，可设置开始年份和结束年份
-    param : [1,0,1,0,0],
+    param : [0,1,0,1,0],
     //设置['year','month','day','hour','minute'],1为需要，0为不需要
     range : [1960,2017],//如果设置了需要年份的情况下，才生效的年份范围
     submit : function(){}

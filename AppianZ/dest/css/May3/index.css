@@ -122,7 +122,7 @@
     pointer-events: none;
     background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0)); }
   .date-selector-content .date-selector-up-shadow {
-    top: 50px; }
+    top: 0; }
   .date-selector-content .date-selector-down-shadow {
     bottom: 0;
     background-image: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0)); }

@@ -177,11 +177,10 @@ var daySelector = (function(){
                         $selector.style.transform = 'translate3d(0,-'+ (offset + that.distance[maxHeiIdx]) +'px, 0)';
                     }
                     if(this.distance[maxHeiIdx] <= -maxHeight[maxHeiIdx]){
-                        $selector.style.transform = 'translate3d(0, -' + (max+liHeight) + 'px, 0)';
+                        $selector.style.transform = 'translate3d(0, -' + (max + liHeight) + 'px, 0)';
                         $selector.style.transition = 'all 0.3s ease-out';
                     }
-
-                    if (Math.abs(offset) % 5 === 0) {//存储速度
+                    if (Math.abs(offset).toFixed(0) % 5 === 0) {//存储速度
                         var time = Date.now();
                         that.move.speed.push((Math.abs(offset) / (time - that.start.time)).toFixed(2));
                     }
@@ -206,14 +205,18 @@ document.getElementById('date-selector-input').onclick = function(){
 };
 
 document.getElementById('date-selector-btn-save').onclick = function(){
-    daySelector.submit();
+    document.getElementById('date-selector-bg').removeAttribute('class');
+    document.getElementById('date-selector-container').removeAttribute('class');
+    console.log(resultArr);
 };
 
 document.getElementById('date-selector-btn-cancel').onclick = function(){
-    daySelector.submit();
+    document.getElementById('date-selector-bg').removeAttribute('class');
+    document.getElementById('date-selector-container').removeAttribute('class');
 };
 
 document.getElementsByClassName('date-selector-tab')[0].onclick = function(){
+    console.log(this);
     document.getElementsByClassName('date-selector-tab')[0].setAttribute('class','date-selector-tab');
     document.getElementsByClassName('date-selector-tab')[1].setAttribute('class','date-selector-tab');
     this.setAttribute('class','date-selector-tab date-selector-tab-active');
