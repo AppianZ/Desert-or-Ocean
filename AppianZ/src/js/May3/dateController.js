@@ -31,17 +31,19 @@
     function DateSelector(config){
         this.container = config.container;
         this.type = config.type;
-        this.param = config.param;
+        this.param = (config.type == 1)? [1,1,1,1,1] : config.param;
         this.range = (config.type === 1 || config.param[0] === 1)?
             ((config.range.length == 2 && config.range[0] < config.range[1])?
                 config.range : [1950,new Date().getFullYear() + 1]): [];
         this.ulCount = 0;//更新后的ul的个数
-        this.ulDomArr = [];//存储
+        this.ulDomArr = [];//存储ul的dom
         this.idxArr = [];//更新后的ul的下标
         this.liHeight = 40;//li的高度
         this.maxHeight = [];//每个ul的最大高度
+        this.currentYear = new Date().getFullYear();//实际年份
         this.initDomFuc();
         this.initReady();
+        this.test()
     }
 
     DateSelector.prototype = {
@@ -129,8 +131,14 @@
         initReady : function () {
             var _this = this;
             loop(0,_this.ulCount,function(i) {
+                _this.ulDomArr.push($id('date-selector-' + _this.idxArr[i]));
+                _this['array-' +　_this.idxArr[i]] = [];
+            });
+        },
+        test : function(){
+            var _this = this;
+            console.log(_this);
 
-            })
         }
     };
 
@@ -176,7 +184,7 @@
 
 new DateSelector({
     container : "targetContainer",//插入的容器id
-    type : 0,
+    type : 1,
     //0：不需要tab切换，自定义滑动内容，建议小于三个；
     //1：需要tab切换，年月日时分完全展示，固定死，可设置开始年份和结束年份
     param : [0,1,0,1,0],
