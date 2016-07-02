@@ -78,13 +78,13 @@
             }
 
             html += '<div class="date-selector-btn" id="date-selector-btn-save">提交</div>' +
-                '</div>' +//26行
+                '</div>' +
                 '<div class="date-selector-content">';
 
             if(_this.type == 0){
-                loop(0,_this.param.length,function(i){
+                loop(0,_this.idxArr.length,function(i){
                     html += '<div class="date-selector date-selector-left">' +
-                                '<ul id="date-selector-' + i + '"></ul>' +
+                                '<ul id="date-selector-' + _this.idxArr[i] + '"></ul>' +
                             '</div>';
                 });
                 html += '<div class="date-selector-up-shadow"></div>' +
