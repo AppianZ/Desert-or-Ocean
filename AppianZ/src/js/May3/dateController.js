@@ -29,6 +29,7 @@
     }
 
     function DateSelector(config){
+        this.input = config.input;
         this.container = config.container;
         this.type = config.type;
         this.param = (config.type == 1)? [1,1,1,1,1] : config.param;
@@ -54,7 +55,8 @@
             index : 0
         };
         this.resultArr = [];
-        this.currentYear = new Date().getFullYear();//实际年份，用于定位
+        this.callbackfuc = config.callbackfuc;
+
         this.initDomFuc();
         this.initReady();
         this.initBinding();
@@ -176,15 +178,15 @@
         },
         initBinding :  function () {
             var _this = this;
-            on('touchstart','date-selector-input',function(){
+            on('touchstart',_this.input,function(){
                 $id('date-selector-bg').setAttribute('class','date-selector-bg');
                 $id('date-selector-container').setAttribute('class','date-selector-container');
             }, false);
 
             on('touchstart','date-selector-btn-save',function(){
+                _this.callbackfuc(_this.resultArr);
                 $id('date-selector-bg').removeAttribute('class');
                 $id('date-selector-container').removeAttribute('class');
-                alert(_this.resultArr);
             },false);
 
             on('touchstart','date-selector-btn-cancel',function(){
@@ -324,7 +326,7 @@
                         that.initDay(that.resultArr[idx], that.resultArr[1],idx + 2);
                     } else if (that.idxArr[idx] == 1 && that.idxArr[2]) {
                         that.resultArr[idx] = array[that.end.index];
-                        var tempYear = that.idxArr[0] == 0?that.resultArr[idx] : that.currentYear;
+                        var tempYear = that.idxArr[0] == 0?that.resultArr[idx] : new Date().getFullYear();
                         that.initDay(tempYear, that.resultArr[idx], idx + 1);
                     } else {}
                     console.log(that.resultArr);
@@ -355,13 +357,14 @@
 })(window,document);
   
 new DateSelector({
+    input : 'date-selector-input',//点击的input框的id
     container : "targetContainer",//插入的容器id
     type : 1,
     //0：不需要tab切换，自定义滑动内容，建议小于三个；
     //1：需要tab切换，年月日时分完全展示，固定死，可设置开始年份和结束年份
     param : [1,1,0,0,0],
     //设置['year','month','day','hour','minute'],1为需要，0为不需要
-    range : [2222,2017],//如果设置了需要年份的情况下，才生效的年份范围
-    submit : function(){}
+    range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
+    callbackfuc : function(arr){alert(arr)}
 });
 
