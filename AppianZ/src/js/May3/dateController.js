@@ -23,7 +23,7 @@
     function on(action,selector,callback){
         doc.addEventListener(action,function(e){
             if(selector == e.target.tagName.toLowerCase() ||selector == e.target.className || selector == e.target.id){
-                callback(e.toElement);
+                callback(e);
             }
         })
     }
@@ -176,30 +176,30 @@
         },
         initBinding :  function () {
             var _this = this;
-            on('click','date-selector-input',function(){
+            on('touchstart','date-selector-input',function(){
                 $id('date-selector-bg').setAttribute('class','date-selector-bg');
                 $id('date-selector-container').setAttribute('class','date-selector-container');
             }, false);
 
-            on('click','date-selector-btn-save',function(){
+            on('touchstart','date-selector-btn-save',function(){
                 $id('date-selector-bg').removeAttribute('class');
                 $id('date-selector-container').removeAttribute('class');
                 console.log(_this.resultArr);
             },false);
 
-            on('click','date-selector-btn-cancel',function(){
+            on('touchstart','date-selector-btn-cancel',function(){
                 $id('date-selector-bg').removeAttribute('class');
                 $id('date-selector-container').removeAttribute('class');
             },false);
 
-            on('click','date-selector-tab',function(event){
+            on('touchstart','date-selector-tab',function(event){
                 var tab = $class('date-selector-tab');
                 var content = $class('date-selector-content');
                 loop(0,tab.length,function(i){
                     tab[i].setAttribute('class','date-selector-tab');
                 });
-                event.setAttribute('class','date-selector-tab date-selector-tab-active');
-                if(event.innerHTML == '年月日'){
+                event.target.setAttribute('class','date-selector-tab date-selector-tab-active');
+                if(event.target.innerHTML == '年月日'){
                     content[0].setAttribute('class','date-selector-content');
                     content[1].setAttribute('class','date-selector-content date-selector-content-right');
                 }else {
