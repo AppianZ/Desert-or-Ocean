@@ -55,6 +55,7 @@ var initArr = (function(){
             var sum = new Date(year,month,0).getDate();
             var sub = 0;
             if(sum < resultArr[2]){
+                console.log('tan');
                 sub = sum - thirdArr[thirdArr.indexOf(resultArr[2])];
                 if(sub < 0){
                     var y = dateUl.style.transform.split(',')[1].replace('px','');
@@ -107,6 +108,7 @@ var daySelector = (function(){
             this.initListener(monthUl,secondArr,1);
             this.initListener(dateUl,thirdArr,2);
             this.distance=[0,0,0];
+            console.log(maxHeight);
         },
         initPosition: function(dis,max,idx){  //位置格式化
             dis = dis < 0 ? 0 : dis;
