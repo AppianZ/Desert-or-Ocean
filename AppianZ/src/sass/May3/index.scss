@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import "../iconfont";
 
-
 $headHeight : 50px;
 $liHeight : 40px;
 $styleColor : #40CCC0;
@@ -10,17 +9,6 @@ $styleColorOpacity : rgba(64,204,192,.5);
   padding: 0;
   margin: 0;
 }
-
-/*body {
-  background: #f4f4f4 ;
-}*/
-
-/*#date-selector-input {
-  padding: 3px 5px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  margin: 20px;
-}*/
 
 #date-selector-bg {
   position: absolute;

@@ -184,7 +184,7 @@
             on('touchstart','date-selector-btn-save',function(){
                 $id('date-selector-bg').removeAttribute('class');
                 $id('date-selector-container').removeAttribute('class');
-                console.log(_this.resultArr);
+                alert(_this.resultArr);
             },false);
 
             on('touchstart','date-selector-btn-cancel',function(){
@@ -211,14 +211,33 @@
         initCommonArr : function(tempDomUl,tempArr,min,max,str){
             var _this = this;
             var Html = '';
+            var res = 0;
             loop(min,max + 1,function(i){
                 tempArr.push(i);
             });
             _this.maxHeight.push(_this.liHeight * (max - min));
-            _this.distance.push(0);
-            _this.resultArr.push(tempArr[0]);
             tempArr.unshift('','');
             tempArr.push('','');
+            switch (str) {
+                case '年':
+                    res = new Date().getFullYear();
+                    break;
+                case '月':
+                    res = new Date().getMonth() + 1;
+                    break;
+                case '日':
+                    res = new Date().getDate();
+                    break;
+                case '时':
+                    res = new Date().getHours();
+                    break;
+                case '分' :
+                    res = new Date().getMinutes();
+                    break;
+            }
+            _this.resultArr.push(res);
+            tempDomUl.style.transform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
+            _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
             loop(0,tempArr.length,function(j){
                 Html += '<li>' + tempArr[j] + (tempArr[j] == ''?'':str) + '</li>';
             });
@@ -335,7 +354,6 @@
     win.DateSelector = DateSelector;
 })(window,document);
   
-
 new DateSelector({
     container : "targetContainer",//插入的容器id
     type : 1,
