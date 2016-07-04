@@ -176,7 +176,7 @@
         function on(action,selector,callback){
             doc.addEventListener(action,function(e){
                 if(selector == e.target.tagName.toLowerCase() ||selector == e.target.className || selector == e.target.id){
-                    callback(e.toElement);
+                    callback(e);
                 }
             })
         }
@@ -348,12 +348,12 @@
                 on('touchstart','date-selector-tab',function(event){
                     var tab = $class('date-selector-tab');
                     var content = $class('date-selector-content');
-                    alert(event);
+                    // alert(event.target);
                     loop(0,tab.length,function(i){
                         tab[i].setAttribute('class','date-selector-tab');
                     });
-                    event.setAttribute('class','date-selector-tab date-selector-tab-active');
-                    if(event.innerHTML == '年月日'){
+                    event.target.setAttribute('class','date-selector-tab date-selector-tab-active');
+                    if(event.target.innerHTML == '年月日'){
                         content[0].setAttribute('class','date-selector-content');
                         content[1].setAttribute('class','date-selector-content date-selector-content-right');
                     }else {
