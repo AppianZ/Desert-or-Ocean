@@ -356,15 +356,3 @@
     win.DateSelector = DateSelector;
 })(window,document);
   
-new DateSelector({
-    input : 'date-selector-input',//点击的input框的id
-    container : "targetContainer",//插入的容器id
-    type : 1,
-    //0：不需要tab切换，自定义滑动内容，建议小于三个；
-    //1：需要tab切换，年月日时分完全展示，固定死，可设置开始年份和结束年份
-    param : [1,1,0,0,0],
-    //设置['year','month','day','hour','minute'],1为需要，0为不需要
-    range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-    callbackfuc : function(arr){alert(arr)}
-});
-
