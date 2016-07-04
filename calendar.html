@@ -348,6 +348,7 @@
                 on('click','date-selector-tab',function(event){
                     var tab = $class('date-selector-tab');
                     var content = $class('date-selector-content');
+                    alert(event);
                     loop(0,tab.length,function(i){
                         tab[i].setAttribute('class','date-selector-tab');
                     });
