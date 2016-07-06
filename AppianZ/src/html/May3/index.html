@@ -6,30 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="screen-orientation" content="portrait">
-    <title>日历选择器</title>
-    <link rel="stylesheet" type="text/css" href="../../../dest/css/May3/index.css?rev=@@hash"/>
+    <title>日期选择器</title>
+    <link rel="stylesheet" type="text/css" href="../../../dest/css/May3/dateController.css?rev=@@hash"/>
+    <style>
+        h3 {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #555;
+        }
+        h3:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            left: 50%;
+            bottom: 0;
+            margin: 0 -50px;
+            background: #ddd;
+            border-radius: 10px;
+         }
+        article {
+            color: #333;
+            line-height: 1.3;
+            padding: 0 30px;
+            margin: 20px 0;
+        }
+        p {
+            color: #777;
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+        .block {
+            background : rgb(241,241,241);
+            border-left : 8px solid #D6DBDF;
+            padding: 10px 12px;
+            margin: 0 0 15px 0;
+            overflow: auto;
+        }
+        input {
+            display: block;
+            width: 200px;
+            margin: 5px auto 10px;
+            padding: 5px 20px;
+            border: 1px solid #cbcbcb;
+            border-radius: 8px;
+        }
+    </style>
+
 </head>
 <body>
-<input id="date-selector-input" type="text" readonly/>
+<h3>DateControllerManual.</h3>
+<article>
+    <p>0.点击下面的输入演示样式</p>
+    <input id="date-selector-input" type="text" placeholder="点我~~看固定效果" readonly/>
+    <p>1.如何引用css和js文件？</p>
+    <div class="block">
+        sass文件:引用src/sass/May3/dateController.sass<br/>
+        css文件:引用dest/css/May3/dateController.css<br/>
+        js文件:引用src/js/May3/dateController.js<br/>
+    </div>
+    <p>2.如何调用构造函数？</p>
+    <div class="block">
+        基本格式：new DateSelector({ ... });<br/>
+        参数配置:<br/>
+        input : string类型，点击触发插件的input框的id<br/>
+        container ： string类型，插件即将插入的容器id<br/>
+        type ：0或1，0为自定义插件的日期单位(不带tab切换)，1为固定插件的日期单位为【年月日】【时分】(带tab切换)<br/>
+        param : array类型,例如 [1,1,0,0,0]，分别设置['year','month','day','hour','minute'],1为需要，0为不需要
+        <br/>
+        range ： array类型，设置年份范围，默认[1950,明年],在设置了需要年份的情况下才生效<br/>
+        callbackfuc : function(arr){} 回调函数，可以自定义结果格式化
+    </div>
+</article>
+
 
 <div id="targetContainer"></div>
 
 <script src="../../js/May3/dateController.js"></script>
 
 <script>
-    //函数调用
-    new DateSelector({
-        input : 'date-selector-input',//点击触发插件的input框的id
-        container : "targetContainer",//插件插入的容器id
-        type : 1,
-        //0：不需要tab切换，自定义滑动内容，建议小于三个；
-        //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
-        param : [1,1,0,0,0],
-        //设置['year','month','day','hour','minute'],1为需要，0为不需要
-        range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-        callbackfuc : function(arr){alert(arr)}//回调
-    });
-</script>
 
+        //---------------------函数调用开始---------------------
+        new DateSelector({
+            input : 'date-selector-input',//点击触发插件的input框的id
+            container : 'targetContainer',//插件插入的容器id
+            type : 1,
+            //0：不需要tab切换，自定义滑动内容，建议小于三个；
+            //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
+            param : [1,1,0,1,0],
+            //设置['year','month','day','hour','minute'],1为需要，0为不需要
+            range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
+            callbackfuc : function(arr){alert(arr)}//回调
+        });
+        //---------------------函数调用结束---------------------
+</script>
 </body>
 </html>

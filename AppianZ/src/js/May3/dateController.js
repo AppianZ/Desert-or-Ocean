@@ -239,6 +239,7 @@
             }
             _this.resultArr.push(res);
             tempDomUl.style.transform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
+            tempDomUl.style.webkitTransform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
             _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
             loop(0,tempArr.length,function(j){
                 Html += '<li>' + tempArr[j] + (tempArr[j] == ''?'':str) + '</li>';
@@ -254,7 +255,9 @@
                 if(sub < 0){
                     var y = $id('date-selector-2').style.transform.split(',')[1].replace('px','');
                     $id('date-selector-2').style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-                    $id('date-selector-2').style.transition = 'all 0.15s ease-out';
+                    $id('date-selector-2').style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
+                    $id('date-selector-2').style.transition = 'transform 0.15s ease-out';
+                    $id('date-selector-2').style.transition = '-webkit-transform 0.15s ease-out';
                     this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
                 }
             }
@@ -319,7 +322,9 @@
                     that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
                     that.resultArr[idx] = array[that.distance[idx]/40 + 2];
                     $selector.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
-                    $selector.style.transition = 'all ' + that.move.speed[0] + 's ease-out';
+                    $selector.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
+                    $selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
+                    $selector.style.transition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
                     that.end.index = that.distance[idx] / that.liHeight + 2;
                     if (that.idxArr[idx] == 0 && that.idxArr[2]) {
                         that.resultArr[idx] = array[that.end.index];
@@ -337,13 +342,18 @@
                     var offset = that.start.Y - that.move.Y;
                     if (that.distance[idx] == 0 && offset < 0) {
                         $selector.style.transform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
-                        $selector.style.transition = 'all 0.3s ease-out';
+                        $selector.style.webkitTransform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
+                        $selector.style.transition = 'transform 0.3s ease-out';
+                        $selector.style.transition = '-webkit-transform 0.3s ease-out';
                     } else {
                         $selector.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
+                        $selector.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
                     }
                     if (this.distance[idx] <= -that.maxHeight[idx]) {
                         $selector.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
-                        $selector.style.transition = 'all 0.3s ease-out';
+                        $selector.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
+                        $selector.style.transition = 'transform 0.3s ease-out';
+                        $selector.style.transition = '-webkit-transform 0.3s ease-out';
                     }
                     if (Math.abs(offset).toFixed(0) % 5 === 0) {//存储速度
                         var time = Date.now();
