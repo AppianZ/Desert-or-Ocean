@@ -36,7 +36,7 @@
         }
         p {
             color: #777;
-            font-size: 14px;
+            font-size: 16px;
             margin: 5px 0 0 0;
         }
         .block {
@@ -44,6 +44,7 @@
             border-left : 8px solid #D6DBDF;
             padding: 10px 12px;
             margin: 0 0 15px 0;
+            font-size: 14px;
             overflow: auto;
         }
         input {
@@ -60,25 +61,25 @@
 <body>
 <h3>DateControllerManual.</h3>
 <article>
-    <p>0.请在移动端下打开~~/p>
+    <p>0.请在移动端下打开~~</p>
     <p>1.点击下面的输入演示样式</p>
     <input id="date-selector-input" type="text" placeholder="点我~~看固定效果" readonly/>
     <p>2.如何引用css和js文件？</p>
     <div class="block">
-        sass文件:引用src/sass/May3/dateController.sass<br/>
-        css文件:引用dest/css/May3/dateController.css<br/>
-        js文件:引用src/js/May3/dateController.js<br/>
+        sass文件:引用src/sass/May3/dateController.sass<br/><br/>
+        css文件:引用dest/css/May3/dateController.css<br/><br/>
+        js文件:引用src/js/May3/dateController.js<br/><br/>
     </div>
     <p>3.如何调用构造函数？</p>
     <div class="block">
-        基本格式：new DateSelector({ ... });<br/>
+        基本格式：new DateSelector({ ... });<br/><br/>
         参数配置:<br/>
-        input : string类型，点击触发插件的input框的id<br/>
-        container ： string类型，插件即将插入的容器id<br/>
-        type ：0或1，0为自定义插件的日期单位(不带tab切换)，1为固定插件的日期单位为【年月日】【时分】(带tab切换)<br/>
+        input : string类型，点击触发插件的input框的id<br/><br/>
+        container ： string类型，插件即将插入的容器id<br/><br/>
+        type ：0或1，0为自定义插件的日期单位(不带tab切换)，1为固定插件的日期单位为【年月日】【时分】(带tab切换)<br/><br/>
         param : array类型,例如 [1,1,0,0,0]，分别设置['year','month','day','hour','minute'],1为需要，0为不需要
-        <br/>
-        range ： array类型，设置年份范围，默认[1950,明年],在设置了需要年份的情况下才生效<br/>
+        <br/><br/>
+        range ： array类型，设置年份范围，默认[1950,明年],在设置了需要年份的情况下才生效<br/><br/>
         callbackfuc : function(arr){} 回调函数，可以自定义结果格式化
     </div>
 </article>
