@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0; }
 
-#date-selector-bg {
+.date-selector-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,11 +13,11 @@
   transition: all .3s ease;
   z-index: -1; }
 
-.date-selector-bg {
+.date-selector-bg-up {
   z-index: 999 !important;
   background: rgba(75, 75, 75, 0.65) !important; }
 
-#date-selector-container {
+.date-selector-container {
   width: 100%;
   height: 250px;
   position: absolute;
@@ -26,9 +26,9 @@
   background-color: #FFF;
   transition: all .2s ease; }
 
-.date-selector-container {
+.date-selector-container-up {
   bottom: 0 !important;
-  transition-delay: .5s; }
+  transition-delay: .3s; }
 
 .date-selector-btn-box {
   display: -webkit-flex;

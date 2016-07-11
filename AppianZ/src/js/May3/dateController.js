@@ -36,21 +36,21 @@
         this.range = (config.type === 1 || config.param[0] === 1)?
             ((config.range.length == 2 && config.range[0] < config.range[1])?
                 config.range : [1950,new Date().getFullYear() + 1]): [];
-        this.ulCount = 0;//更新后的ul的个数
-        this.ulDomArr = [];//存储ul的dom
+        this.ulCount = 0;
+        this.ulDomArr = [];
         this.idxArr = [];//更新后的ul的下标
-        this.liHeight = 40;//li的高度
-        this.maxHeight = [];//每个ul的最大高度
+        this.liHeight = 40;
+        this.maxHeight = [];
         this.distance = [];
-        this.start =  { //所有跟touchstart有关的参数
+        this.start =  {
             Y : 0,
             time : ''
         };
-        this.move = { //所有跟touchmove有关的参数
+        this.move = {
             Y : 0,
             speed : []
         };
-        this.end = { //所有跟touchmove有关的参数
+        this.end = {
             Y : 0,
             index : 0
         };
@@ -82,26 +82,26 @@
             var _this = this;
             this.checkParam();
             var html = '';
-            html += '<div id="date-selector-bg">' +
-                '<div id="date-selector-container">' +
+            html += '<div class="date-selector-bg" id="date-selector-bg-'+ _this.container +'">' +
+                '<div  class="date-selector-container" id="date-selector-container-'+ _this.container +'">' +
                 '<div class="date-selector-btn-box">' +
                 '<div class="date-selector-btn" id="date-selector-btn-cancel">返回</div>';
 
-            if(this.type == 1) {//写死的固定死的tab和形式
+            if(this.type == 1) {
                 html += '<div class="date-selector-tab-box">' +
                     '<div class="date-selector-tab date-selector-tab-active">年月日</div>' +
                     '<div class="date-selector-tab">时分</div>' +
                     '</div>';
             }
 
-            html += '<div class="date-selector-btn" id="date-selector-btn-save">提交</div>' +
+            html += '<div class="date-selector-btn" id="date-selector-btn-save-' + _this.container + '">提交</div>' +
                 '</div>' +
                 '<div class="date-selector-content">';
 
             if(_this.type == 0){
                 loop(0,_this.idxArr.length,function(i){
                     html += '<div class="date-selector date-selector-left">' +
-                                '<ul id="date-selector-' + _this.idxArr[i] + '"></ul>' +
+                                '<ul id="date-selector-' + _this.container + '-' + _this.idxArr[i] + '"></ul>' +
                             '</div>';
                 });
                 html += '<div class="date-selector-up-shadow"></div>' +
@@ -111,17 +111,17 @@
                 html += '</div></div>';
                 $id(_this.container).innerHTML = html;
                 loop(0,_this.ulCount,function (i) {
-                    $class('date-selector')[i].style.width = (100/_this.ulCount).toFixed(2) + '%';
+                    $id('date-selector-container-'+ _this.container).querySelectorAll(".date-selector")[i].style.width = (100/_this.ulCount).toFixed(2) + '%';
                 });
-            }else if(_this.type == 1){//写死的固定死的
+            }else if(_this.type == 1){
                 html += '<div class="date-selector date-selector-left">' +
-                            '<ul id="date-selector-0"></ul>' +
+                            '<ul id="date-selector-' + _this.container + '-0"></ul>' +
                         '</div>' +
                         '<div class="date-selector date-selector-left">' +
-                            '<ul id="date-selector-1"></ul>' +
+                            '<ul id="date-selector-' + _this.container + '-1"></ul>' +
                         '</div>' +
                         '<div class="date-selector date-selector-left">' +
-                            '<ul id="date-selector-2"></ul>' +
+                            '<ul id="date-selector-' + _this.container + '-2"></ul>' +
                         '</div>' +
                         '<div class="date-selector-up-shadow"></div>' +
                         '<div class="date-selector-down-shadow"></div>' +
@@ -129,10 +129,10 @@
                     '</div>' +
                     '<div class="date-selector-content date-selector-content-right">' +
                         '<div class="date-selector date-selector-right">' +
-                            '<ul id="date-selector-3"></ul>' +
+                            '<ul id="date-selector-' + _this.container + '-3"></ul>' +
                         '</div>' +
                         '<div class="date-selector date-selector-right">' +
-                            '<ul id="date-selector-4"></ul>' +
+                            '<ul id="date-selector-' + _this.container + '-4"></ul>' +
                         '</div>' +
                         '<div class="date-selector-up-shadow"></div>' +
                         '<div class="date-selector-down-shadow"></div>' +
@@ -145,7 +145,7 @@
         initReady : function () {
             var _this = this;
             loop(0,_this.ulCount,function(i) {
-                var tempDomUl = $id('date-selector-' + _this.idxArr[i]);
+                var tempDomUl = $id('date-selector-' + _this.container + '-' + _this.idxArr[i]);
                 _this.ulDomArr.push(tempDomUl);
                 var tempArray = _this['array' +　_this.idxArr[i]] = [];
                 switch (_this.idxArr[i]) {
@@ -178,35 +178,38 @@
         },
         initBinding :  function () {
             var _this = this;
+            var bg = $id('date-selector-bg-' + _this.container);
+            var container = $id('date-selector-container-' + _this.container);
+
             on('touchstart',_this.input,function(){
-                $id('date-selector-bg').setAttribute('class','date-selector-bg');
-                $id('date-selector-container').setAttribute('class','date-selector-container');
+                bg.className = 'date-selector-bg date-selector-bg-up';
+                container.className = 'date-selector-container date-selector-container-up';
             }, false);
 
-            on('touchstart','date-selector-btn-save',function(){
+            on('touchstart','date-selector-btn-save-' + _this.container,function(){
                 _this.callbackfuc(_this.resultArr);
-                $id('date-selector-bg').removeAttribute('class');
-                $id('date-selector-container').removeAttribute('class');
+                bg.className = 'date-selector-bg';
+                container.className = 'date-selector-container';
             },false);
 
             on('touchstart','date-selector-btn-cancel',function(){
-                $id('date-selector-bg').removeAttribute('class');
-                $id('date-selector-container').removeAttribute('class');
+                bg.className = 'date-selector-bg';
+                containerclassName = 'date-selector-container';
             },false);
 
             on('touchstart','date-selector-tab',function(event){
                 var tab = $class('date-selector-tab');
                 var content = $class('date-selector-content');
                 loop(0,tab.length,function(i){
-                    tab[i].setAttribute('class','date-selector-tab');
+                    tab[i].className = 'date-selector-tab';
                 });
-                event.target.setAttribute('class','date-selector-tab date-selector-tab-active');
+                event.target.className = 'date-selector-tab date-selector-tab-active';
                 if(event.target.innerHTML == '年月日'){
-                    content[0].setAttribute('class','date-selector-content');
-                    content[1].setAttribute('class','date-selector-content date-selector-content-right');
+                    content[0].className = 'date-selector-content';
+                    content[1].className = 'date-selector-content date-selector-content-right';
                 }else {
-                    content[0].setAttribute('class','date-selector-content date-selector-content-left');
-                    content[1].setAttribute('class','date-selector-content');
+                    content[0].className = 'date-selector-content date-selector-content-left';
+                    content[1].className = 'date-selector-content';
                 }
             },false);
         },
@@ -250,14 +253,16 @@
             var date = 0;
             var sum = new Date(year,month,0).getDate();
             var sub = 0;
+            var _this = this;
+            var daySelector = $id('date-selector-' + _this.container + '-2');
             if(sum < this.resultArr[idx]){
                 sub = sum - this.array2[this.array2.indexOf(this.resultArr[idx])];
                 if(sub < 0){
-                    var y = $id('date-selector-2').style.transform.split(',')[1].replace('px','');
-                    $id('date-selector-2').style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-                    $id('date-selector-2').style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-                    $id('date-selector-2').style.transition = 'transform 0.15s ease-out';
-                    $id('date-selector-2').style.transition = '-webkit-transform 0.15s ease-out';
+                    var y = daySelector.style.transform.split(',')[1].replace('px','');
+                    daySelector.style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
+                    daySelector.style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
+                    daySelector.style.transition = 'transform 0.15s ease-out';
+                    daySelector.style.transition = '-webkit-transform 0.15s ease-out';
                     this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
                 }
             }
@@ -272,10 +277,10 @@
             for(var i = 0; i< this.array2.length ; i++){
                 Html += '<li>' + this.array2[i] + (this.array2[i]==''?'':'日') + '</li>';
             }
-            $id('date-selector-2').innerHTML = Html;
+            daySelector.innerHTML = Html;
             this.maxHeight[idx] = this.liHeight * (sum - 1);
         },
-        initPosition: function(dis,max,idx){  //位置格式化
+        initPosition: function(dis,max,idx){
             dis = dis < 0 ? 0 : dis;
             dis = dis > max ? max : dis;
             var sub =  dis % this.liHeight;
@@ -286,7 +291,7 @@
             }
             return this;
         },
-        initSpeed : function (arr,dir,max,idx) { //速度Arr格式化
+        initSpeed : function (arr,dir,max,idx) {
             var variance = 0;
             var sum = 0;
             for(var i in arr){
@@ -296,7 +301,7 @@
                 variance += (arr[j]-(sum/arr.length)) * (arr[j]-(sum/arr.length));
             }
             var rate = 0;
-            if((variance/arr.length).toFixed(2) > .1){ //可根据速度变化来调节滑动状态！！！
+            if((variance/arr.length).toFixed(2) > .1){
                 rate = max > this.liHeight * 35 ? dir * 2 : 0;
                 this.initPosition(this.distance[idx] + rate, max,idx);
                 this.move.speed[0] = .3;
@@ -355,7 +360,7 @@
                         $selector.style.transition = 'transform 0.3s ease-out';
                         $selector.style.transition = '-webkit-transform 0.3s ease-out';
                     }
-                    if (Math.abs(offset).toFixed(0) % 5 === 0) {//存储速度
+                    if (Math.abs(offset).toFixed(0) % 5 === 0) {
                         var time = Date.now();
                         that.move.speed.push((Math.abs(offset) / (time - that.start.time)).toFixed(2));
                     }
