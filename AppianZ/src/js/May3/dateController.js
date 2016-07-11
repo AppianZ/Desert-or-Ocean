@@ -194,7 +194,7 @@
 
             on('touchstart','date-selector-btn-cancel',function(){
                 bg.className = 'date-selector-bg';
-                container.containerclassName = 'date-selector-container';
+                container.className = 'date-selector-container';
             },false);
 
             on('touchstart','date-selector-tab',function(event){
