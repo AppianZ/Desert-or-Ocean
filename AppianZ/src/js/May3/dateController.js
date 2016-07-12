@@ -192,6 +192,11 @@
                 container.className = 'date-selector-container';
             },false);
 
+            on('touchstart','date-selector-bg date-selector-bg-up',function(){
+                bg.className = 'date-selector-bg';
+                container.className = 'date-selector-container';
+            },false);
+
             on('touchstart','date-selector-btn-cancel',function(){
                 bg.className = 'date-selector-bg';
                 container.className = 'date-selector-container';

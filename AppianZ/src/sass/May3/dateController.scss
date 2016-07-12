@@ -33,11 +33,10 @@ $styleColorOpacity : rgba(64,204,192,.5);
   bottom: -250px;
   left: 0;
   background-color: #FFF;
-  transition: all .2s ease;
+  transition: bottom .3s ease;
 }
 .date-selector-container-up {
   bottom: 0!important;
-  transition-delay: .3s;
 }
 
 .date-selector-btn-box {
