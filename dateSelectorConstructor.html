@@ -16,7 +16,7 @@
           overflow: hidden !important; }
 
        .date-selector-bg {
-          position: absolute;
+          position: fixed;
           top: 0;
           left: 0;
           background: rgba(75, 75, 75, 0);
@@ -266,7 +266,7 @@
                 index : 0
             };
             this.resultArr = [];
-            this.callbackfuc = config.callbackfuc;
+            this.callbackFuc = config.callbackFuc;
     
             this.initDomFuc();
             this.initReady();
@@ -601,7 +601,7 @@
         param : [1,1,0,1,0],
         //设置['year','month','day','hour','minute'],1为需要，0为不需要
         range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-        callbackfuc : function(arr){alert(arr)}//回调
+        callbackFuc : function(arr){alert(arr)}//回调
     });
     //---------------------函数调用结束---------------------
 
@@ -615,7 +615,7 @@
         param : [1,1,0,1,0],
         //设置['year','month','day','hour','minute'],1为需要，0为不需要
         range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-        callbackfuc : function(arr){alert(arr)}//回调
+        callbackFuc : function(arr){alert(arr)}//回调
     });
 </script>
 </body>
