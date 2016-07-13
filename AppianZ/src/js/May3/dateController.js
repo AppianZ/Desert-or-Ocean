@@ -36,6 +36,10 @@
         this.range = (config.type === 1 || config.param[0] === 1)?
             ((config.range.length == 2 && config.range[0] < config.range[1])?
                 config.range : [1950,new Date().getFullYear() + 1]): [];
+        this.startArr = config.startArr;
+        this.callbackFuc = config.callbackFuc;
+
+        this.startArrType = config.startArr.length == 0 ? 0 : 1;
         this.ulCount = 0;
         this.ulDomArr = [];
         this.idxArr = [];//更新后的ul的下标
@@ -55,7 +59,6 @@
             index : 0
         };
         this.resultArr = [];
-        this.callbackFuc = config.callbackFuc;
 
         this.initDomFuc();
         this.initReady();
@@ -77,10 +80,21 @@
                 _this.param[i] = 1;
                 _this.idxArr.push(i);
             });
+            console.log(_this.idxArr);
+            console.log(_this.startArr);
+            if(_this.startArrType == 0 || _this.idxArr.length == _this.startArr.length){
+                return true;
+            }else {
+                alert('error,please open the console to see the errmsg');
+                console.log('构造函数的参数param或startArr设置有误');
+                console.log('param必须是连续的1，startArr的值必须与param中的值对应');
+                console.log('构造函数调用失败，请重新设置参数');
+                return false;
+            }
         },
         initDomFuc : function(){
             var _this = this;
-            this.checkParam();
+            if(!this.checkParam())return;
             var html = '';
             html += '<div class="date-selector-bg" id="date-selector-bg-'+ _this.container +'">' +
                 '<div  class="date-selector-container" id="date-selector-container-'+ _this.container +'">' +
@@ -150,19 +164,19 @@
                 var tempArray = _this['array' +　_this.idxArr[i]] = [];
                 switch (_this.idxArr[i]) {
                     case 0:
-                        _this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年');
+                        _this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年',i);
                         break;
                     case 1:
-                        _this.initCommonArr(tempDomUl,tempArray,1,12,'月');
+                        _this.initCommonArr(tempDomUl,tempArray,1,12,'月',i);
                         break;
                     case 2:
-                        _this.initCommonArr(tempDomUl,tempArray,1,31,'日');
+                        _this.initCommonArr(tempDomUl,tempArray,1,31,'日',i);
                         break;
                     case 3:
-                        _this.initCommonArr(tempDomUl,tempArray,0,23,'时');
+                        _this.initCommonArr(tempDomUl,tempArray,0,23,'时',i);
                         break;
                     case 4 :
-                        _this.initCommonArr(tempDomUl,tempArray,0,59,'分');
+                        _this.initCommonArr(tempDomUl,tempArray,0,59,'分',i);
                         break;
                 }
                 tempDomUl.addEventListener('touchstart',function(){
@@ -222,7 +236,7 @@
                 }
             },false);
         },
-        initCommonArr : function(tempDomUl,tempArr,min,max,str){
+        initCommonArr : function(tempDomUl,tempArr,min,max,str,idx){
             var _this = this;
             var Html = '';
             var res = 0;
@@ -230,26 +244,26 @@
                 tempArr.push(i);
             });
             _this.maxHeight.push(_this.liHeight * (max - min));
-            tempArr.unshift('','');
-            tempArr.push('','');
             switch (str) {
                 case '年':
-                    res = new Date().getFullYear();
+                    res = (_this.startArrType == 1 && _this.startArr[idx] <= _this.range[2]) ? _this.startArr[idx] : new Date().getFullYear();
                     break;
                 case '月':
-                    res = new Date().getMonth() + 1;
+                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 12 && _this.startArr[idx] > 0) ? _this.startArr[idx] : new Date().getMonth() + 1;
                     break;
                 case '日':
-                    res = new Date().getDate();
+                    res = (_this.startArrType == 1 && _this.startArr[idx] <= tempArr[tempArr.length - 1] && _this.startArr[idx] > 0) ? _this.startArr[idx] : new Date().getDate();
                     break;
                 case '时':
-                    res = new Date().getHours();
+                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 23 && _this.startArr[idx] >= 0) ? _this.startArr[idx] : new Date().getHours();
                     break;
                 case '分' :
-                    res = new Date().getMinutes();
+                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 59 && _this.startArr[idx] >= 0) ? _this.startArr[idx] : new Date().getMinutes();
                     break;
             }
             _this.resultArr.push(res);
+            tempArr.unshift('','');
+            tempArr.push('','');
             tempDomUl.style.transform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
             tempDomUl.style.webkitTransform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
             _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
