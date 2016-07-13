@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="hotcss" content="max-width=640">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="screen-orientation" content="portrait">
@@ -65,6 +64,7 @@
     <p>1.点击下面的输入演示样式</p>
     <input id="date-selector-input" type="text" placeholder="点我~~看固定效果" readonly/>
     <input id="date-selector-inputs" type="text" placeholder="点我~~看自定义效果" readonly/>
+
     <p>2.如何引用css和js文件？</p>
     <div class="block">
         sass文件:引用src/sass/May3/dateController.sass<br/><br/>
@@ -103,7 +103,7 @@
             param : [1,1,0,1,0],
             //设置['year','month','day','hour','minute'],1为需要，0为不需要
             range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-            callbackfuc : function(arr){alert(arr)}//回调
+            callbackFuc : function(arr){alert(arr)}//回调
         });
         //---------------------函数调用结束---------------------
 
@@ -117,7 +117,7 @@
             param : [1,1,0,1,0],
             //设置['year','month','day','hour','minute'],1为需要，0为不需要
             range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-            callbackfuc : function(arr){alert(arr)}//回调
+            callbackFuc : function(arr){alert(arr)}//回调
         });
 </script>
 </body>

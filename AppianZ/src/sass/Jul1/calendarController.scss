@@ -1,0 +1,26 @@
+@import "../iconfont";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.cal-selector-title {
+  .pre-month,.next-month {
+
+  }
+}
+.cal-selector-nav {
+  margin: 20px 0 0;
+  .cal-selector-nav-ul {
+    display: -webkit-box;
+    list-style: none;
+    li {
+      font-size: 12px;
+      -webkit-box-flex: 1;
+      text-align: center;
+      opacity: .5;
+      line-height: 50px;
+    }
+  }
+}

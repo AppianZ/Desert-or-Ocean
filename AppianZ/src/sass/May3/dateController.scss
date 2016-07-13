@@ -9,6 +9,11 @@ $styleColorOpacity : rgba(64,204,192,.5);
   margin: 0;
 }
 
+.date-selector-locked {
+  height: 100vh!important;
+  overflow: hidden!important;
+}
+
 .date-selector-bg {
   position: absolute;
   top: 0;

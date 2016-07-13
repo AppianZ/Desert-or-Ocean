@@ -20,15 +20,15 @@
         }
     }
 
-    function on(action,selector,callback){
+    function on(action,selector,callback) {
         doc.addEventListener(action,function(e){
-            if(selector == e.target.tagName.toLowerCase() ||selector == e.target.className || selector == e.target.id){
+            if(selector == e.target.tagName.toLowerCase() || selector == e.target.className || selector == e.target.id){
                 callback(e);
             }
         })
     }
 
-    function DateSelector(config){
+    function DateSelector(config) {
         this.input = config.input;
         this.container = config.container;
         this.type = config.type;
@@ -55,7 +55,7 @@
             index : 0
         };
         this.resultArr = [];
-        this.callbackfuc = config.callbackfuc;
+        this.callbackFuc = config.callbackFuc;
 
         this.initDomFuc();
         this.initReady();
@@ -180,41 +180,45 @@
             var _this = this;
             var bg = $id('date-selector-bg-' + _this.container);
             var container = $id('date-selector-container-' + _this.container);
-
+            var body = doc.body;
             on('touchstart',_this.input,function(){
-                bg.className = 'date-selector-bg date-selector-bg-up';
-                container.className = 'date-selector-container date-selector-container-up';
+                bg.classList.add('date-selector-bg-up');
+                container.classList.add('date-selector-container-up');
+                body.classList.add('date-selector-locked');
             }, false);
 
             on('touchstart','date-selector-btn-save-' + _this.container,function(){
-                _this.callbackfuc(_this.resultArr);
-                bg.className = 'date-selector-bg';
-                container.className = 'date-selector-container';
+                _this.callbackFuc(_this.resultArr);
+                bg.classList.remove('date-selector-bg-up');
+                container.classList.remove('date-selector-container-up');
+                body.classList.remove('date-selector-locked');
             },false);
 
-            on('touchstart','date-selector-bg date-selector-bg-up',function(){
-                bg.className = 'date-selector-bg';
-                container.className = 'date-selector-container';
+            on('touchstart','date-selector-bg-'+ _this.container,function(){
+                bg.classList.remove('date-selector-bg-up');
+                container.classList.remove('date-selector-container-up');
+                body.classList.remove('date-selector-locked');
             },false);
 
             on('touchstart','date-selector-btn-cancel',function(){
-                bg.className = 'date-selector-bg';
-                container.className = 'date-selector-container';
+                bg.classList.remove('date-selector-bg-up');
+                container.classList.remove('date-selector-container-up');
+                body.classList.remove('date-selector-locked');
             },false);
 
             on('touchstart','date-selector-tab',function(event){
                 var tab = $class('date-selector-tab');
                 var content = $class('date-selector-content');
                 loop(0,tab.length,function(i){
-                    tab[i].className = 'date-selector-tab';
+                    tab[i].classList.remove('date-selector-tab-active');
                 });
-                event.target.className = 'date-selector-tab date-selector-tab-active';
+                event.target.classList.add('date-selector-tab-active');
                 if(event.target.innerHTML == '年月日'){
-                    content[0].className = 'date-selector-content';
-                    content[1].className = 'date-selector-content date-selector-content-right';
+                    content[0].classList.remove('date-selector-content-left');
+                    content[1].classList.add('date-selector-content-right');
                 }else {
-                    content[0].className = 'date-selector-content date-selector-content-left';
-                    content[1].className = 'date-selector-content';
+                    content[0].classList.add('date-selector-content-left');
+                    content[1].classList.remove('date-selector-content-right');
                 }
             },false);
         },
@@ -307,7 +311,7 @@
             }
             var rate = 0;
             if((variance/arr.length).toFixed(2) > .1){
-                rate = max > this.liHeight * 35 ? dir * 2 : 0;
+                rate = max > this.liHeight * 15 ? dir * 2 : 0;
                 this.initPosition(this.distance[idx] + rate, max,idx);
                 this.move.speed[0] = .3;
             }else {
