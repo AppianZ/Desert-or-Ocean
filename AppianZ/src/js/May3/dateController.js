@@ -36,10 +36,10 @@
         this.range = (config.type === 1 || config.param[0] === 1)?
             ((config.range.length == 2 && config.range[0] < config.range[1])?
                 config.range : [1950,new Date().getFullYear() + 1]): [];
-        this.startArr = config.startArr;
+        this.recentTime = config.recentTime;
         this.callbackFuc = config.callbackFuc;
 
-        this.startArrType = config.startArr.length == 0 ? 0 : 1;
+        this.recentTimeType = config.recentTime.length == 0 ? 0 : 1;
         this.ulCount = 0;
         this.ulDomArr = [];
         this.idxArr = [];//更新后的ul的下标
@@ -80,14 +80,12 @@
                 _this.param[i] = 1;
                 _this.idxArr.push(i);
             });
-            console.log(_this.idxArr);
-            console.log(_this.startArr);
-            if(_this.startArrType == 0 || _this.idxArr.length == _this.startArr.length){
+            if(_this.recentTimeType == 0 || _this.idxArr.length == _this.recentTime.length){
                 return true;
             }else {
                 alert('error,please open the console to see the errmsg');
-                console.log('构造函数的参数param或startArr设置有误');
-                console.log('param必须是连续的1，startArr的值必须与param中的值对应');
+                console.log('构造函数的参数param或recentTime设置有误');
+                console.log('param必须是连续的1，recentTime的值必须与param中的值对应');
                 console.log('构造函数调用失败，请重新设置参数');
                 return false;
             }
@@ -246,19 +244,19 @@
             _this.maxHeight.push(_this.liHeight * (max - min));
             switch (str) {
                 case '年':
-                    res = (_this.startArrType == 1 && _this.startArr[idx] <= _this.range[2]) ? _this.startArr[idx] : new Date().getFullYear();
+                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= _this.range[2]) ? _this.recentTime[idx] : new Date().getFullYear();
                     break;
                 case '月':
-                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 12 && _this.startArr[idx] > 0) ? _this.startArr[idx] : new Date().getMonth() + 1;
+                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 12 && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getMonth() + 1;
                     break;
                 case '日':
-                    res = (_this.startArrType == 1 && _this.startArr[idx] <= tempArr[tempArr.length - 1] && _this.startArr[idx] > 0) ? _this.startArr[idx] : new Date().getDate();
+                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= tempArr[tempArr.length - 1] && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getDate();
                     break;
                 case '时':
-                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 23 && _this.startArr[idx] >= 0) ? _this.startArr[idx] : new Date().getHours();
+                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 23 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getHours();
                     break;
                 case '分' :
-                    res = (_this.startArrType == 1 && _this.startArr[idx] <= 59 && _this.startArr[idx] >= 0) ? _this.startArr[idx] : new Date().getMinutes();
+                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 59 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getMinutes();
                     break;
             }
             _this.resultArr.push(res);
