@@ -231,15 +231,15 @@
             }
         }
     
-        function on(action,selector,callback){
+        function on(action,selector,callback) {
             doc.addEventListener(action,function(e){
-                if(selector == e.target.tagName.toLowerCase() ||selector == e.target.className || selector == e.target.id){
+                if(selector == e.target.tagName.toLowerCase() || selector == e.target.className || selector == e.target.id){
                     callback(e);
                 }
             })
         }
     
-        function DateSelector(config){
+        function DateSelector(config) {
             this.input = config.input;
             this.container = config.container;
             this.type = config.type;
@@ -247,6 +247,10 @@
             this.range = (config.type === 1 || config.param[0] === 1)?
                 ((config.range.length == 2 && config.range[0] < config.range[1])?
                     config.range : [1950,new Date().getFullYear() + 1]): [];
+            this.recentTime = config.recentTime;
+            this.callbackFuc = config.callbackFuc;
+    
+            this.recentTimeType = config.recentTime.length == 0 ? 0 : 1;
             this.ulCount = 0;
             this.ulDomArr = [];
             this.idxArr = [];//更新后的ul的下标
@@ -266,7 +270,6 @@
                 index : 0
             };
             this.resultArr = [];
-            this.callbackFuc = config.callbackFuc;
     
             this.initDomFuc();
             this.initReady();
@@ -288,10 +291,19 @@
                     _this.param[i] = 1;
                     _this.idxArr.push(i);
                 });
+                if(_this.recentTimeType == 0 || _this.idxArr.length == _this.recentTime.length){
+                    return true;
+                }else {
+                    alert('error,please open the console to see the errmsg');
+                    console.log('构造函数的参数param或recentTime设置有误');
+                    console.log('param必须是连续的1，recentTime的值必须与param中的值对应');
+                    console.log('构造函数调用失败，请重新设置参数');
+                    return false;
+                }
             },
             initDomFuc : function(){
                 var _this = this;
-                this.checkParam();
+                if(!this.checkParam())return;
                 var html = '';
                 html += '<div class="date-selector-bg" id="date-selector-bg-'+ _this.container +'">' +
                     '<div  class="date-selector-container" id="date-selector-container-'+ _this.container +'">' +
@@ -361,19 +373,19 @@
                     var tempArray = _this['array' +　_this.idxArr[i]] = [];
                     switch (_this.idxArr[i]) {
                         case 0:
-                            _this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年');
+                            _this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年',i);
                             break;
                         case 1:
-                            _this.initCommonArr(tempDomUl,tempArray,1,12,'月');
+                            _this.initCommonArr(tempDomUl,tempArray,1,12,'月',i);
                             break;
                         case 2:
-                            _this.initCommonArr(tempDomUl,tempArray,1,31,'日');
+                            _this.initCommonArr(tempDomUl,tempArray,1,31,'日',i);
                             break;
                         case 3:
-                            _this.initCommonArr(tempDomUl,tempArray,0,23,'时');
+                            _this.initCommonArr(tempDomUl,tempArray,0,23,'时',i);
                             break;
                         case 4 :
-                            _this.initCommonArr(tempDomUl,tempArray,0,59,'分');
+                            _this.initCommonArr(tempDomUl,tempArray,0,59,'分',i);
                             break;
                     }
                     tempDomUl.addEventListener('touchstart',function(){
@@ -433,7 +445,7 @@
                     }
                 },false);
             },
-            initCommonArr : function(tempDomUl,tempArr,min,max,str){
+            initCommonArr : function(tempDomUl,tempArr,min,max,str,idx){
                 var _this = this;
                 var Html = '';
                 var res = 0;
@@ -441,26 +453,26 @@
                     tempArr.push(i);
                 });
                 _this.maxHeight.push(_this.liHeight * (max - min));
-                tempArr.unshift('','');
-                tempArr.push('','');
                 switch (str) {
                     case '年':
-                        res = new Date().getFullYear();
+                        res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= _this.range[2]) ? _this.recentTime[idx] : new Date().getFullYear();
                         break;
                     case '月':
-                        res = new Date().getMonth() + 1;
+                        res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 12 && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getMonth() + 1;
                         break;
                     case '日':
-                        res = new Date().getDate();
+                        res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= tempArr[tempArr.length - 1] && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getDate();
                         break;
                     case '时':
-                        res = new Date().getHours();
+                        res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 23 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getHours();
                         break;
                     case '分' :
-                        res = new Date().getMinutes();
+                        res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 59 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getMinutes();
                         break;
                 }
                 _this.resultArr.push(res);
+                tempArr.unshift('','');
+                tempArr.push('','');
                 tempDomUl.style.transform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
                 tempDomUl.style.webkitTransform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
                 _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
@@ -591,6 +603,7 @@
         win.DateSelector = DateSelector;
     })(window,document);
   
+  
     //---------------------函数调用开始---------------------
     new DateSelector({
         input : 'date-selector-input',//点击触发插件的input框的id
@@ -600,7 +613,7 @@
         //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
         param : [1,1,0,1,0],
         //设置['year','month','day','hour','minute'],1为需要，0为不需要
-        range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
+        recentTime : [],//如不需设置当前时间为特定时间点，则为空数组，如需特定设置当前时间点，数组的值对应param参数的对应值。
         callbackFuc : function(arr){alert(arr)}//回调
     });
     //---------------------函数调用结束---------------------
@@ -612,9 +625,10 @@
         type : 0,
         //0：不需要tab切换，自定义滑动内容，建议小于三个；
         //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
-        param : [1,1,0,1,0],
+        param : [0,0,1,1,1],
         //设置['year','month','day','hour','minute'],1为需要，0为不需要
         range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
+        recentTime : [32,6,30],//如不需要设置，被为空数组，如需要设置的开始的时间点，数组的值对应param参数的对应值。
         callbackFuc : function(arr){alert(arr)}//回调
     });
 </script>
