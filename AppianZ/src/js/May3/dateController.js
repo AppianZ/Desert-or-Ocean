@@ -15,7 +15,7 @@
     }
 
     function loop(begin,length,fuc) {
-        for(var i = begin; i < length ; i ++){
+        for(var i = begin; i < length ; i++){
             fuc(i);
         }
     }
@@ -33,13 +33,11 @@
         this.container = config.container;
         this.type = config.type;
         this.param = (config.type == 1)? [1,1,1,1,1] : config.param;
-        this.range = (config.type === 1 || config.param[0] === 1)?
-            ((config.range.length == 2 && config.range[0] < config.range[1])?
-                config.range : [1950,new Date().getFullYear() + 1]): [];
+        this.beginTime = config.beginTime;
+        this.endTime = config.endTime;
         this.recentTime = config.recentTime;
         this.callbackFuc = config.callbackFuc;
-
-        this.recentTimeType = config.recentTime.length == 0 ? 0 : 1;
+        
         this.ulCount = 0;
         this.ulDomArr = [];
         this.idxArr = [];//更新后的ul的下标
@@ -59,6 +57,9 @@
             index : 0
         };
         this.resultArr = [];
+        this.begin_time = [1970,1,1,0,0];
+        this.end_time = [new Date().getFullYear() + 1,12,31,23,59];
+        this.recent_time = [new Date().getFullYear(),new Date().getMonth() + 1,new Date().getDate(),new Date().getHours(),new Date().getMinutes()];
 
         this.initDomFuc();
         this.initReady();
@@ -80,8 +81,98 @@
                 _this.param[i] = 1;
                 _this.idxArr.push(i);
             });
-            if(_this.recentTimeType == 0 || _this.idxArr.length == _this.recentTime.length){
-                return true;
+        },
+        checkTime : function(){
+            var _this = this;
+            var begin_time =  this.begin_time;
+            var end_time =  this.end_time;
+            var recent_time =  this.recent_time;
+            console.log(_this.idxArr);
+            if(_this.beginTime.length == 0){
+                loop(0,_this.idxArr.length,function(i){
+                    _this.beginTime.push(begin_time[_this.idxArr[i]]);
+                });
+                console.log(_this.beginTime);
+            }
+            if (_this.endTime.length == 0){
+                loop(0,_this.idxArr.length,function(i){
+                    _this.endTime.push(end_time[_this.idxArr[i]]);
+                });
+                console.log(_this.endTime);
+            }
+            if (_this.recentTime.length == 0){
+                loop(0,_this.idxArr.length,function(i){
+                    _this.recentTime.push(recent_time[_this.idxArr[i]]);
+                });
+                console.log(_this.recentTime);
+            }
+            if (_this.idxArr.length == _this.beginTime.length && _this.beginTime.length == _this.endTime.length && _this.endTime.length == _this.recentTime.length){
+                console.log(_this.param);
+                loop(0,_this.param.length,function(i){
+                    if(_this.param[i] == 0){
+                        switch (i) {
+                            case 0:
+                                begin_time[i] = new Date().getFullYear();
+                                end_time[i] = new Date().getFullYear();
+                                break;
+                            case 1:
+                                begin_time[i] = new Date().getMonth() + 1;
+                                end_time[i] = new Date().getMonth() + 1;
+                                break;
+                            case 2:
+                                begin_time[i] = new Date().getDate();
+                                end_time[i] = new Date().getDate();
+                                break;
+                            case 3:
+                                begin_time[i] = new Date().getHours();
+                                end_time[i] = new Date().getHours();
+                                break;
+                            case 4:
+                                begin_time[i] = new Date().getMinutes();
+                                end_time[i] = new Date().getMinutes();
+                                break;
+                        }
+                    }else {
+                        loop(0, _this.idxArr.length, function (j) {
+                            switch (_this.idxArr[j]) {
+                                case 0:
+                                    begin_time[_this.idxArr[j]] = _this.beginTime[j] >= 1900 ? _this.beginTime[j] : new Date().getFullYear();
+                                    end_time[_this.idxArr[j]] = _this.endTime[j] >= 1900 ? _this.endTime[j] : new Date().getFullYear() + 1;
+                                    recent_time[_this.idxArr[j]] = _this.recentTime[j];
+                                    break;
+                                case 1:
+                                    begin_time[_this.idxArr[j]] = (_this.beginTime[j] > 0 && _this.beginTime[j] <= 12) ? _this.beginTime[j] : 1;
+                                    end_time[_this.idxArr[j]] = _this.endTime[j] > 0 && _this.endTime[j] <= 12 ? _this.endTime[j] : 12;
+                                    recent_time[_this.idxArr[j]] = _this.recentTime[j];
+                                    break;
+                                case 2:
+                                    begin_time[_this.idxArr[j]] = _this.beginTime[j] > 0 && _this.beginTime[j] <= new Date(begin_time[0], begin_time[1], 0).getDate() ? _this.beginTime[j] : 1;
+                                    end_time[_this.idxArr[j]] = _this.endTime[j] > 0 && _this.endTime[j] <= new Date(end_time[0], end_time[1], 0).getDate() ? _this.endTime[j] : new Date(end_time[0], end_time[1], 0).getDate();
+                                    recent_time[_this.idxArr[j]] = _this.recentTime[j];
+                                    break;
+                                case 3:
+                                    begin_time[_this.idxArr[j]] = _this.beginTime[j] >= 0 && _this.beginTime[j] <= 23 ? _this.beginTime[j] : 0;
+                                    end_time[_this.idxArr[j]] = _this.endTime[j] >= 0 && _this.endTime[j] <= 23 ? _this.endTime[j] : 23;
+                                    recent_time[_this.idxArr[j]] = _this.recentTime[j];
+                                    break;
+                                case 4 :
+                                    begin_time[_this.idxArr[j]] = _this.beginTime[j] >= 0 && _this.beginTime[j] <= 59 ? _this.beginTime[j] : 0;
+                                    end_time[_this.idxArr[j]] = _this.endTime[j] >= 0 && _this.endTime[j] <= 59 ? _this.endTime[j] : 59;
+                                    recent_time[_this.idxArr[j]] = _this.recentTime[j];
+                                    break;
+                            }
+                        });
+                    }
+                });
+                var bt = new Date(begin_time[0],begin_time[1],begin_time[2],begin_time[3],begin_time[4]).getTime();
+                var et = new Date(end_time[0],end_time[1],end_time[2],end_time[3],end_time[4]).getTime();
+                var rt = new Date(recent_time[0],recent_time[1],recent_time[2],recent_time[3],recent_time[4]).getTime();
+                console.log(_this.begin_time);
+                console.log(_this.end_time);
+                console.log(_this.recent_time);
+                rt <　bt　? alert('当前时间小于开始时间') : "";
+                rt >　et　? alert('当前时间超过结束时间') : "";
+                return (bt <= rt && rt < et);
             }else {
                 alert('error,please open the console to see the errmsg');
                 console.log('构造函数的参数param或recentTime设置有误');
@@ -92,7 +183,8 @@
         },
         initDomFuc : function(){
             var _this = this;
-            if(!this.checkParam())return;
+            this.checkParam();
+            if(!this.checkTime())return;
             var html = '';
             html += '<div class="date-selector-bg" id="date-selector-bg-'+ _this.container +'">' +
                 '<div  class="date-selector-container" id="date-selector-container-'+ _this.container +'">' +
@@ -162,7 +254,7 @@
                 var tempArray = _this['array' +　_this.idxArr[i]] = [];
                 switch (_this.idxArr[i]) {
                     case 0:
-                        _this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年',i);
+                        _this.initCommonArr(tempDomUl,tempArray,_this.beginTime[i],_this.endTime[i],'年',i);
                         break;
                     case 1:
                         _this.initCommonArr(tempDomUl,tempArray,1,12,'月',i);
@@ -237,28 +329,11 @@
         initCommonArr : function(tempDomUl,tempArr,min,max,str,idx){
             var _this = this;
             var Html = '';
-            var res = 0;
             loop(min,max + 1,function(i){
                 tempArr.push(i);
             });
             _this.maxHeight.push(_this.liHeight * (max - min));
-            switch (str) {
-                case '年':
-                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= _this.range[2]) ? _this.recentTime[idx] : new Date().getFullYear();
-                    break;
-                case '月':
-                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 12 && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getMonth() + 1;
-                    break;
-                case '日':
-                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= tempArr[tempArr.length - 1] && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getDate();
-                    break;
-                case '时':
-                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 23 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getHours();
-                    break;
-                case '分' :
-                    res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 59 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getMinutes();
-                    break;
-            }
+            var res = _this.recentTime[idx];
             _this.resultArr.push(res);
             tempArr.unshift('','');
             tempArr.push('','');
@@ -300,6 +375,9 @@
             }
             daySelector.innerHTML = Html;
             this.maxHeight[idx] = this.liHeight * (sum - 1);
+        },
+        checkRange : function(){
+
         },
         initPosition: function(dis,max,idx){
             dis = dis < 0 ? 0 : dis;
@@ -360,6 +438,7 @@
                         var tempYear = that.idxArr[0] == 0?that.resultArr[idx] : new Date().getFullYear();
                         that.initDay(tempYear, that.resultArr[idx], idx + 1);
                     } else {}
+                    that.checkRange(that.resultArr);
                     console.log(that.resultArr);
                     break;
                 case "touchmove":
