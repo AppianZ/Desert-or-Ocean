@@ -358,7 +358,7 @@
                     daySelector.style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
                     daySelector.style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
                     daySelector.style.transition = 'transform 0.15s ease-out';
-                    daySelector.style.transition = '-webkit-transform 0.15s ease-out';
+                    daySelector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
                     this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
                 }
             }
