@@ -477,7 +477,7 @@
                 tempDomUl.style.webkitTransform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
                 _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
                 loop(0,tempArr.length,function(j){
-                    Html += '<li>' + tempArr[j] + (tempArr[j] == ''?'':str) + '</li>';
+                    Html += '<li>' + tempArr[j] + (tempArr[j] === ''?'':str) + '</li>';
                 });
                 tempDomUl.innerHTML = Html;
             },
