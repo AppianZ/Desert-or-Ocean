@@ -91,8 +91,7 @@ body {
         width: 1px;
         height: 15px;
         background: #fff;
-        -webkit-transform: rotate(22deg);
-                transform: rotate(22deg);
+        transform: rotate(22deg);
         margin: 0 3px 0 0;
         opacity: .4; }
   #header nav {
@@ -118,7 +117,6 @@ body {
   overflow: hidden;
   position: relative; }
   #date #dateBox {
-    -webkit-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -217,8 +215,7 @@ body {
   #date #dateBg.change:after {
     background: rgba(255, 161, 81, 0.1); }
 
-.trans {
-  transition: -webkit-transform .23s ease; }
+.trans { }
 
 /*日历结束*/
 

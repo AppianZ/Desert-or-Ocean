@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "private": true,
   "devDependencies": {
     "autoprefixer": "^6.3.5",
     "body-parser": "^1.15.1",

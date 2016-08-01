@@ -23,7 +23,6 @@ body {
 body #wrap {
   position: absolute;
   right: 0;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   height: 100%;
@@ -102,8 +101,7 @@ body #wrap {
       #pinword section #pin span.on {
         background: white; }
     #pinword section #pin.shocks {
-      -webkit-animation: shock .3s;
-              animation: shock .3s; }
+      animation: shock .3s; }
     #pinword section p {
       color: rgba(255, 255, 255, 0.5);
       text-align: center;
@@ -143,8 +141,7 @@ body #wrap {
             margin: 0 0 0 -9px;
             font-size: 18px;
             color: #79c2b4;
-            -webkit-transform: rotate(180deg);
-                    transform: rotate(180deg); }
+            transform: rotate(180deg); }
           #pinword section #key tr td:hover {
             background: rgba(255, 255, 255, 0.4);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
@@ -239,19 +236,5 @@ body #wrap {
     #password footer p {
       margin: 15px 0 0 0;
       color: rgba(255, 255, 255, 0.5); }
-
-@-webkit-keyframes shock {
-  0% {
-    -webkit-transform: translateX(-15px); }
-  20% {
-    -webkit-transform: translateX(0); }
-  40% {
-    -webkit-transform: translateX(15px); }
-  60% {
-    -webkit-transform: translateX(0); }
-  80% {
-    -webkit-transform: translateX(-15px); }
-  100% {
-    -webkit-transform: translateX(0); } }
 
 /*# sourceMappingURL=login.css.map */

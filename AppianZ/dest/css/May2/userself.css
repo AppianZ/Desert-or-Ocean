@@ -86,7 +86,7 @@ header {
     margin: 0 auto;
     border-radius: 50%;
     background: #FD9940;
-    border: 0.01563rem solid rgba(255, 255, 255, 0.6); }
+    border: 0.01562rem solid rgba(255, 255, 255, 0.6); }
     header #avatar figure {
       position: relative;
       vertical-align: middle;
@@ -103,7 +103,7 @@ header {
     content: '\e605';
     width: 0.85938rem;
     height: 0.85938rem;
-    bottom: 0.07813rem;
+    bottom: 0.07812rem;
     right: -0.3125rem;
     text-align: center;
     line-height: 0.85938rem;
@@ -111,7 +111,7 @@ header {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     background: #FD9940;
-    border: 0.01563rem solid rgba(255, 255, 255, 0.6); }
+    border: 0.01562rem solid rgba(255, 255, 255, 0.6); }
     [data-dpr="2"] header .male:after {
       font-size: 28px; }
     [data-dpr="3"] header .male:after {
@@ -122,7 +122,7 @@ header {
     content: '\e606';
     width: 0.85938rem;
     height: 0.85938rem;
-    bottom: 0.07813rem;
+    bottom: 0.07812rem;
     right: -0.3125rem;
     text-align: center;
     line-height: 0.85938rem;
@@ -130,7 +130,7 @@ header {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     background: #FD9940;
-    border: 0.01563rem solid rgba(255, 255, 255, 0.6); }
+    border: 0.01562rem solid rgba(255, 255, 255, 0.6); }
     [data-dpr="2"] header .female:after {
       font-size: 28px; }
     [data-dpr="3"] header .female:after {
@@ -140,7 +140,7 @@ header {
     font-weight: bold;
     color: rgba(255, 255, 255, 0.96);
     overflow: hidden;
-    margin: 0.39063rem 0 0.07813rem;
+    margin: 0.39062rem 0 0.07812rem;
     text-align: center; }
     [data-dpr="2"] header h3 {
       font-size: 36px; }
@@ -166,7 +166,7 @@ header {
       width: 2.8125rem;
       height: 0.78125rem;
       border-radius: 2.17391rem;
-      padding: 0.07813rem;
+      padding: 0.07812rem;
       transition: background .3s .1s ease;
       display: block; }
     header .button b {
@@ -177,9 +177,7 @@ header {
       background: #fff;
       display: block;
       border-radius: 2.17391rem;
-      transition: -webkit-transform .3s ease;
       transition: transform .3s ease;
-      transition: transform .3s ease, -webkit-transform .3s ease;
       font-size: 10px;
       color: rgba(0, 0, 0, 0.5); }
       [data-dpr="2"] header .button b {
@@ -190,7 +188,6 @@ header {
       float: right; }
 
 article nav {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }
   article nav div {
@@ -233,17 +230,17 @@ article nav {
   transition: all .5s ease;
   margin: 0.78125rem 6%;
   padding: 0 0 0 4%;
-  border-left: 0.01563rem solid #e3e3e3; }
+  border-left: 0.01562rem solid #e3e3e3; }
   #contaninleft .section {
     position: relative;
-    padding: 0.39063rem 0 0.3125rem;
+    padding: 0.39062rem 0 0.3125rem;
     margin: 0 0 0.625rem 0; }
     #contaninleft .section .date {
       position: absolute;
       height: 0.65625rem;
       background: #f4f4f4;
       left: -1.25rem;
-      top: -0.39063rem; }
+      top: -0.39062rem; }
       #contaninleft .section .date b {
         font-size: 12px;
         color: #999;

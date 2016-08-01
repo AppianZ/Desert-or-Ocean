@@ -345,7 +345,7 @@
             });
             tempDomUl.innerHTML = Html;
         },
-        initRangeArr : function(month,ulIdx,arrIdx,resIdx,min,max){
+        initRangeArr : function(month,ulIdx,arrIdx,min,max){
             var _this = this;
             var year = _this.idxArr[0] == 0? _this.resultArr[0] : _this.begin_time[0];
             var arr = _this['array' + arrIdx];
@@ -373,21 +373,20 @@
                         break;
                 }
             }
-
             var y = 0;
             if(dir == 0){
                 sub = min - start;
-                console.log(sub);
-                y = -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+                y = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + sub * this.liHeight + 80;
                 this.resultArr[ulIdx] = this.resultArr[ulIdx] < min ?  min : this.resultArr[ulIdx];
-            }else if(dir == 1 && max < this.resultArr[ulIdx]){
-                sub = this.resultArr[ulIdx] - max;
-                y = -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
-            }else {
-            }
+            }else if(dir == 1){
+                y = max > this.resultArr[ulIdx] ?
+                -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80 :
+                -arr.indexOf(max) * this.liHeight + 80;
+                this.resultArr[ulIdx] = this.resultArr[ulIdx] > max ?  max : this.resultArr[ulIdx];
+            }else {}
 
-            $selector.style.transform = 'translate3d(0,' + (y + sub * this.liHeight) + 'px, 0)';
-            $selector.style.webkitTransform = 'translate3d(0,' + (y + sub * this.liHeight) + 'px, 0)';
+            $selector.style.transform = 'translate3d(0,' + y + 'px, 0)';
+            $selector.style.webkitTransform = 'translate3d(0,'+ y + 'px, 0)';
             $selector.style.transition = 'transform 0.15s ease-out';
             $selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
 
@@ -402,29 +401,40 @@
             for(var i = 0; i< arr.length ; i++){
                 Html += '<li>' + arr[i] + (arr[i] === '' ?'':str) + '</li>';
             }
+            
+            _this['array' + arrIdx] = [];
+            _this['array' + arrIdx] = arr;
+            
             $selector.innerHTML = Html;
             this.maxHeight[ulIdx] = this.liHeight * (max - min);
         },
         checkRange : function(ulIdx,resIdx,distance,maxHei){
             var _this = this;
-            if(distance == 0){
+            var needInit = false;
+            loop(0,ulIdx + 1,function(m){
+                if(_this.recent_time[m] == _this.begin_time[m] || _this.recent_time[m] == _this.end_time[m]){
+                    needInit = true;
+                }
+            });
+            // console.log(this.recent_time);
+            if(distance == 0 && needInit){
                 loop(ulIdx + 1,_this.ulCount,function(k){
-                   _this.initRangeArr(_this.begin_time[1],k,_this.idxArr[k],resIdx,_this.beginTime[k],-1);
+                   _this.initRangeArr(_this.begin_time[1],k,_this.idxArr[k],_this.beginTime[k],-1);
                 });
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
-            }else if(distance == maxHei){
+            }else if(distance == maxHei  && needInit){
                 loop(ulIdx + 1,_this.ulCount,function(k){
-                    _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],resIdx,-1,_this.endTime[k]);
+                    _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],-1,_this.endTime[k]);
                 });
                 var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
             }else {
-                console.log(123123123);
-                /*if(_this.idxArr[ulIdx] == 0 && _this.idxArr.length >= ulIdx + 3){
-                    _this.initRangeArr(_this.resultArr[1],ulIdx + 2,2,resIdx,1,-1);
-                }else if(_this.idxArr[ulIdx] == 1 && _this.idxArr.length >= ulIdx + 2){
-                    _this.initRangeArr(_this.resultArr[ulIdx],ulIdx + 1,2,resIdx,1,-1);
-                }*/
+                _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][resIdx];
+                this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+                console.log(this.recent_time);
+              /*  loop(ulIdx + 1,_this.ulCount,function(k){
+                    _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
+                });*/
             }
             console.log('resultArr: ' + this.resultArr);
         },

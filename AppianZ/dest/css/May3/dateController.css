@@ -34,12 +34,10 @@
   bottom: 0 !important; }
 
 .date-selector-btn-box {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   height: 50px;
   line-height: 50px;
   background: #40CCC0; }
@@ -53,7 +51,6 @@
   height: 30px;
   box-sizing: border-box;
   line-height: 30px;
-  display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
   color: #40CCC0;
@@ -119,7 +116,6 @@
     box-sizing: border-box;
     border-top: 1px solid #DCDCDC;
     border-bottom: 1px solid #DCDCDC;
-    -webkit-transform: translate(-50%, 0);
-            transform: translate(-50%, 0); }
+    transform: translate(-50%, 0); }
 
 /*# sourceMappingURL=dateController.css.map */
