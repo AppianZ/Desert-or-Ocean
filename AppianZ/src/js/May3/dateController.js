@@ -257,16 +257,16 @@
                         _this.initCommonArr(tempDomUl,tempArray,_this.beginTime[i],_this.endTime[i],'年',i);
                         break;
                     case 1:
-                        _this.initCommonArr(tempDomUl,tempArray,1,12,'月',i);
+                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 12),'月',i);
                         break;
                     case 2:
-                        _this.initCommonArr(tempDomUl,tempArray,1,31,'日',i);
+                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 31),'日',i);
                         break;
                     case 3:
-                        _this.initCommonArr(tempDomUl,tempArray,0,23,'时',i);
+                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 0),(i == 0?_this.endTime[i] : 23),'时',i);
                         break;
                     case 4 :
-                        _this.initCommonArr(tempDomUl,tempArray,0,59,'分',i);
+                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 59),'分',i);
                         break;
                 }
                 tempDomUl.addEventListener('touchstart',function(){
@@ -341,43 +341,92 @@
             tempDomUl.style.webkitTransform = 'translate3d(0,-' + this.liHeight * (tempArr.indexOf(res) - 2) + 'px, 0)';
             _this.distance.push(this.liHeight * (tempArr.indexOf(res) - 2));
             loop(0,tempArr.length,function(j){
-                Html += '<li>' + tempArr[j] + (tempArr[j] == ''?'':str) + '</li>';
+                Html += '<li>' + tempArr[j] + (tempArr[j] === ''?'':str) + '</li>';
             });
             tempDomUl.innerHTML = Html;
         },
-        initDay : function(year,month,idx){
-            var date = 0;
-            var sum = new Date(year,month,0).getDate();
-            var sub = 0;
+        initRangeArr : function(month,ulIdx,arrIdx,resIdx,min,max){
             var _this = this;
-            var daySelector = $id('date-selector-' + _this.container + '-2');
-            if(sum < this.resultArr[idx]){
-                sub = sum - this.array2[this.array2.indexOf(this.resultArr[idx])];
-                if(sub < 0){
-                    var y = daySelector.style.transform.split(',')[1].replace('px','');
-                    daySelector.style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-                    daySelector.style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-                    daySelector.style.transition = 'transform 0.15s ease-out';
-                    daySelector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
-                    this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
+            var year = _this.idxArr[0] == 0? _this.resultArr[0] : _this.begin_time[0];
+            var arr = _this['array' + arrIdx];
+            var start = arr[2];
+            var $selector = $id('date-selector-' + _this.container + '-' + arrIdx);
+            var str = $selector.querySelectorAll("li")[2].innerHTML.substr(-1);
+            var sub = 0;
+            var dir = (max == -1 ? 0 : 1);//0在顶部,1在底部
+            min = (min == -1 ? (arrIdx > 2 ? 0 : 1): min);
+            if(max == -1){
+                switch (arrIdx) {
+                    case 0:
+                        break;
+                    case 1:
+                        max = 12;
+                        break;
+                    case 2:
+                        max = new Date(year,month,0).getDate();
+                        break;
+                    case 3:
+                        max = 23;
+                        break;
+                    case 4:
+                        max = 59;
+                        break;
                 }
             }
-            this.array2　= [];
-            while (date < sum) {
-                this.array2.push(date + 1);
-                date++;
-            }
-            var Html = '';
-            this.array2.unshift('','');
-            this.array2.push('','');
-            for(var i = 0; i< this.array2.length ; i++){
-                Html += '<li>' + this.array2[i] + (this.array2[i]==''?'':'日') + '</li>';
-            }
-            daySelector.innerHTML = Html;
-            this.maxHeight[idx] = this.liHeight * (sum - 1);
-        },
-        checkRange : function(){
 
+            var y = 0;
+            if(dir == 0){
+                sub = min - start;
+                console.log(sub);
+                y = -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+                this.resultArr[ulIdx] = this.resultArr[ulIdx] < min ?  min : this.resultArr[ulIdx];
+            }else if(dir == 1 && max < this.resultArr[ulIdx]){
+                sub = this.resultArr[ulIdx] - max;
+                y = -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+            }else {
+            }
+
+            $selector.style.transform = 'translate3d(0,' + (y + sub * this.liHeight) + 'px, 0)';
+            $selector.style.webkitTransform = 'translate3d(0,' + (y + sub * this.liHeight) + 'px, 0)';
+            $selector.style.transition = 'transform 0.15s ease-out';
+            $selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
+
+            arr　= [];
+            loop (min,max + 1,function(k){
+                arr.push(k);
+            });
+
+            var Html = '';
+            arr.unshift('','');
+            arr.push('','');
+            for(var i = 0; i< arr.length ; i++){
+                Html += '<li>' + arr[i] + (arr[i] === '' ?'':str) + '</li>';
+            }
+            $selector.innerHTML = Html;
+            this.maxHeight[ulIdx] = this.liHeight * (max - min);
+        },
+        checkRange : function(ulIdx,resIdx,distance,maxHei){
+            var _this = this;
+            if(distance == 0){
+                loop(ulIdx + 1,_this.ulCount,function(k){
+                   _this.initRangeArr(_this.begin_time[1],k,_this.idxArr[k],resIdx,_this.beginTime[k],-1);
+                });
+                _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
+            }else if(distance == maxHei){
+                loop(ulIdx + 1,_this.ulCount,function(k){
+                    _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],resIdx,-1,_this.endTime[k]);
+                });
+                var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
+                _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
+            }else {
+                console.log(123123123);
+                /*if(_this.idxArr[ulIdx] == 0 && _this.idxArr.length >= ulIdx + 3){
+                    _this.initRangeArr(_this.resultArr[1],ulIdx + 2,2,resIdx,1,-1);
+                }else if(_this.idxArr[ulIdx] == 1 && _this.idxArr.length >= ulIdx + 2){
+                    _this.initRangeArr(_this.resultArr[ulIdx],ulIdx + 1,2,resIdx,1,-1);
+                }*/
+            }
+            console.log('resultArr: ' + this.resultArr);
         },
         initPosition: function(dis,max,idx){
             dis = dis < 0 ? 0 : dis;
@@ -424,22 +473,15 @@
                     that.distance[idx] = tempDis < 0 ? 0 : (tempDis < that.maxHeight[idx] ? tempDis : that.maxHeight[idx]);
                     // console.log(that.move.speed);
                     that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
-                    that.resultArr[idx] = array[that.distance[idx]/40 + 2];
+                    var tempRes = that.distance[idx]/40 + 2;
+                    that.end.index = that.distance[idx] / that.liHeight + 2;
+
+                    that.checkRange(idx,tempRes,that.distance[idx],that.maxHeight[idx]);
+
                     $selector.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
                     $selector.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
                     $selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
-                    $selector.style.transition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
-                    that.end.index = that.distance[idx] / that.liHeight + 2;
-                    if (that.idxArr[idx] == 0 && that.idxArr[2]) {
-                        that.resultArr[idx] = array[that.end.index];
-                        that.initDay(that.resultArr[idx], that.resultArr[1],idx + 2);
-                    } else if (that.idxArr[idx] == 1 && that.idxArr[2]) {
-                        that.resultArr[idx] = array[that.end.index];
-                        var tempYear = that.idxArr[0] == 0?that.resultArr[idx] : new Date().getFullYear();
-                        that.initDay(tempYear, that.resultArr[idx], idx + 1);
-                    } else {}
-                    that.checkRange(that.resultArr);
-                    console.log(that.resultArr);
+                    $selector.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
                     break;
                 case "touchmove":
                     event.preventDefault();
@@ -449,7 +491,7 @@
                         $selector.style.transform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
                         $selector.style.webkitTransform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
                         $selector.style.transition = 'transform 0.3s ease-out';
-                        $selector.style.transition = '-webkit-transform 0.3s ease-out';
+                        $selector.style.webkitTransition = '-webkit-transform 0.3s ease-out';
                     } else {
                         $selector.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
                         $selector.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
@@ -458,7 +500,7 @@
                         $selector.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
                         $selector.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
                         $selector.style.transition = 'transform 0.3s ease-out';
-                        $selector.style.transition = '-webkit-transform 0.3s ease-out';
+                        $selector.style.webkitTransition = '-webkit-transform 0.3s ease-out';
                     }
                     if (Math.abs(offset).toFixed(0) % 5 === 0) {
                         var time = Date.now();
