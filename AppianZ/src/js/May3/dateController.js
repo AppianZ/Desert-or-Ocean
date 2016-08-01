@@ -430,12 +430,12 @@
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
             }else {
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][resIdx];
-                this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
                 console.log(this.recent_time);
               /*  loop(ulIdx + 1,_this.ulCount,function(k){
                     _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
                 });*/
             }
+            this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
             console.log('resultArr: ' + this.resultArr);
         },
         initPosition: function(dis,max,idx){
