@@ -91,19 +91,16 @@
                 loop(0,_this.idxArr.length,function(i){
                     _this.beginTime.push(begin_time[_this.idxArr[i]]);
                 });
-                console.log(_this.beginTime);
             }
             if (_this.endTime.length == 0){
                 loop(0,_this.idxArr.length,function(i){
                     _this.endTime.push(end_time[_this.idxArr[i]]);
                 });
-                console.log(_this.endTime);
             }
             if (_this.recentTime.length == 0){
                 loop(0,_this.idxArr.length,function(i){
                     _this.recentTime.push(recent_time[_this.idxArr[i]]);
                 });
-                console.log(_this.recentTime);
             }
             if (_this.idxArr.length == _this.beginTime.length && _this.beginTime.length == _this.endTime.length && _this.endTime.length == _this.recentTime.length){
                 loop(0,_this.param.length,function(i){
@@ -170,6 +167,7 @@
                 return (bt <= rt && rt < et);
             }else {
                 alert('error,please open the console to see the errmsg');
+                console.log('type为1时,时间数组长度为0或5');
                 console.log('构造函数的参数param或recentTime设置有误');
                 console.log('param必须是连续的1，recentTime的值必须与param中的值对应');
                 console.log('构造函数调用失败，请重新设置参数');
@@ -261,7 +259,7 @@
                         _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 0),(i == 0?_this.endTime[i] : 23),'时',i);
                         break;
                     case 4 :
-                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 59),'分',i);
+                        _this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 0),(i == 0?_this.endTime[i] : 59),'分',i);
                         break;
                 }
                 tempDomUl.addEventListener('touchstart',function(){
@@ -400,24 +398,55 @@
             $selector.style.transition = 'transform 0.15s ease-out';
             $selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
             this.maxHeight[ulIdx] = this.liHeight * (max - min);
+            this.distance[ulIdx] = Math.abs(y);
         },
         checkRange : function(ulIdx,resIdx,distance,maxHei){
             var _this = this;
+            var needInit = true;
             if(distance == 0){
-                loop(ulIdx + 1,_this.ulCount,function(k){
-                   _this.initRangeArr(_this.begin_time[1],k,_this.idxArr[k],_this.beginTime[k],-1);
+                loop(0,ulIdx,function(n){
+                    if(_this.distance[n] != 0)needInit=false;
                 });
-                _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
             }else if(distance == maxHei){
+                loop(0,ulIdx,function(n){
+                    if(_this.distance[n] != _this.maxHeight[n])needInit=false;
+                });
+            }
+            
+            if(distance == 0 && needInit){
                 loop(ulIdx + 1,_this.ulCount,function(k){
-                    console.log(k);
-                    console.log(_this.resultArr);
-                    console.log(_this.endTime);
-                    _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],-1,_this.endTime[k]);
+                    var tempMin = (k == ulIdx + 1 || _this.begin_time[k] == _this.recent_time[k])?_this.beginTime[k]:-1;
+                    if(tempMin == -1) {
+                        loop(k,_this.ulCount,function(m){
+                            tempMin = (_this.distance[m-1] == 0 || _this.distance[m] == 0) ? _this.beginTime[k] : -1;
+                            if(tempMin != -1){return true}
+                        });
+                    }
+                    _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],tempMin,-1);
+                    _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
+                    _this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+                });
+            }else if(distance == maxHei && needInit){
+                loop(ulIdx + 1,_this.ulCount,function(k){
+                    var tempStatus = true;
+                    var tempMax = (k == ulIdx + 1 || _this.end_time[k] == _this.recent_time[k])?_this.endTime[k]:-1;
+                    loop(0,k,function(n){
+                        if(_this.distance[n] != _this.maxHeight[n]){
+                            tempMax = -1;
+                            tempStatus = false;
+                        }
+                    });
+                    
+                    if(tempMax == -1 && tempStatus) {
+                        loop(k,_this.ulCount,function(m){
+                            tempMax = (_this.distance[m-1] == _this.maxHeight[m-1] || _this.distance[m] == _this.maxHeight[m]) ? _this.endTime[k] : -1;
+                            if(tempMax != -1){return true}
+                        });
+                    }
+                    _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],-1,tempMax);
                     var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
                     _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
-                    console.log('resultArr: ' + _this.resultArr);
-                    if(_this.resultArr[k] != _this.endTime[k])return true;
+                    _this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
                 });
             }else {
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][resIdx];
@@ -426,7 +455,7 @@
                   _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
                 });
             }
-            console.log('resultArr---: ' + this.resultArr);
+            console.log('应得到的结果' + _this.resultArr);
         },
         initPosition: function(dis,max,idx){
             dis = dis < 0 ? 0 : dis;
