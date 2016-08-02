@@ -16,7 +16,7 @@
 
     function loop(begin,length,fuc) {
         for(var i = begin; i < length ; i++){
-            fuc(i);
+            if(fuc(i)) break;
         }
     }
 
@@ -87,7 +87,6 @@
             var begin_time =  this.begin_time;
             var end_time =  this.end_time;
             var recent_time =  this.recent_time;
-            console.log(_this.idxArr);
             if(_this.beginTime.length == 0){
                 loop(0,_this.idxArr.length,function(i){
                     _this.beginTime.push(begin_time[_this.idxArr[i]]);
@@ -107,7 +106,6 @@
                 console.log(_this.recentTime);
             }
             if (_this.idxArr.length == _this.beginTime.length && _this.beginTime.length == _this.endTime.length && _this.endTime.length == _this.recentTime.length){
-                console.log(_this.param);
                 loop(0,_this.param.length,function(i){
                     if(_this.param[i] == 0){
                         switch (i) {
@@ -167,9 +165,6 @@
                 var bt = new Date(begin_time[0],begin_time[1],begin_time[2],begin_time[3],begin_time[4]).getTime();
                 var et = new Date(end_time[0],end_time[1],end_time[2],end_time[3],end_time[4]).getTime();
                 var rt = new Date(recent_time[0],recent_time[1],recent_time[2],recent_time[3],recent_time[4]).getTime();
-                console.log(_this.begin_time);
-                console.log(_this.end_time);
-                console.log(_this.recent_time);
                 rt <　bt　? alert('当前时间小于开始时间') : "";
                 rt >　et　? alert('当前时间超过结束时间') : "";
                 return (bt <= rt && rt < et);
@@ -348,12 +343,9 @@
         initRangeArr : function(month,ulIdx,arrIdx,min,max){
             var _this = this;
             var year = _this.idxArr[0] == 0? _this.resultArr[0] : _this.begin_time[0];
-            var arr = _this['array' + arrIdx];
-            var start = arr[2];
             var $selector = $id('date-selector-' + _this.container + '-' + arrIdx);
             var str = $selector.querySelectorAll("li")[2].innerHTML.substr(-1);
-            var sub = 0;
-            var dir = (max == -1 ? 0 : 1);//0在顶部,1在底部
+            var dir = (min == -1 ? 1 : 0);//0在顶部,1在底部
             min = (min == -1 ? (arrIdx > 2 ? 0 : 1): min);
             if(max == -1){
                 switch (arrIdx) {
@@ -374,69 +366,67 @@
                 }
             }
             var y = 0;
-            if(dir == 0){
-                sub = min - start;
-                y = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + sub * this.liHeight + 80;
-                this.resultArr[ulIdx] = this.resultArr[ulIdx] < min ?  min : this.resultArr[ulIdx];
-            }else if(dir == 1){
-                y = max > this.resultArr[ulIdx] ?
-                -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80 :
-                -arr.indexOf(max) * this.liHeight + 80;
-                this.resultArr[ulIdx] = this.resultArr[ulIdx] > max ?  max : this.resultArr[ulIdx];
-            }else {}
-
-            $selector.style.transform = 'translate3d(0,' + y + 'px, 0)';
-            $selector.style.webkitTransform = 'translate3d(0,'+ y + 'px, 0)';
-            $selector.style.transition = 'transform 0.15s ease-out';
-            $selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
-
-            arr　= [];
+    
+            var arr　= [];
             loop (min,max + 1,function(k){
                 arr.push(k);
             });
-
+    
             var Html = '';
             arr.unshift('','');
             arr.push('','');
             for(var i = 0; i< arr.length ; i++){
                 Html += '<li>' + arr[i] + (arr[i] === '' ?'':str) + '</li>';
             }
-            
+    
             _this['array' + arrIdx] = [];
             _this['array' + arrIdx] = arr;
-            
+    
             $selector.innerHTML = Html;
+            if(dir == 0){
+                y = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+                this.resultArr[ulIdx] = this.resultArr[ulIdx] < min ?  min : this.resultArr[ulIdx];
+                this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+            }else if(dir == 1){
+                y = max > this.resultArr[ulIdx] ?
+                -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80 :
+                -arr.indexOf(max) * this.liHeight + 80;
+                this.resultArr[ulIdx] = this.resultArr[ulIdx] > max ?  max : this.resultArr[ulIdx];
+                this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+            }else {console.log('error')}
+
+            $selector.style.transform = 'translate3d(0,' + y + 'px, 0)';
+            $selector.style.webkitTransform = 'translate3d(0,'+ y + 'px, 0)';
+            $selector.style.transition = 'transform 0.15s ease-out';
+            $selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
             this.maxHeight[ulIdx] = this.liHeight * (max - min);
         },
         checkRange : function(ulIdx,resIdx,distance,maxHei){
             var _this = this;
-            var needInit = false;
-            loop(0,ulIdx + 1,function(m){
-                if(_this.recent_time[m] == _this.begin_time[m] || _this.recent_time[m] == _this.end_time[m]){
-                    needInit = true;
-                }
-            });
-            // console.log(this.recent_time);
-            if(distance == 0 && needInit){
+            if(distance == 0){
                 loop(ulIdx + 1,_this.ulCount,function(k){
                    _this.initRangeArr(_this.begin_time[1],k,_this.idxArr[k],_this.beginTime[k],-1);
                 });
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
-            }else if(distance == maxHei  && needInit){
+            }else if(distance == maxHei){
                 loop(ulIdx + 1,_this.ulCount,function(k){
+                    console.log(k);
+                    console.log(_this.resultArr);
+                    console.log(_this.endTime);
                     _this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],-1,_this.endTime[k]);
+                    var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
+                    _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
+                    console.log('resultArr: ' + _this.resultArr);
+                    if(_this.resultArr[k] != _this.endTime[k])return true;
                 });
-                var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
-                _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
             }else {
                 _this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][resIdx];
-                console.log(this.recent_time);
-              /*  loop(ulIdx + 1,_this.ulCount,function(k){
-                    _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
-                });*/
+                this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+                loop(ulIdx + 1,_this.ulCount,function(k){
+                  _this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
+                });
             }
-            this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
-            console.log('resultArr: ' + this.resultArr);
+            console.log('resultArr---: ' + this.resultArr);
         },
         initPosition: function(dis,max,idx){
             dis = dis < 0 ? 0 : dis;
