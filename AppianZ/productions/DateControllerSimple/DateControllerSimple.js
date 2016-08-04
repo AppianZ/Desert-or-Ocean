@@ -15,7 +15,7 @@
 	
 	function loop(begin,length,fuc) {
 		for(var i = begin; i < length ; i ++){
-			fuc(i);
+			if(fuc(i))break;
 		}
 	}
 	
@@ -282,7 +282,7 @@
 					daySelector.style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
 					daySelector.style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
 					daySelector.style.transition = 'transform 0.15s ease-out';
-					daySelector.style.transition = '-webkit-transform 0.15s ease-out';
+					daySelector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
 					this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
 				}
 			}
@@ -349,7 +349,7 @@
 					$selector.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$selector.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
-					$selector.style.transition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
+					$selector.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
 					that.end.index = that.distance[idx] / that.liHeight + 2;
 					if (that.idxArr[idx] == 0 && that.idxArr[2]) {
 						that.resultArr[idx] = array[that.end.index];
@@ -369,7 +369,7 @@
 						$selector.style.transform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
 						$selector.style.webkitTransform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
 						$selector.style.transition = 'transform 0.3s ease-out';
-						$selector.style.transition = '-webkit-transform 0.3s ease-out';
+						$selector.style.webkitTransition = '-webkit-transform 0.3s ease-out';
 					} else {
 						$selector.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
 						$selector.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
@@ -378,7 +378,7 @@
 						$selector.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
 						$selector.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
 						$selector.style.transition = 'transform 0.3s ease-out';
-						$selector.style.transition = '-webkit-transform 0.3s ease-out';
+						$selector.style.webkitTransition = '-webkit-transform 0.3s ease-out';
 					}
 					if (Math.abs(offset).toFixed(0) % 5 === 0) {
 						var time = Date.now();
