@@ -7,126 +7,152 @@
     <meta name="screen-orientation" content="portrait">
     <title>简易版DateController</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0; }
-        
-        .date-selector-locked {
-            height: 100vh !important;
-            overflow: hidden !important; }
-        .date-selector-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(75, 75, 75, 0);
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            transition: all .3s ease;
-            z-index: -1; }
-        
-        .date-selector-bg-up {
-            z-index: 999 !important;
-            background: rgba(75, 75, 75, 0.65) !important; }
-        
-        .date-selector-container {
-            width: 100%;
-            height: 250px;
-            position: absolute;
-            bottom: -250px;
-            left: 0;
-            background-color: #FFF;
-            transition: bottom .3s ease; }
-        
-        .date-selector-container-up {
-            bottom: 0 !important; }
-        .date-selector-btn-box {
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-            height: 50px;
-            line-height: 50px;
-            background: #40CCC0; }
-        .date-selector-btn-box .date-selector-btn {
-            margin: 0 20px;
-            color: #fff; }
-        .date-selector-tab-box {
-            border-radius: 10px;
-            margin: 10px 0;
-            height: 30px;
-            box-sizing: border-box;
-            line-height: 30px;
-            display: -webkit-inline-flex;
-            display: -ms-inline-flexbox;
-            display: inline-flex;
-            color: #40CCC0;
-            background: #fff;
-            border: 1px solid #fff; }
-        .date-selector-tab-box .date-selector-tab {
-            padding: 0 10px;
-            transition: all .3s ease; }
-        .date-selector-tab-box .date-selector-tab:first-child {
-            border-right: 1px solid #fff; }
-        .date-selector-tab-box .date-selector-tab-active {
-            color: #fff;
-            border-radius: 10px;
-            background: rgba(64, 204, 192, 0.5); }
-        .date-selector-content-left {
-            left: -100% !important; }
-        .date-selector-content-right {
-            left: 100% !important; }
-        .date-selector-content {
-            position: absolute;
-            width: 100%;
-            background: #fff;
-            font-size: 0;
-            left: 0;
-            bottom: 0;
-            transition: left .3s ease; }
-        .date-selector-content .date-selector {
-            display: inline-block;
-            height: 200px;
-            overflow: hidden; }
-        .date-selector-content .date-selector-left {
-            width: 33.33%; }
-        .date-selector-content .date-selector-right {
-            width: 50%; }
-        .date-selector-content ul::-webkit-scrollbar {
-            display: none; }
-        .date-selector-content li {
-            height: 40px;
-            text-align: center;
-            font-size: 16px;
-            line-height: 40px;
-            list-style: none; }
-        .date-selector-content .date-selector-up-shadow, .date-selector-content .date-selector-down-shadow {
-            width: 100%;
-            height: 80px;
-            position: absolute;
-            pointer-events: none;
-            background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0)); }
-        .date-selector-content .date-selector-up-shadow {
-            top: 0; }
-        .date-selector-content .date-selector-down-shadow {
-            bottom: 0;
-            background-image: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0)); }
-        .date-selector-content .date-selector-line {
-            width: 95%;
-            height: 40px;
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            pointer-events: none;
-            box-sizing: border-box;
-            border-top: 1px solid #DCDCDC;
-            border-bottom: 1px solid #DCDCDC;
-            -webkit-transform: translate(-50%, 0);
-            transform: translate(-50%, 0); }
-
+    * {
+        padding: 0;
+        margin: 0; }
     
+    .date-selector-locked {
+        height: 100% !important;
+        overflow: hidden !important; }
+    
+    .date-selector-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(75, 75, 75, 0);
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        transition: all .3s ease;
+        -webkit-transition: all .3s ease;
+        z-index: -1; }
+    
+    .date-selector-bg-up {
+        z-index: 999 !important;
+        background: rgba(75, 75, 75, 0.65) !important; }
+    
+    .date-selector-container {
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        bottom: 0;
+        transform: translate3d(0, 250px, 0);
+        -webkit-transform: translate3d(0, 250px, 0);
+        left: 0;
+        background-color: #FFF;
+        transition: transform .3s ease;
+        -webkit-transition: -webkit-transform .3s ease;
+        z-index: -1; }
+    
+    .date-selector-container-up {
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-transform: translate3d(0, 0, 0) !important; }
+    
+    .date-selector-btn-box {
+        display: block;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        background: #40CCC0;
+        z-index: 10; }
+    .date-selector-btn-box .date-selector-btn {
+        position: absolute;
+        display: inline-block;
+        margin: 0 20px;
+        color: #fff;
+        right: 0; }
+    .date-selector-btn-box .date-selector-btn:nth-child(1) {
+        left: 0;
+        right: initial; }
+    
+    .date-selector-tab-box {
+        display: inline-block;
+        border-radius: 10px;
+        margin: 9px 0;
+        height: 32px;
+        box-sizing: border-box;
+        line-height: 30px;
+        color: #40CCC0;
+        background: #fff;
+        border: 1px solid #fff; }
+    .date-selector-tab-box .date-selector-tab {
+        display: inline-block;
+        padding: 0 10px;
+        transition: all .3s ease; }
+    .date-selector-tab-box .date-selector-tab:first-child {
+        border-right: 1px solid #fff; }
+    .date-selector-tab-box .date-selector-tab-active {
+        color: #fff;
+        border-radius: 10px;
+        background: rgba(64, 204, 192, 0.5); }
+    
+    .date-selector-content-left {
+        transform: translate3d(-100%, 0, 0) !important;
+        -webkit-transform: translate3d(-100%, 0, 0) !important; }
+    
+    .date-selector-content-right {
+        transform: translate3d(100%, 0, 0) !important;
+        -webkit-transform: translate3d(100%, 0, 0) !important; }
+    
+    .date-selector-content {
+        position: absolute;
+        width: 100%;
+        background: #fff;
+        font-size: 0;
+        top: 50px;
+        z-index: 10;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transition: transform .3s ease;
+        -webkit-transition: -webkit-transform .3s ease; }
+    .date-selector-content .date-selector {
+        display: inline-block;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        z-index: -1; }
+    .date-selector-content .date-selector-left {
+        width: 33.33%; }
+    .date-selector-content .date-selector-right {
+        width: 50%; }
+    .date-selector-content ul::-webkit-scrollbar {
+        display: none; }
+    .date-selector-content li {
+        height: 40px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 40px;
+        list-style: none; }
+    .date-selector-content .date-selector-up-shadow, .date-selector-content .date-selector-down-shadow {
+        width: 100%;
+        height: 80px;
+        position: absolute;
+        pointer-events: none;
+        background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0));
+        z-index: 50; }
+    .date-selector-content .date-selector-up-shadow {
+        top: 0; }
+    .date-selector-content .date-selector-down-shadow {
+        bottom: 0;
+        z-index: 50;
+        background-image: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0)); }
+    .date-selector-content .date-selector-line {
+        width: 95%;
+        height: 40px;
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        pointer-events: none;
+        box-sizing: border-box;
+        border-top: 1px solid #DCDCDC;
+        border-bottom: 1px solid #DCDCDC;
+        transform: translate3d(-50%, 0, 0);
+        -webkit-transform: translate3d(-50%, 0, 0); }
+    
+    /*# sourceMappingURL=dateController.css.map */
+
     
         h3 {
             position: relative;
@@ -203,13 +229,44 @@
             range ： array类型，设置年份范围，默认[1950,明年],在设置了需要年份的情况下才生效<br/><br/>
             callbackfuc : function(arr){} 回调函数，可以自定义结果格式化
         </div>
+        <p>3.有什么优越性？</p>
+        <div class="block">
+            带有加速度的滑动 (•‿•) <br/><br/>
+
+            能够动态设置年份范围 (•‿•) <br/><br/>
+
+            能够任意设置时间单位的组合 (•‿•) <br/>
+            有时候需要"年月日",<br/>
+            有时候需要"月日时分",<br/>
+            有时候又需要"年月日时分"!<br/><br/>
+
+            能够切换固定样式和自定义样式,简化参数 (•‿•) <br/>
+            小清新的样式一定能够打动你冰封的心!<br/><br/>
+
+            Trust Me.
+        </div>
+        <p>4.有什么局限性？</p>
+        <div class="block">
+            只能动态设置年份范围 >.< <br/><br/>
+
+            在实际开发过程中,<br/>
+            产品总会告诉你,我要从2016-11-11 11:11开始我的活动!<br/>
+            还要在2016-12-12 12:12的时候结束我的活动!<br/>
+            其他时间点不可选!!!必须这样!!<br/><br/>
+
+            这时候,请移步DateControllerPro.js<br/><br/>
+
+            如果遇到什么神bug,不要着急<br/>
+            这时候,请加我微信523938480<br/><br/>
+            Trust Me. Again.
+        </div>
     </article>
 
     <div id="targetContainer"></div>
     <div id="targetContainers"></div>
 
-        
-     <script>
+
+    <script>
         (function(wid,dcm) {
         	var win = wid;
         	var doc = dcm;
@@ -533,10 +590,10 @@
         			if((variance/arr.length).toFixed(2) > .1){
         				rate = max > this.liHeight * 15 ? dir * 2 : 0;
         				this.initPosition(this.distance[idx] + rate, max,idx);
-        				this.move.speed[0] = .3;
+        				this.move.speed[0] = .2;
         			}else {
         				this.initPosition(this.distance[idx],max,idx);
-        				this.move.speed[0] = this.move.speed[0] > 0.3 ? .3 : this.move.speed[0];
+        				this.move.speed[0] = this.move.speed[0] > 0.2? .2 : this.move.speed[0];
         			}
         			return this;
         		},
@@ -599,7 +656,9 @@
         	};
         	win.DateSelector = DateSelector;
         })(window,document);
-
+    
+    
+    
         //---------------------函数调用开始---------------------
         new DateSelector({
             input : 'date-selector-input',//点击触发插件的input框的id
