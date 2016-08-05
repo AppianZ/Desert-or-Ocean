@@ -16,4 +16,6 @@ I need to debug myself.(⊙﹏⊙)
 No one like loneliness,just dislike disappointment.<br/>
 Even thought I am used to be.(,,•́ . •̀,,)
 
-[Desert-or-Ocean]: http://appianz.github.io/Desert-or-Ocean/
+
+(ෆ ͒•∘̬• ͒)◞ 点击进入首页 ↓↓↓
+[Desert-or-Ocean](http://appianz.github.io/Desert-or-Ocean/)
