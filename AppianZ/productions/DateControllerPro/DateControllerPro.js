@@ -1,5 +1,5 @@
 /**
- * Created by appian on 16/8/4.
+ * Created by appian on 16/8/5.
  */
 (function(wid,dcm) {
 	var win = wid;
@@ -14,8 +14,8 @@
 	}
 	
 	function loop(begin,length,fuc) {
-		for(var i = begin; i < length ; i ++){
-			if(fuc(i))break;
+		for(var i = begin; i < length ; i++){
+			if(fuc(i)) break;
 		}
 	}
 	
@@ -32,13 +32,11 @@
 		this.container = config.container;
 		this.type = config.type;
 		this.param = (config.type == 1)? [1,1,1,1,1] : config.param;
-		this.range = (config.type === 1 || config.param[0] === 1)?
-			((config.range.length == 2 && config.range[0] < config.range[1])?
-				config.range : [1950,new Date().getFullYear() + 1]): [];
+		this.beginTime = config.beginTime;
+		this.endTime = config.endTime;
 		this.recentTime = config.recentTime;
 		this.callbackFuc = config.callbackFuc;
 		
-		this.recentTimeType = config.recentTime.length == 0 ? 0 : 1;
 		this.ulCount = 0;
 		this.ulDomArr = [];
 		this.idxArr = [];//更新后的ul的下标
@@ -58,6 +56,9 @@
 			index : 0
 		};
 		this.resultArr = [];
+		this.begin_time = [1970,1,1,0,0];
+		this.end_time = [new Date().getFullYear() + 1,12,31,23,59];
+		this.recent_time = [new Date().getFullYear(),new Date().getMonth() + 1,new Date().getDate(),new Date().getHours(),new Date().getMinutes()];
 		
 		this.initDomFuc();
 		this.initReady();
@@ -79,10 +80,93 @@
 				_this.param[i] = 1;
 				_this.idxArr.push(i);
 			});
-			if(_this.recentTimeType == 0 || _this.idxArr.length == _this.recentTime.length){
-				return true;
+		},
+		checkTime : function(){
+			var _this = this;
+			var begin_time =  this.begin_time;
+			var end_time =  this.end_time;
+			var recent_time =  this.recent_time;
+			if(_this.beginTime.length == 0){
+				loop(0,_this.idxArr.length,function(i){
+					_this.beginTime.push(begin_time[_this.idxArr[i]]);
+				});
+			}
+			if (_this.endTime.length == 0){
+				loop(0,_this.idxArr.length,function(i){
+					_this.endTime.push(end_time[_this.idxArr[i]]);
+				});
+			}
+			if (_this.recentTime.length == 0){
+				loop(0,_this.idxArr.length,function(i){
+					_this.recentTime.push(recent_time[_this.idxArr[i]]);
+				});
+			}
+			if (_this.idxArr.length == _this.beginTime.length && _this.beginTime.length == _this.endTime.length && _this.endTime.length == _this.recentTime.length){
+				loop(0,_this.param.length,function(i){
+					if(_this.param[i] == 0){
+						switch (i) {
+							case 0:
+								begin_time[i] = new Date().getFullYear();
+								end_time[i] = new Date().getFullYear();
+								break;
+							case 1:
+								begin_time[i] = new Date().getMonth() + 1;
+								end_time[i] = new Date().getMonth() + 1;
+								break;
+							case 2:
+								begin_time[i] = new Date().getDate();
+								end_time[i] = new Date().getDate();
+								break;
+							case 3:
+								begin_time[i] = new Date().getHours();
+								end_time[i] = new Date().getHours();
+								break;
+							case 4:
+								begin_time[i] = new Date().getMinutes();
+								end_time[i] = new Date().getMinutes();
+								break;
+						}
+					}else {
+						loop(0, _this.idxArr.length, function (j) {
+							switch (_this.idxArr[j]) {
+								case 0:
+									_this.beginTime[j] = begin_time[_this.idxArr[j]] = _this.beginTime[j] >= 1900 ? _this.beginTime[j] : new Date().getFullYear();
+									_this.endTime[j] = end_time[_this.idxArr[j]] = _this.endTime[j] >= 1900 ? _this.endTime[j] : new Date().getFullYear() + 1;
+									recent_time[_this.idxArr[j]] = _this.recentTime[j];
+									break;
+								case 1:
+									_this.beginTime[j] = begin_time[_this.idxArr[j]] = (_this.beginTime[j] > 0 && _this.beginTime[j] <= 12) ? _this.beginTime[j] : 1;
+									_this.endTime[j] = (_this.endTime[j] > 0 && _this.endTime[j] <= 12) ? _this.endTime[j] : 12;
+									recent_time[_this.idxArr[j]] = _this.recentTime[j];
+									break;
+								case 2:
+									_this.beginTime[j] = begin_time[_this.idxArr[j]] = (_this.beginTime[j] > 0 && _this.beginTime[j] <= new Date(begin_time[0], begin_time[1], 0).getDate())? _this.beginTime[j] : 1;
+									_this.endTime[j] = end_time[_this.idxArr[j]] = (_this.endTime[j] > 0 && _this.endTime[j] <= new Date(end_time[0], end_time[1], 0).getDate())? _this.endTime[j] : new Date(end_time[0], end_time[1], 0).getDate();
+									recent_time[_this.idxArr[j]] = _this.recentTime[j];
+									break;
+								case 3:
+									_this.beginTime[j] = begin_time[_this.idxArr[j]] = (_this.beginTime[j] >= 0 && _this.beginTime[j] <= 23) ? _this.beginTime[j] : 0;
+									_this.endTime[j] = end_time[_this.idxArr[j]] = (_this.endTime[j] >= 0 && _this.endTime[j] <= 23) ? _this.endTime[j] : 23;
+									recent_time[_this.idxArr[j]] = _this.recentTime[j];
+									break;
+								case 4 :
+									_this.beginTime[j] = begin_time[_this.idxArr[j]] = (_this.beginTime[j] >= 0 && _this.beginTime[j] <= 59) ? _this.beginTime[j] : 0;
+									_this.endTime[j] = end_time[_this.idxArr[j]] = (_this.endTime[j] >= 0 && _this.endTime[j] <= 59) ? _this.endTime[j] : 59;
+									recent_time[_this.idxArr[j]] = _this.recentTime[j];
+									break;
+							}
+						});
+					}
+				});
+				var bt = new Date(begin_time[0],begin_time[1],begin_time[2],begin_time[3],begin_time[4]).getTime();
+				var et = new Date(end_time[0],end_time[1],end_time[2],end_time[3],end_time[4]).getTime();
+				var rt = new Date(recent_time[0],recent_time[1],recent_time[2],recent_time[3],recent_time[4]).getTime();
+				rt <　bt　? alert('当前时间小于开始时间') : "";
+				rt >　et　? alert('当前时间超过结束时间') : "";
+				return (bt <= rt && rt < et);
 			}else {
 				alert('error,please open the console to see the errmsg');
+				console.log('type为1时,时间数组长度为0或5');
 				console.log('构造函数的参数param或recentTime设置有误');
 				console.log('param必须是连续的1，recentTime的值必须与param中的值对应');
 				console.log('构造函数调用失败，请重新设置参数');
@@ -91,7 +175,8 @@
 		},
 		initDomFuc : function(){
 			var _this = this;
-			if(!this.checkParam())return;
+			this.checkParam();
+			if(!this.checkTime())return;
 			var html = '';
 			html += '<div class="date-selector-bg" id="date-selector-bg-'+ _this.container +'">' +
 				'<div  class="date-selector-container" id="date-selector-container-'+ _this.container +'">' +
@@ -161,19 +246,19 @@
 				var tempArray = _this['array' +　_this.idxArr[i]] = [];
 				switch (_this.idxArr[i]) {
 					case 0:
-						_this.initCommonArr(tempDomUl,tempArray,_this.range[0],_this.range[1],'年',i);
+						_this.initCommonArr(tempDomUl,tempArray,_this.beginTime[i],_this.endTime[i],'年',i);
 						break;
 					case 1:
-						_this.initCommonArr(tempDomUl,tempArray,1,12,'月',i);
+						_this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 12),'月',i);
 						break;
 					case 2:
-						_this.initCommonArr(tempDomUl,tempArray,1,31,'日',i);
+						_this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 1),(i == 0?_this.endTime[i] : 31),'日',i);
 						break;
 					case 3:
-						_this.initCommonArr(tempDomUl,tempArray,0,23,'时',i);
+						_this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 0),(i == 0?_this.endTime[i] : 23),'时',i);
 						break;
 					case 4 :
-						_this.initCommonArr(tempDomUl,tempArray,0,59,'分',i);
+						_this.initCommonArr(tempDomUl,tempArray,(i == 0?_this.beginTime[i] : 0),(i == 0?_this.endTime[i] : 59),'分',i);
 						break;
 				}
 				tempDomUl.addEventListener('touchstart',function(){
@@ -236,28 +321,11 @@
 		initCommonArr : function(tempDomUl,tempArr,min,max,str,idx){
 			var _this = this;
 			var Html = '';
-			var res = 0;
 			loop(min,max + 1,function(i){
 				tempArr.push(i);
 			});
 			_this.maxHeight.push(_this.liHeight * (max - min));
-			switch (str) {
-				case '年':
-					res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= _this.range[2]) ? _this.recentTime[idx] : new Date().getFullYear();
-					break;
-				case '月':
-					res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 12 && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getMonth() + 1;
-					break;
-				case '日':
-					res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= tempArr[tempArr.length - 1] && _this.recentTime[idx] > 0) ? _this.recentTime[idx] : new Date().getDate();
-					break;
-				case '时':
-					res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 23 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getHours();
-					break;
-				case '分' :
-					res = (_this.recentTimeType == 1 && _this.recentTime[idx] <= 59 && _this.recentTime[idx] >= 0) ? _this.recentTime[idx] : new Date().getMinutes();
-					break;
-			}
+			var res = _this.recentTime[idx];
 			_this.resultArr.push(res);
 			tempArr.unshift('','');
 			tempArr.push('','');
@@ -269,36 +337,133 @@
 			});
 			tempDomUl.innerHTML = Html;
 		},
-		initDay : function(year,month,idx){
-			var date = 0;
-			var sum = new Date(year,month,0).getDate();
-			var sub = 0;
+		initRangeArr : function(month,ulIdx,arrIdx,min,max){
 			var _this = this;
-			var daySelector = $id('date-selector-' + _this.container + '-2');
-			if(sum < this.resultArr[idx]){
-				sub = sum - this.array2[this.array2.indexOf(this.resultArr[idx])];
-				if(sub < 0){
-					var y = daySelector.style.transform.split(',')[1].replace('px','');
-					daySelector.style.transform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-					daySelector.style.webkitTransform = 'translate3d(0,' + (y - sub * this.liHeight) + 'px, 0)';
-					daySelector.style.transition = 'transform 0.15s ease-out';
-					daySelector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
-					this.resultArr[idx] = -( y / this.liHeight ) + sub + 1;
+			var year = _this.idxArr[0] == 0? _this.resultArr[0] : _this.begin_time[0];
+			var $selector = $id('date-selector-' + _this.container + '-' + arrIdx);
+			var str = $selector.querySelectorAll("li")[2].innerHTML.substr(-1);
+			var dir = (min == -1 ? 1 : 0);//0在顶部,1在底部
+			min = (min == -1 ? (arrIdx > 2 ? 0 : 1): min);
+			if(max == -1){
+				switch (arrIdx) {
+					case 0:
+						break;
+					case 1:
+						max = 12;
+						break;
+					case 2:
+						max = new Date(year,month,0).getDate();
+						break;
+					case 3:
+						max = 23;
+						break;
+					case 4:
+						max = 59;
+						break;
 				}
 			}
-			this.array2　= [];
-			while (date < sum) {
-				this.array2.push(date + 1);
-				date++;
-			}
+			var y = 0;
+			
+			var arr　= [];
+			loop (min,max + 1,function(k){
+				arr.push(k);
+			});
+			
 			var Html = '';
-			this.array2.unshift('','');
-			this.array2.push('','');
-			for(var i = 0; i< this.array2.length ; i++){
-				Html += '<li>' + this.array2[i] + (this.array2[i]==''?'':'日') + '</li>';
+			arr.unshift('','');
+			arr.push('','');
+			for(var i = 0; i< arr.length ; i++){
+				Html += '<li>' + arr[i] + (arr[i] === '' ?'':str) + '</li>';
 			}
-			daySelector.innerHTML = Html;
-			this.maxHeight[idx] = this.liHeight * (sum - 1);
+			
+			_this['array' + arrIdx] = [];
+			_this['array' + arrIdx] = arr;
+			
+			$selector.innerHTML = Html;
+			if(dir == 0){
+				y = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+				this.resultArr[ulIdx] = this.resultArr[ulIdx] < min ?  min : this.resultArr[ulIdx];
+				this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+			}else if(dir == 1){
+				y = max > this.resultArr[ulIdx] ?
+				-arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80 :
+				-arr.indexOf(max) * this.liHeight + 80;
+				this.resultArr[ulIdx] = this.resultArr[ulIdx] > max ?  max : this.resultArr[ulIdx];
+				this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+			}else {console.log('error')}
+			
+			$selector.style.transform = 'translate3d(0,' + y + 'px, 0)';
+			$selector.style.webkitTransform = 'translate3d(0,'+ y + 'px, 0)';
+			$selector.style.transition = 'transform 0.15s ease-out';
+			$selector.style.webkitTransition = '-webkit-transform 0.15s ease-out';
+			this.maxHeight[ulIdx] = this.liHeight * (max - min);
+			this.distance[ulIdx] = Math.abs(y);
+		},
+		checkRange : function(ulIdx,resIdx,distance,maxHei){
+			var _this = this;
+			var needInit = true;
+			if(distance == 0){
+				loop(0,ulIdx,function(n){
+					if(_this.distance[n] != 0)needInit=false;
+				});
+			}else if(distance == maxHei){
+				loop(0,ulIdx,function(n){
+					if(_this.distance[n] != _this.maxHeight[n])needInit=false;
+				});
+			}
+			
+			if(distance == 0 && needInit){
+				if(ulIdx + 1 == _this.ulCount){
+					_this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
+					_this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+				}
+				loop(ulIdx + 1,_this.ulCount,function(k){
+					var tempMin = (k == ulIdx + 1 || _this.begin_time[k] == _this.recent_time[k])?_this.beginTime[k]:-1;
+					if(tempMin == -1) {
+						loop(k,_this.ulCount,function(m){
+							tempMin = (_this.distance[m-1] == 0 || _this.distance[m] == 0) ? _this.beginTime[k] : -1;
+							if(tempMin != -1){return true;}
+						});
+					}
+					_this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],tempMin,-1);
+					_this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][2];
+					_this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+				});
+			}else if(distance == maxHei && needInit){
+				var tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
+				if(ulIdx + 1 == _this.ulCount){
+					_this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
+					_this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+				}
+				loop(ulIdx + 1,_this.ulCount,function(k){
+					var tempStatus = true;
+					var tempMax = (k == ulIdx + 1 || _this.end_time[k] == _this.recent_time[k])?_this.endTime[k]:-1;
+					loop(0,k,function(n){
+						if(_this.distance[n] != _this.maxHeight[n]){
+							tempMax = -1;
+							tempStatus = false;
+						}
+					});
+					
+					if(tempMax == -1 && tempStatus) {
+						loop(k,_this.ulCount,function(m){
+							tempMax = (_this.distance[m-1] == _this.maxHeight[m-1] || _this.distance[m] == _this.maxHeight[m]) ? _this.endTime[k] : -1;
+							if(tempMax != -1){return true}
+						});
+					}
+					_this.initRangeArr(_this.end_time[1],k,_this.idxArr[k],-1,tempMax);
+					tempIdx = _this['array' + _this.idxArr[ulIdx]].length - 3;
+					_this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][tempIdx];
+					_this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+				});
+			}else {
+				_this.resultArr[ulIdx] = _this['array' + _this.idxArr[ulIdx]][resIdx];
+				this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
+				loop(ulIdx + 1,_this.ulCount,function(k){
+					_this.initRangeArr(_this.recent_time[1],k,_this.idxArr[k],-1,-1);
+				});
+			}
+			console.log('应得到的结果' + _this.resultArr);
 		},
 		initPosition: function(dis,max,idx){
 			dis = dis < 0 ? 0 : dis;
@@ -327,12 +492,13 @@
 				this.move.speed[0] = .2;
 			}else {
 				this.initPosition(this.distance[idx],max,idx);
-				this.move.speed[0] = this.move.speed[0] > 0.2? .2 : this.move.speed[0];
+				this.move.speed[0] = this.move.speed[0] > 0.2 ? .2 : this.move.speed[0];
 			}
 			return this;
 		},
 		touch : function(event,that,$selector,array,idx) {
 			event = event || window.event;
+			event.preventDefault();
 			switch (event.type) {
 				case "touchstart":
 					that.move.speed = [];
@@ -345,21 +511,15 @@
 					that.distance[idx] = tempDis < 0 ? 0 : (tempDis < that.maxHeight[idx] ? tempDis : that.maxHeight[idx]);
 					// console.log(that.move.speed);
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
-					that.resultArr[idx] = array[that.distance[idx]/40 + 2];
+					var tempRes = that.distance[idx]/40 + 2;
+					that.end.index = that.distance[idx] / that.liHeight + 2;
+					
+					that.checkRange(idx,tempRes,that.distance[idx],that.maxHeight[idx]);
+					
 					$selector.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$selector.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
 					$selector.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
-					that.end.index = that.distance[idx] / that.liHeight + 2;
-					if (that.idxArr[idx] == 0 && that.idxArr[2]) {
-						that.resultArr[idx] = array[that.end.index];
-						that.initDay(that.resultArr[idx], that.resultArr[1],idx + 2);
-					} else if (that.idxArr[idx] == 1 && that.idxArr[2]) {
-						that.resultArr[idx] = array[that.end.index];
-						var tempYear = that.idxArr[0] == 0?that.resultArr[idx] : new Date().getFullYear();
-						that.initDay(tempYear, that.resultArr[idx], idx + 1);
-					} else {}
-					console.log('结果的集合: ' + that.resultArr);
 					break;
 				case "touchmove":
 					event.preventDefault();
@@ -390,3 +550,4 @@
 	};
 	win.DateSelector = DateSelector;
 })(window,document);
+  

@@ -490,15 +490,16 @@
             if((variance/arr.length).toFixed(2) > .1){
                 rate = max > this.liHeight * 15 ? dir * 2 : 0;
                 this.initPosition(this.distance[idx] + rate, max,idx);
-                this.move.speed[0] = .3;
+                this.move.speed[0] = .2;
             }else {
                 this.initPosition(this.distance[idx],max,idx);
-                this.move.speed[0] = this.move.speed[0] > 0.3 ? .3 : this.move.speed[0];
+                this.move.speed[0] = this.move.speed[0] > 0.2 ? .2 : this.move.speed[0];
             }
             return this;
         },
         touch : function(event,that,$selector,array,idx) {
             event = event || window.event;
+            event.preventDefault();
             switch (event.type) {
                 case "touchstart":
                     that.move.speed = [];

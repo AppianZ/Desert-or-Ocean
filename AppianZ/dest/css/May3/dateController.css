@@ -3,18 +3,19 @@
   margin: 0; }
 
 .date-selector-locked {
-  height: 100vh !important;
+  height: 100% !important;
   overflow: hidden !important; }
 
 .date-selector-bg {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: rgba(75, 75, 75, 0);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   transition: all .3s ease;
+  -webkit-transition: all .3s ease;
   z-index: -1; }
 
 .date-selector-bg-up {
@@ -25,38 +26,50 @@
   width: 100%;
   height: 250px;
   position: absolute;
-  bottom: -250px;
+  bottom: 0;
+  transform: translate3d(0, 250px, 0);
+  -webkit-transform: translate3d(0, 250px, 0);
   left: 0;
   background-color: #FFF;
-  transition: bottom .3s ease; }
+  transition: transform .3s ease;
+  -webkit-transition: -webkit-transform .3s ease;
+  z-index: -1; }
 
 .date-selector-container-up {
-  bottom: 0 !important; }
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important; }
 
 .date-selector-btn-box {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  display: block;
+  position: absolute;
+  text-align: center;
+  width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #40CCC0; }
+  background: #40CCC0;
+  z-index: 10; }
   .date-selector-btn-box .date-selector-btn {
+    position: absolute;
+    display: inline-block;
     margin: 0 20px;
-    color: #fff; }
+    color: #fff;
+    right: 0; }
+  .date-selector-btn-box .date-selector-btn:nth-child(1) {
+    left: 0;
+    right: initial; }
 
 .date-selector-tab-box {
+  display: inline-block;
   border-radius: 10px;
-  margin: 10px 0;
-  height: 30px;
+  margin: 9px 0;
+  height: 32px;
   box-sizing: border-box;
   line-height: 30px;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
   color: #40CCC0;
   background: #fff;
   border: 1px solid #fff; }
   .date-selector-tab-box .date-selector-tab {
+    display: inline-block;
     padding: 0 10px;
     transition: all .3s ease; }
     .date-selector-tab-box .date-selector-tab:first-child {
@@ -67,22 +80,30 @@
     background: rgba(64, 204, 192, 0.5); }
 
 .date-selector-content-left {
-  left: -100% !important; }
+  transform: translate3d(-100%, 0, 0) !important;
+  -webkit-transform: translate3d(-100%, 0, 0) !important; }
 
 .date-selector-content-right {
-  left: 100% !important; }
+  transform: translate3d(100%, 0, 0) !important;
+  -webkit-transform: translate3d(100%, 0, 0) !important; }
 
 .date-selector-content {
   position: absolute;
   width: 100%;
   background: #fff;
   font-size: 0;
-  left: 0;
-  transition: left .3s ease; }
+  top: 50px;
+  z-index: 10;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transition: transform .3s ease;
+  -webkit-transition: -webkit-transform .3s ease; }
   .date-selector-content .date-selector {
     display: inline-block;
     height: 200px;
-    overflow: hidden; }
+    overflow: hidden;
+    position: relative;
+    z-index: -1; }
   .date-selector-content .date-selector-left {
     width: 33.33%; }
   .date-selector-content .date-selector-right {
@@ -100,11 +121,13 @@
     height: 80px;
     position: absolute;
     pointer-events: none;
-    background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0)); }
+    background-image: linear-gradient(to bottom, #FFF, rgba(255, 255, 255, 0));
+    z-index: 50; }
   .date-selector-content .date-selector-up-shadow {
     top: 0; }
   .date-selector-content .date-selector-down-shadow {
     bottom: 0;
+    z-index: 50;
     background-image: linear-gradient(to top, #FFF, rgba(255, 255, 255, 0)); }
   .date-selector-content .date-selector-line {
     width: 95%;
@@ -116,6 +139,7 @@
     box-sizing: border-box;
     border-top: 1px solid #DCDCDC;
     border-bottom: 1px solid #DCDCDC;
-    transform: translate(-50%, 0); }
+    transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0); }
 
 /*# sourceMappingURL=dateController.css.map */
