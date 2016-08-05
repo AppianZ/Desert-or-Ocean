@@ -12,7 +12,7 @@
             margin: 0; }
         
         .date-selector-locked {
-            height: 100% !important;
+            height: 100vh !important;
             overflow: hidden !important; }
         .date-selector-bg {
             position: fixed;
@@ -532,10 +532,10 @@
         			if((variance/arr.length).toFixed(2) > .1){
         				rate = max > this.liHeight * 15 ? dir * 2 : 0;
         				this.initPosition(this.distance[idx] + rate, max,idx);
-        				this.move.speed[0] = .2;
+        				this.move.speed[0] = .3;
         			}else {
         				this.initPosition(this.distance[idx],max,idx);
-        				this.move.speed[0] = this.move.speed[0] > 0.2 ? .1 : this.move.speed[0];
+        				this.move.speed[0] = this.move.speed[0] > 0.3 ? .3 : this.move.speed[0];
         			}
         			return this;
         		},
