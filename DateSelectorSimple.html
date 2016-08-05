@@ -14,6 +14,9 @@
         .date-selector-locked {
             height: 100vh !important;
             overflow: hidden !important; }
+        .date-selector-events {
+            pointer-events: none;
+        }
         .date-selector-bg {
             position: fixed;
             top: 0;
@@ -179,7 +182,7 @@
 <body>
 
     <h3>DateControllerSimple.</h3>
-    <article>
+    <article id="article">
         <p>0.请在移动端下打开~~</p>
         <p>1.点击下面的输入演示样式</p>
         <input id="date-selector-input" type="text" placeholder="点我~~看固定效果" readonly/>
@@ -404,6 +407,7 @@
         				bg.classList.add('date-selector-bg-up');
         				container.classList.add('date-selector-container-up');
         				body.classList.add('date-selector-locked');
+                        $id('article').classList.add('date-selector-events');
         			}, false);
         			
         			on('touchstart','date-selector-btn-save-' + _this.container,function(){
@@ -411,19 +415,25 @@
         				bg.classList.remove('date-selector-bg-up');
         				container.classList.remove('date-selector-container-up');
         				body.classList.remove('date-selector-locked');
-        			},false);
+                        $id('article').classList.remove('date-selector-events');
+
+                    },false);
         			
         			on('touchstart','date-selector-bg-'+ _this.container,function(){
         				bg.classList.remove('date-selector-bg-up');
         				container.classList.remove('date-selector-container-up');
         				body.classList.remove('date-selector-locked');
-        			},false);
+                        $id('article').classList.remove('date-selector-events');
+
+                    },false);
         			
         			on('touchstart','date-selector-btn-cancel',function(){
         				bg.classList.remove('date-selector-bg-up');
         				container.classList.remove('date-selector-container-up');
         				body.classList.remove('date-selector-locked');
-        			},false);
+                        $id('article').classList.remove('date-selector-events');
+
+                    },false);
         			
         			on('touchstart','date-selector-tab',function(event){
         				var tab = $class('date-selector-tab');
