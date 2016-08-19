@@ -10,8 +10,4 @@
 > │	      │── DateControllerSimple.js<br/>
 > │	      └── DateControllerSimple.scss<br/>
 > └── src 开发测试目录<br/>
-> 	│── html<br/>
-> 	│── js <br/>
-> 	│── sass<br/>
-> 	└── unitTest<br/>
 	
