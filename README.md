@@ -5,13 +5,13 @@
 
 > [简易版日期选择器 DateControllerSimple.Demo.](http://appianz.github.io/Desert-or-Ocean/DateSelectorSimple.html) 
 
-> [简易版日期选择器说明书 DateControllerSimple. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerPro)
+> [简易版日期选择器说明书 DateControllerSimple. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerSimple)
 
 <br/>
 
 > [优质版日期选择器 DateControllerPro.Demo.](http://appianz.github.io/Desert-or-Ocean/DateSelectorPro.html)
 
-> [优质版日期选择器说明书 DateControllerPro. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerSimple)
+> [优质版日期选择器说明书 DateControllerPro. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerPro)
 
 <br/>
 This is a personal exercise project.(,,• ₃ •,,)<br/>
