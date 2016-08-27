@@ -8,9 +8,9 @@
 
 > 例如可以设置【2011年13月(-27)日 102时12分 ~ 2020年10月21日 20时20分】的效果
 
-<br/><br/>
+<br/>
 ### 0.[在移动端下打开demo](http://appianz.github.io/Desert-or-Ocean/DateSelectorPro.html)
-<br/><br/>
+<br/>
 ### 1.如何引用css和js文件
 
 > sass文件:引用productions/DateControllerPro/DateControllerPro.scss
@@ -19,7 +19,7 @@
 
 > js文件:引用productions/DateControllerPro/DateControllerPro.js
 
-<br/><br/>
+<br/>
 
 ### 2.如何调用构造函数
 
@@ -43,7 +43,7 @@
 
 > callbackfuc : function(arr){} 回调函数，可以自定义结果格式化
 
-<br/><br/>
+<br/>
 
 ### 3.有什么优越性？
 
@@ -72,7 +72,7 @@
 > 比如城市三级联动,但是有待开发喔!
 
 #### Trust Me.
-<br/><br/>
+<br/>
 
 ### 4.有什么局限性？
 
