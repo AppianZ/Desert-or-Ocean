@@ -82,7 +82,9 @@
 
 > 你可以选择改变css或改变sass的全局变量后重新编译
 
-> 如果你只需要设置年份范围，不需要精确到后面的时间单位。这时候,请移步[日期选择器简易版 DateControllerSimple.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerSimple)
+> 如果你只需要设置年份范围，不需要精确到后面的时间单位。
+
+> 这时候,请移步[日期选择器简易版 DateControllerSimple.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerSimple)
 
 > 一定让您满意！
 
