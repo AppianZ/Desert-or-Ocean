@@ -24,7 +24,7 @@ $styleColorOpacity : rgba(64,204,192,.5);
   overflow: hidden;
   transition: all .3s ease;
   -webkit-transition: all .3s ease;
-  z-index: -1;
+  z-index: 0;
 }
 
 .date-selector-bg-up {

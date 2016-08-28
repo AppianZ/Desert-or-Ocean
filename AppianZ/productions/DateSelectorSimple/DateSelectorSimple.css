@@ -16,7 +16,7 @@
     overflow: hidden;
     transition: all .3s ease;
     -webkit-transition: all .3s ease;
-    z-index: -1; }
+    z-index: 0; }
 
 .date-selector-bg-up {
     z-index: 999 !important;

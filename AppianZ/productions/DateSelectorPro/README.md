@@ -1,4 +1,4 @@
-## DateControllerPro - 日期选择器优质版
+## DateSelectorPro - 日期选择器优质版
 
 #### 优质的主要表现在:
 
@@ -13,11 +13,11 @@
 <br/>
 ### 1.如何引用css和js文件
 
-> sass文件:引用productions/DateControllerPro/DateControllerPro.scss
+> sass文件:引用productions/DateSelectorPro/DateSelectorPro.scss
 
-> css文件:引用productions/DateControllerPro/DateControllerPro.css
+> css文件:引用productions/DateSelectorPro/DateSelectorPro.css
 
-> js文件:引用productions/DateControllerPro/DateControllerPro.js
+> js文件:引用productions/DateSelectorPro/DateSelectorPro.js
 
 <br/>
 
@@ -84,7 +84,7 @@
 
 > 如果你只需要设置年份范围，不需要精确到后面的时间单位。
 
-> 这时候,请移步[日期选择器简易版 DateControllerSimple.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerSimple)
+> 这时候,请移步[日期选择器简易版 DateSelectorSimple.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateSelectorSimple)
 
 > 一定让您满意！
 

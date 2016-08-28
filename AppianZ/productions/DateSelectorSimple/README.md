@@ -1,4 +1,4 @@
-## DateControllerSimple - 日期选择器简易版
+## DateSelectorSimple - 日期选择器简易版
 
 #### 简易的主要表现在:
 
@@ -11,11 +11,11 @@
 <br/>
 ### 1.如何引用css和js文件
 
-> sass文件:引用productions/DateControllerSimple/DateControllerSimple.scss
+> sass文件:引用productions/DateSelectorSimple/DateSelectorSimple.scss
 
-> css文件:引用productions/DateControllerSimple/DateControllerSimple.css
+> css文件:引用productions/DateSelectorSimple/DateSelectorSimple.css
 
-> js文件:productions/DateControllerSimple/DateControllerSimple.js
+> js文件:productions/DateSelectorSimple/DateSelectorSimple.js
 
 <br/>
 
@@ -74,7 +74,7 @@
 
 > 还要在2016-12-12 12:12的时候结束我的活动!其他时间点不可选!!!必须这样!!
 
-> 这时候,请移步[日期选择器优质版 DateControllerPro.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateControllerPro)
+> 这时候,请移步[日期选择器优质版 DateSelectorPro.js](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateSelectorPro)
 
 > 一定让您满意！
 
