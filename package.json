@@ -22,5 +22,9 @@
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "morgan": "^1.7.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "superagent": "^2.2.0"
   }
 }
