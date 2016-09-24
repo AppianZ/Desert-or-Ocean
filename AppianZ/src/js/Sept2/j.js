@@ -5,9 +5,16 @@ const b = () =>{
 exports.c = () => {
   console.log('this is fun-c in j.js');
 };
-// 如果没有module.exports = b;则导出的是一个对象{c: c方法}
 
-module.exports = b;
+/*
+如果没有module.exports = b;则导出的是一个对象{c: c方法},
+如果在g.js中执行以下代码:
+  const j = require("./j.js");
+  j();
+会提示错误error: j is not a function
+*/
+
+// module.exports = {b,c:'123'};
 
 /*
 导出的为仍为b方法,因为导出的c被覆盖了

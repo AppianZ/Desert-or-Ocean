@@ -7,6 +7,7 @@ exports.c = () => {
 };
 
 /*
-导出的为对象{b:b,c:c} 等效于 module.exports={b:方法,c:方法}
+导出的为对象{b:b,c:c}
+等效于 module.exports={b:方法,c:方法}
 说明 exports = module.exports = {};
 */
