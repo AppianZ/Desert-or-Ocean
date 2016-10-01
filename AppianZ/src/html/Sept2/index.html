@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>好友买卖</title>
+    <script src="https://o9tsh54u9.qnssl.com/flexible.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+    <button @click="reverseMessage">Reverse Message</button>
+    <br><br><br>
+
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <input type="radio" id="threee" value="3" v-model="picked">
+    <label for="threee">3</label>
+    <br>
+    <input type="radio" id="four" value="4" v-model="picked">
+    <label for="four">4</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+    <br><br><br>
+
+
+    <div id="counter-event-example">
+        <p>{{ total }}</p>
+        <button-counter v-on:increments="incrementTotal"></button-counter>
+        <button-counter v-on:increments="incrementTotal"></button-counter>
+    </div>
+    <br><br><br>
+
+
+    <div id="v-model-example">
+        <p>{{ message }}</p>
+        <my-input
+                label="Message"
+                v-model="message"
+        ></my-input>
+    </div>
+
+</div>
+<script src="../../assets/lib/zw.js"></script>
+<script src="../../assets/lib/vue.js"></script>
+<script src="../../js/Sept2/index.js"></script>
+</body>
+</html>
