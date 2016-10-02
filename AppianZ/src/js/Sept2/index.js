@@ -52,4 +52,5 @@ new Vue({
 		incrementTotal: function () {
 			this.total += 1
 		}
-	}});
+	}
+});
