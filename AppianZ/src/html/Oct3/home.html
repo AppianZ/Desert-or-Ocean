@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>好友买卖</title>
+    <script src="https://o9tsh54u9.qnssl.com/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../dest/css/Oct3/home.css?rev=@@hash"/>
+</head>
+<body>
+<div id="main">
+    <article id="switch">
+        <section id="contaninleft" :class="{'toleft' : tabon > 0}">
+            <header class="leftheader">
+                <info></info>
+            </header>
+            <div class="rankswitch">
+                <span class="rank-pay"
+                      :class="{'span-on' : listType === 0}"
+                      @click="switchList(0)"
+                >可购买</span>
+                <span class="rank-value"
+                    :class="{'span-on' : listType === 1}"
+                    @click="switchList(1)"
+                >按身价</span>
+                <span class="rank-balance"
+                    :class="{'span-on' : listType === 2}"
+                    @click="switchList(2)"
+                >按财富</span>
+            </div>
+            <ul>
+                <li is="list" v-for="(el,index) in payList"
+                    :el="el" :idx="index"
+                    :type="listType"
+                    v-if="listType === 0"
+                ></li>
+                <li is="list" v-for="(el,index) in valueList"
+                      :el="el" :idx="index"
+                      :type="listType"
+                      v-if="listType === 1"
+                ></li>
+                <li is="list" v-for="(el,index) in balanceList"
+                      :el="el" :idx="index"
+                      :type="listType"
+                      v-if="listType === 2"
+                ></li>
+            </ul>
+        </section>
+
+
+
+        <section id="containcenter" :class="{'toleft' : tabon > 0, 'toright': tabon == 1}">
+            <h3>222</h3>
+        </section>
+        <section id="containright" :class="{'toright': tabon == 2}">
+            <header class="rightheader">
+                <info></info>
+            </header>
+        </section>
+    </article>
+
+    <footer class="footer">
+        <div class="tab"
+             :class="{'tabon': tabon == 0 }"
+             @click="switchTab(0)">
+            <span class="friend-trade-icon">&#xe606;</span>
+        </div>
+        <div class="tab"
+             :class="{'tabon': tabon == 1 }"
+             @click="switchTab(1)">
+            <span class="friend-trade-icon">&#xe60f;</span>
+        </div>
+        <div class="tab"
+             :class="{'tabon': tabon == 2 }"
+             @click="switchTab(2)">
+            <span class="friend-trade-icon">&#xe60e;</span>
+        </div>
+    </footer>
+</div>
+
+
+    <script type="text/x-template" id="infoTpl">
+        <div class="infobox">
+            <figure class="owner-head"
+                    :style="{'background' : 'url('+ owner.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+                    :class="{ headon: headType === 0, singleon : master.headimgurl === ''}"
+                    @click="switchHead()"
+            ></figure>
+            <figure class="master-head"
+                v-if="master.headimgurl !== ''"
+                :style="{ background: 'url('+ master.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+                :class="{ headon: headType === 1}"
+                @click="switchHead()"
+            ></figure>
+            <div class="baseInfo">
+                <h3>
+                    <span v-text="headType === 0 ? '昵称' : '主人'"
+                        :class="{'owner-span' : headType === 0,
+                            'master-span' : headType === 1}"
+                    ></span>
+                    <b v-text="headType === 0 ? owner.nickname : master.nickname"></b>
+                </h3>
+                <h4 class="value-now">
+                    <span>身价</span>
+                    <b v-text="headType === 0 ? owner.value_now : master.value_now"></b>
+                </h4>
+                <h4 class="balance-total">
+                    <span>财富</span>
+                    <b v-text="headType === 0 ? owner.balance_total : master.balance_total"></b>
+                </h4>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="listTpl">
+        <li class="record" @click="payStraight">
+            <b v-text="idx + 1"></b>
+            <figure :style="{ background: 'url('+ el.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+            ></figure>
+            <i v-text="el.nickname"></i>
+            <p :class="{'list-pay' : type == 0,
+                'list-value' : type == 1,
+                'list-balance' : type == 2}">
+                <span v-text="type < 2 ?
+                (el.value_now > 999999 ? '100W+' :  el.value_now):
+                (el.balance_total > 999999 ? '100W+' :  el.balance_total)"></span>
+            </p>
+        </li>
+    </script>
+
+
+<script src="../../unitTest/Oct3/home.js"></script>
+
+<script src="../../assets/lib/zw.js"></script>
+<script src="../../assets/lib/vue.js"></script>
+<script src="../../js/Oct3/home.js"></script>
+</body>
+</html>
