@@ -11,29 +11,33 @@ Vue.component('info',{
 		}
 	},
 	methods: {
-		switchHead: function (type) {
-			this.headType = type;
+		switchHead: function () {
+			if (this.master.headimgurl == '') return;
+			this.headType = Math.abs(this.headType - 1);
 		}	
 	},
 });
 
 Vue.component('list',{
 	template : '#listTpl',
-	props : ['el', 'idx'],
+	props : ['el', 'idx', 'type'],
 });
 
 
 new Vue({
 	el: '#main',
 	data: {
-		on : 0,
-		statusList: $data.friends_by_status,
-		goldenList: $data.friends_by_golden,
+		tabon : 0,
+		valueList: $data.value_now_list,
+		balanceList: $data.balance_total_list,
 		listType: 0,
 	},
 	methods : {
 		switchTab : function(num){
-			this.on = num;
+			this.tabon = num;
+		},
+		switchList : function(num){
+			this.listType = num;
 		},
 	},
 	created : function () {

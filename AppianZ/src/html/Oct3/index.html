@@ -16,21 +16,40 @@
 
     <article>
         <nav>
-            <div :class="{'on': on == 0 }" @click="switchTab(0)">好友排行</div>
-            <div :class="{'on': on == 1 }" @click="switchTab(1)">我的奴隶</div>
+            <div class="tab"
+                 :class="{'tabon': tabon == 0 }"
+                 @click="switchTab(0)">好友排行</div>
+            <div class="tab"
+                 :class="{'tabon': tabon == 1 }"
+                 @click="switchTab(1)">我的奴隶</div>
         </nav>
         <div id="switch">
-            <section id="contaninleft" :class="{'left0' : on == 1}">
+            <section id="contaninleft" :class="{'left0' : tabon == 1}">
                 <div class="rankswitch">
-                    <span>身价</span>
-                    <span>财富</span>
+                    <span class="rank-value"
+                        :class="{'span-on' : listType === 0}"
+                        @click="switchList(0)"
+                    >按身价</span>
+                    <span class="rank-balance"
+                        :class="{'span-on' : listType === 1}"
+                        @click="switchList(1)"
+                    >按财富</span>
                 </div>
-                <list v-for="(el,index) in statusList"
-                      :el="el" :idx="index"
-                ></list>
-                <list v-for="(el,index) in goldenList" :el="el" :idx="index"></list>
+                <ul>
+                    <li is="list" v-for="(el,index) in valueList"
+                          :el="el" :idx="index"
+                          :type="listType"
+                          v-if="listType === 0"
+                    ></li>
+                    <li is="list" v-for="(el,index) in balanceList"
+                          :el="el" :idx="index"
+                          :type="listType"
+                          v-if="listType === 1"
+                    ></li>
+                </ul>
+
             </section>
-            <section id="containright" :class="{'right1': on == 1}">
+            <section id="containright" :class="{'right1': tabon == 1}">
                 <h3>222</h3>
             </section>
         </div>
@@ -46,7 +65,7 @@
                         'backgroundSize' : 'cover',
                         'backgroundPosition' : 'center'}"
                     :class="{ headon: headType === 0, singleon : master.headimgurl === ''}"
-                    @click="switchHead(0)"
+                    @click="switchHead()"
             ></figure>
             <figure class="master-head"
                 v-if="master.headimgurl !== ''"
@@ -54,28 +73,43 @@
                         'backgroundSize' : 'cover',
                         'backgroundPosition' : 'center'}"
                 :class="{ headon: headType === 1}"
-                @click="switchHead(1)"
+                @click="switchHead()"
             ></figure>
-            <h3>
-                <span v-text="headType === 0 ? '昵称' : '你的主人'"></span>
-                <b v-text="headType === 0 ? owner.nickname : master.nickname"></b>
-            </h3>
-            <h4>
-                <span>身价</span>
-                <b v-text="headType === 0 ? owner.social_status : master.social_status"></b>
-            </h4>
-            <h4>
-                <span>财富</span>
-                <b v-text="headType === 0 ? owner.golden : master.golden"></b>
-            </h4>
+            <div class="baseInfo">
+                <h3>
+                    <span v-text="headType === 0 ? '昵称' : '主人'"
+                        :class="{'owner-span' : headType === 0,
+                            'master-span' : headType === 1}"
+                    ></span>
+                    <b v-text="headType === 0 ? owner.nickname : master.nickname"></b>
+                </h3>
+                <h4 class="value-now">
+                    <span>身价</span>
+                    <b v-text="headType === 0 ? owner.value_now : master.value_now"></b>
+                </h4>
+                <h4 class="balance-total">
+                    <span>财富</span>
+                    <b v-text="headType === 0 ? owner.balance_total : master.balance_total"></b>
+                </h4>
+            </div>
         </div>
 
     </script>
 
     <script type="text/x-template" id="listTpl">
-        <section class="section">
-            <p>{{el}} - {{idx}}</p>
-        </section>
+        <li class="record">
+            <b v-text="idx + 1"></b>
+            <figure :style="{ background: 'url('+ el.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+            ></figure>
+            <i v-text="el.nickname"></i>
+            <p :class="{'list-value' : type == 0, 'list-balance' : type == 1}">
+                <span v-text="type == 0 ?
+                (el.value_now > 999999 ? '100W+' :  el.value_now):
+                (el.balance_total > 999999 ? '100W+' :  el.balance_total)"></span>
+            </p>
+        </li>
     </script>
 
 

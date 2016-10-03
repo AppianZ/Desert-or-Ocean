@@ -4,47 +4,65 @@
 var $data = {
 	owner: { //自己
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
-		nickname: '如果嗳,请深嗳',
-		social_status: 123123,
-		golden: 321321,
+		nickname: '如果嗳,请深嗳请深嗳请深嗳',
+		value_now: 123123,
+		balance_total: 321321,
 	},
 	master: { //主人的相关信息
-		headimgurl: '', //头像
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg', //头像
 		nickname: '如果嗳,请深嗳', // 昵称
-		social_status: 123123, // 身价
-		golden: 321321, // 金钱
+		value_now: 123123, // 身价
+		balance_total: 321321, // 金钱
 	},
-	friends_by_status: [{ //按身价排名的好友列表
+	value_now_list: [{ //按身价排名的好友列表
+		id: 1,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
-		nickname: '抱紧我,别放手',
-		social_status: 1111,
-		golden: 111,
+		nickname: '我,别放手',
+		value_now: 1,
+		balance_total: 111,
 	}, {
+		id: 2,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
 		nickname: '嗳你所以给你最后的自由',
-		social_status: 2222,
-		golden: 222,
+		value_now: 222222,
+		balance_total: 222,
 	}, {
+		id: 3,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
 		nickname: '硪扪是塘,甜到忧伤',
-		social_status: 3333,
-		golden: 333,
+		value_now: 33333333333,
+		balance_total: 333,
+	}, {
+		id: 4,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '嗳你所以给你最后的自由',
+		value_now: 2222,
+		balance_total: 222,
+	}, {
+		id: 5,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '硪扪是塘,甜到忧伤',
+		value_now: 3333,
+		balance_total: 333,
 	}],
-	friends_by_golden: [{ //按财富排名的好友列表
+	balance_total_list: [{ //按财富排名的好友列表
+		id: 1,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
 		nickname: '抱紧我,别放手',
-		social_status: 4444,
-		golden: 444,
+		value_now: 4444,
+		balance_total: 444,
 	}, {
+		id: 2,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
 		nickname: '硪扪是塘,甜到忧伤',
-		social_status: 5555,
-		golden: 555,
+		value_now: 5555,
+		balance_total: 555,
 	}, {
+		id: 3,
 		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
 		nickname: '嗳你所以给你最后的自由',
-		social_status: 6666,
-		golden: 666,
+		value_now: 6666,
+		balance_total: 666,
 	}],
 	slave_history: [{
 		nickname: '吴亮亮',

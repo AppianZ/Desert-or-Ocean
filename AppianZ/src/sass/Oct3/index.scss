@@ -20,51 +20,115 @@ body {
 header {
   position: relative;
   width: 100%;
-  height: pr(160);
+  height: pr(200);
   background: #FD9940;
   .infobox {
     figure {
       position: absolute;
-      width: pr(120);
-      height: pr(120);
+      width: pr(130);
+      height: pr(130);
       border-radius: 50%;
       border: pr(5) solid rgba(255,255,255,.96);
-      top: pr(15);
+      top: pr(20);
       opacity: .85;
-      transform: scale(.9);
+      transform: scale(.8);
       transition: all .3s ease;
+      box-shadow: 0 pr(5) pr(35) rgba(0,0,0,.3);
+      &:after {
+        position: absolute;
+        content: '';
+        width: pr(130);
+        height: pr(130);
+        border-radius: 50%;
+        top: pr(-5);
+        left: pr(-5);
+        border: pr(5) solid rgba(0,0,0,.2);
+        background: rgba(0,0,0,.3);
+      }
       &.headon {
         z-index: 100;
         opacity: 1;
         transform: scale(1);
+        &:after {
+          display: none;
+        }
       }
       &.singleon {
-        left: pr(100);
+        left: pr(85);
       }
     }
     .owner-head {
-      left: pr(60);
+      left: pr(50);
     }
     .master-head {
-      left: pr(150);
+      left: pr(140);
     }
   }
-
-  h3 {
+  .baseInfo {
     position: absolute;
-    @include fz(18px);
-    font-weight: bold;
-    color: rgba(255,255,255,.96);
-    overflow: hidden;
-    margin: pr(25) 0 pr(5);
-    text-align: center;
+    top: pr(20);
+    left: pr(300);
+    width: pr(300);
+    h3 {
+      width: pr(300);
+      @include fz(16px);
+      font-weight: bold;
+      color: rgba(255,255,255,.9);
+      overflow: hidden;
+      margin: pr(10) 0 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      .owner-span {
+        @include fz(12px);
+        font-weight: 300;
+        color: rgba(255,255,255,.6);
+        &:before {
+          display: inline-block;
+          margin: 0 pr(3) 0 0;
+          content: '\e60a';
+          font-family: 'friend-trade';
+          @include fz(16px);
+        }
+      }
+      .master-span {
+        font-weight: 300;
+        @include fz(12px);
+        color: rgba(255,255,255,.6);
+        &:before {
+          display: inline-block;
+          margin: 0 pr(6) 0 pr(5);
+          content: '\e609';
+          font-family: 'friend-trade';
+          @include fz(12px);
+        }
+      }
+    }
+    .value-now,.balance-total {
+      @include fz(16px);
+      margin: pr(5) 0 0 0;
+      color: rgba(255,255,255,.8);
+      span {
+        font-weight: 300;
+        @include fz(12px);
+        color: rgba(255,255,255,.6);
+        &:before {
+          display: inline-block;
+          font-family: 'friend-trade';
+        }
+      }
+    }
+    .value-now span:before {
+      margin: 0 pr(3) 0 0;
+      content: '\e601';
+      @include fz(16px);
+    }
+    .balance-total span:before {
+      margin: 0 pr(5) 0 pr(2);
+      content: '\e60c';
+      @include fz(14px);
+    }
   }
-  h4 {
-    @include fz(14px);
-    color: rgba(255,255,255,.75);
-    text-align: center;
-  }
-
   .button {
     position: absolute;
     top: 0;
@@ -104,7 +168,7 @@ article {
   nav {
     display: block;
     text-align: center;
-    div {
+    .tab {
       display: inline-block;
       width: 49%;
       text-align: center;
@@ -114,7 +178,7 @@ article {
       font-weight: bold;
       box-sizing: border-box;
     }
-    .on {
+    .tabon {
       position: relative;
       color: #FD9940;
       text-shadow: 0 0 pr(40) rgba(0,0,0,.2);
@@ -141,53 +205,124 @@ article {
 
 #contaninleft {
   position: absolute;
-  display: block;
+  width: 100%;
   top: 0;
-  width: 90%;
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0 ,0);
   transition: transform .5s ease;
-  -webkittransition: -webkit-transform .5s ease;
-  margin: pr(50) 3%;
-  padding: 0 0 0 4%;
-  border-left: pr(1) solid #e3e3e3;
+  -webkit-transition: -webkit-transform .5s ease;
   overflow: hidden;
-  .section {
+  .rankswitch {
     position: relative;
-    padding: pr(25) 0 pr(20);
-    margin: 0 0 pr(40) 0;
-    .date {
+    padding: pr(15) 0;
+    height: pr(42);
+    span {
       position: absolute;
-      height: pr(42);
-      background: #f4f4f4;
-      left: pr(-80);
-      top: pr(-25);
-      b {
-        @include fz(12px);
-        color: #999;
-        vertical-align: top;
-      }
-      i {
-        @include fz(12px);
-        color: #ccc;
-        font-style: italic;
-        vertical-align: top;
+      padding: pr(5) pr(25);
+      margin: 0 pr(5);
+      border-radius: pr(5);
+      @include fz(12px);
+      font-weight: 400;
+      color: rgba(255,152,51,.6);
+      background: #fff;
+      &:after {
+        content: '\e60b';
+        font-family: 'friend-trade';
       }
     }
-    .records {
-      li {
-        position: relative;
-        margin: 0 0 pr(3) 0;
-        span {
-          @include fz(14px);
-          color: #999;
-        }
-        b {
-          @include fz(14px);
-          color: #333;
-          font-weight: bolder;
-        }
+    span.span-on {
+      color: rgba(255,152,51,.95);
+      box-shadow: 0 pr(10) pr(20) rgba(0,0,0,.05);
+    }
+    .rank-value {
+      left: pr(310);
+    }
+    .rank-balance {
+      left: pr(470);
+    }
+  }
+
+  .record:nth-child(1) {
+    b {
+      color: #ff9933;
+      text-shadow: 0 pr(2) pr(15) rgba(0,0,0,.2);
+    }
+  }
+
+  .record:nth-child(2) {
+    b {
+      color: #F36F70;
+      text-shadow: 0 pr(2) pr(15) rgba(0,0,0,.2);
+    }
+  }
+
+  .record:nth-child(3) {
+    b {
+      color: #83DC53;
+      text-shadow: 0 pr(2) pr(15) rgba(0,0,0,.2);
+    }
+  }
+
+  .record {
+    position: relative;
+    padding: pr(5) pr(10);
+    margin: 0 pr(35);
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    height: pr(100);
+    line-height: pr(100);
+    b {
+      display: inline-block;
+      vertical-align: top;
+      color: #999;
+      font-weight: bold;
+      @include fz(20px);
+      margin: 0 pr(20) 0 0;
+    }
+    figure {
+      display: inline-block;
+      width: pr(80);
+      height: pr(80);
+      margin: pr(10) 0;
+      opacity: 1;
+      border-radius: 50%;
+      border: 1px solid #ff9933;
+      box-shadow: 0 pr(5) pr(35) rgba(0, 0, 0, .3);
+      vertical-align: top;
+    }
+    i {
+      display: inline-block;
+      margin: 0 0 0 pr(20);
+      @include fz(16px);
+      color: #555;
+      width: pr(260);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 400;
+    }
+    p {
+      position: absolute;
+      display: inline-block;
+      left: pr(420);
+      vertical-align: top;
+      margin: 0 0 0 pr(20);
+      span {
+        @include fz(14px);
+        color: #ff9933;
+        padding: 0 0 0 pr(10);
       }
+    }
+    p.list-value:before {
+      content: '\e601';
+      font-family: 'friend-trade';
+      @include fz(20px);
+      color: rgba(255,152,51,.6);
+    }
+    p.list-balance:before {
+      content: '\e60c';
+      font-family: 'friend-trade';
+      @include fz(20px);
+      color: rgba(255,152,51,.6);
     }
   }
 }
@@ -210,16 +345,9 @@ article {
 .left0 {
   transform: translate3d(-100%, 0, 0)!important;
   -webkit-transform: translate3d(-100%, 0 ,0)!important;
-  //left: -100%!important;
 }
-/*.right0 {
-  transform: translate3d(0, 0, 0)!important;
-  -webkit-transform: translate3d(0, 0 ,0)!important;
-  //left: 0!important;
-}*/
 .right1 {
   transform: translate3d(0, 0, 0)!important;
   -webkit-transform: translate3d(0, 0 ,0)!important;
-  //left: 0!important;
 }
 
