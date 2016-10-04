@@ -32,6 +32,42 @@ var $data = {
 		nickname: '嗳你所以给你最后的自由',
 		value_now: 6666,
 		balance_total: 666,
+	},{ //按财富排名的好友列表
+		id: 1,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '111抱紧我,别放手',
+		value_now: 4444,
+		balance_total: 444,
+	}, {
+		id: 2,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '硪扪是塘,甜到忧伤',
+		value_now: 5555,
+		balance_total: 555,
+	}, {
+		id: 3,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '嗳你所以给你最后的自由',
+		value_now: 6666,
+		balance_total: 666,
+	},{ //按财富排名的好友列表
+		id: 1,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '111抱紧我,别放手',
+		value_now: 4444,
+		balance_total: 444,
+	}, {
+		id: 2,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '硪扪是塘,甜到忧伤',
+		value_now: 5555,
+		balance_total: 555,
+	}, {
+		id: 3,
+		headimgurl: 'http://7xqsim.com1.z0.glb.clouddn.com/%E5%8D%B7%E7%A6%8F.jpg',
+		nickname: '嗳你所以给你最后的自由',
+		value_now: 6666,
+		balance_total: 666,
 	}],
 	value_now_list: [{ //按身价排名的好友列表
 		id: 1,

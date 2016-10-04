@@ -10,8 +10,13 @@
 </head>
 <body>
 <div id="main">
+    <popup :status="popupstatus"
+            :el="popupObj"
+           :owner="owner"
+           v-on:swithpopup="swithPopupStatus"
+    ></popup>
     <article id="switch">
-        <section id="contaninleft" :class="{'toleft' : tabon > 0}">
+        <section id="containleft" :class="{'toleft' : tabon > 0}">
             <header class="leftheader">
                 <info></info>
             </header>
@@ -34,6 +39,7 @@
                     :el="el" :idx="index"
                     :type="listType"
                     v-if="listType === 0"
+                    v-on:swithpopup="swithPopupStatus(el)"
                 ></li>
                 <li is="list" v-for="(el,index) in valueList"
                       :el="el" :idx="index"
@@ -48,18 +54,65 @@
             </ul>
         </section>
 
-
-
         <section id="containcenter" :class="{'toleft' : tabon > 0, 'toright': tabon == 1}">
-            <h3>222</h3>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor urna, euismod ac pretium id, ornare sit amet elit. Suspendisse in eleifend tellus, et semper dolor. Aliquam nec convallis orci. Pellentesque ultricies, odio id tincidunt tempus, leo nisl fermentum orci, at pulvinar mauris diam vel urna. Nulla dui turpis, aliquam tempor massa ac, venenatis facilisis enim. Pellentesque finibus ligula a odio molestie, eget blandit augue iaculis. Maecenas finibus tristique iaculis. Mauris commodo, neque suscipit eleifend mollis, ligula arcu molestie quam, aliquam aliquam nulla elit pulvinar libero. Donec accumsan, orci et eleifend imperdiet, diam lacus luctus lacus, eu tempus massa massa ut lectus. Integer interdum augue at ex tristique lobortis. Pellentesque nec dignissim diam, vel mollis eros. Morbi maximus, arcu a porttitor lacinia, ante ipsum semper tellus, sed aliquam elit ligula et diam. Etiam id nisi ut est consequat tincidunt. Fusce dictum ipsum sit amet nulla fringilla, non commodo orci tincidunt.
+
+            Nam finibus varius rhoncus. Fusce vel leo pulvinar mauris ullamcorper eleifend eu ut massa. Morbi vestibulum erat eget enim dictum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In non purus turpis. In bibendum gravida odio viverra venenatis. Aenean id magna iaculis, iaculis ante vitae, maximus ipsum. Duis fermentum enim eget elit efficitur, eu bibendum nibh sollicitudin.
+
+            Aliquam gravida rutrum risus, id molestie lectus efficitur vitae. Nullam sollicitudin felis tincidunt ultrices mattis. Donec euismod rhoncus libero, vitae facilisis lacus pellentesque at. Donec vel elementum nisl. Aenean nulla lorem, vehicula at faucibus vitae, imperdiet sit amet tellus. Proin odio magna, luctus at nibh et, commodo placerat justo. Morbi tincidunt interdum eros tempus varius. Nullam consequat mauris vestibulum nisl tempor suscipit eget sed nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur at venenatis est. Proin lorem sem, rutrum quis porta non, luctus eget ipsum. Vestibulum feugiat sagittis nunc eu vulputate. Curabitur eu enim maximus, tincidunt nibh ac, posuere libero. Nunc vitae vestibulum mi. Suspendisse lacus nulla, feugiat a libero at, malesuada mollis lacus. Nulla eu aliquam enim.
+
+            Phasellus congue arcu id lorem maximus, eu pharetra eros rutrum. Vestibulum pretium ullamcorper erat, a scelerisque tortor iaculis quis. Etiam varius imperdiet ullamcorper. Pellentesque ac tempus leo. Mauris sollicitudin vel odio quis fringilla. Pellentesque tempor ligula at fermentum scelerisque. Nunc aliquam, enim vel congue ultrices, odio diam dictum ante, id pellentesque magna ex in arcu. Pellentesque non volutpat nisi, aliquam tincidunt diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce maximus tempor tortor, nec feugiat odio tincidunt ut. Integer rhoncus auctor justo sit amet iaculis.
         </section>
         <section id="containright" :class="{'toright': tabon == 2}">
-            <header class="rightheader">
-                <info></info>
+            <header id="rightheader">
+                <section id="money">
+                    <span>经验币剩余</span>
+                    <b>
+                        <p>0123456789</p>
+                        <p>0123456789</p>
+                        <p>0123456789</p>
+                        <p>0123456789</p>
+                        <p>0123456789</p>
+                        <i>枚</i>
+                    </b>
+                    <div id="number_Input">
+                        <input disabled="disabled" />
+                        <a id="single_delete">&#x1028;</a>
+                    </div>
+                </section>
+                <section id="notice">
+                    <i>X</i>
+                    <h3>经验币是什么?</h3>
+                    <p>您可以使用经验币遇见有趣的人体验有趣的课 <br/>(1经验币 = 1人民币).</p>
+                </section>
             </header>
+            <footer id="rightfooter">
+                <section id="method">
+                    <ul>
+                        <li><h4>提现</h4>提出经验币兑换成人民币</li>
+                        <li><h4>充值</h4>更多的经验币可以快速参与众筹哦</li>
+                        <li><h4>获得经验币</h4>赶紧点击进来看看经验币到底是什么吧</li>
+                    </ul>
+                </section>
+                <section id="number">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li id="never_mind">算咯</li>
+                        <li>0</li>
+                        <li id="submit">输好啦</li>
+                    </ul>
+                </section>
+            </footer>
         </section>
     </article>
-
     <footer class="footer">
         <div class="tab"
              :class="{'tabon': tabon == 0 }"
@@ -78,7 +131,6 @@
         </div>
     </footer>
 </div>
-
 
     <script type="text/x-template" id="infoTpl">
         <div class="infobox">
@@ -135,6 +187,43 @@
         </li>
     </script>
 
+    <script type="text/x-template" id="popupTpl">
+        <div>
+            <div id="popup-block" :class="{'popup-block' : status}">
+                <div id="popup-block-bg"
+                     :class="{'popup-block-bg' : status}"></div>
+                <div id="popup-block-content"
+                     :class="{'popup-block-content' : status}">
+                    <header id="popup-block-header">
+                        <span class="friend-trade-icon" @click="hidePopup">&#xe60d;</span>
+                    </header>
+
+                    <div id="popup-block-content-box">
+                        <div id="popup-block-desc">
+                            <b v-text="">您拥有的财富: <i v-text="owner.balance_total"></i></b>
+                        </div>
+                        <div id="popup-block-intro">
+                            <img :src="el.headimgurl"/>
+                            <h3 v-text="el.nickname"></h3>
+                            <h4 v-text="el.value_now"></h4>
+                            <h5 v-text="el.balance_total"></h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="popup-block-footer"
+                     :class="{'popup-block-footer' : !status,
+			 'popup-block-footer' : status}">
+                   <div class="popup-orange-btn"
+                    @click="pay(el.id)">
+                        <div class="widely-text">确认购买</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="rightsectionTpl"></script>
 
 <script src="../../unitTest/Oct3/home.js"></script>
 
