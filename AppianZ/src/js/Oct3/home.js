@@ -45,6 +45,7 @@ Vue.component('popup',{
 
 Vue.component('slave', {
 	template: '#slaveTpl',
+	props: ['el', 'idx'],
 });
 
 Vue.component('history', {
@@ -69,6 +70,7 @@ new Vue({
 		eventType: true,
 		hideStatus: true,
 		historyList: $data.slave_history,
+		slaveList: $data.slave_list,
 		moneyType: -1,//尾屏type,-1没有,0:充值,1提现
 		inputNumber: '',// 输入框的数字
 	},

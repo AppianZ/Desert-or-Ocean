@@ -66,7 +66,8 @@
             </header>
             <div id="slave-box"
                  :class="{'tobottom' : !eventType, 'tohide' : !hideStatus}">
-                <slave></slave>
+                <slave v-for="(el,index) in slaveList"
+                    :el="el" :idx="index"></slave>
             </div>
             <div id="history-box"
                  :class="{'tobottom' : eventType, 'tohide' : hideStatus}">
