@@ -406,7 +406,7 @@ body {
   #popup-block-content-box {
     max-height: pr(780);
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     #popup-block-desc {
       position: relative;
       padding: pr(30);
