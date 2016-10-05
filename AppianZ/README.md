@@ -1,7 +1,5 @@
 Apr1 Login
 
-May2 UserSwitch
-
 Jun1 ChargeWine
 
 Sept1 Spider

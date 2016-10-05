@@ -16,6 +16,7 @@
            :owner="owner"
            v-on:swithpopup="swithPopupStatus"
     ></popup>
+
     <article id="switch">
         <section id="containleft" :class="{'toleft' : tabon > 0}">
             <header class="leftheader">
@@ -35,34 +36,42 @@
                     @click="switchList(2)"
                 >按财富</span>
             </div>
+            <p class="tip"
+               v-if="showList.length == 0"
+                v-text="'暂无' + (listType == 0?
+                '可购买好友,快去充值吧~': '好友,快去邀请好友吧~')"></p>
             <ul>
-                <li is="list" v-for="(el,index) in payList"
+                <li is="list" v-for="(el,index) in showList"
                     :el="el" :idx="index"
                     :type="listType"
-                    v-if="listType === 0"
                     v-on:swithpopup="swithPopupStatus(el,0)"
-                ></li>
-                <li is="list" v-for="(el,index) in valueList"
-                      :el="el" :idx="index"
-                      :type="listType"
-                      v-if="listType === 1"
-                ></li>
-                <li is="list" v-for="(el,index) in balanceList"
-                      :el="el" :idx="index"
-                      :type="listType"
-                      v-if="listType === 2"
                 ></li>
             </ul>
         </section>
 
         <section id="containcenter" :class="{'toleft' : tabon > 0, 'toright': tabon == 1}">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor urna, euismod ac pretium id, ornare sit amet elit. Suspendisse in eleifend tellus, et semper dolor. Aliquam nec convallis orci. Pellentesque ultricies, odio id tincidunt tempus, leo nisl fermentum orci, at pulvinar mauris diam vel urna. Nulla dui turpis, aliquam tempor massa ac, venenatis facilisis enim. Pellentesque finibus ligula a odio molestie, eget blandit augue iaculis. Maecenas finibus tristique iaculis. Mauris commodo, neque suscipit eleifend mollis, ligula arcu molestie quam, aliquam aliquam nulla elit pulvinar libero. Donec accumsan, orci et eleifend imperdiet, diam lacus luctus lacus, eu tempus massa massa ut lectus. Integer interdum augue at ex tristique lobortis. Pellentesque nec dignissim diam, vel mollis eros. Morbi maximus, arcu a porttitor lacinia, ante ipsum semper tellus, sed aliquam elit ligula et diam. Etiam id nisi ut est consequat tincidunt. Fusce dictum ipsum sit amet nulla fringilla, non commodo orci tincidunt.
-
-            Nam finibus varius rhoncus. Fusce vel leo pulvinar mauris ullamcorper eleifend eu ut massa. Morbi vestibulum erat eget enim dictum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In non purus turpis. In bibendum gravida odio viverra venenatis. Aenean id magna iaculis, iaculis ante vitae, maximus ipsum. Duis fermentum enim eget elit efficitur, eu bibendum nibh sollicitudin.
-
-            Aliquam gravida rutrum risus, id molestie lectus efficitur vitae. Nullam sollicitudin felis tincidunt ultrices mattis. Donec euismod rhoncus libero, vitae facilisis lacus pellentesque at. Donec vel elementum nisl. Aenean nulla lorem, vehicula at faucibus vitae, imperdiet sit amet tellus. Proin odio magna, luctus at nibh et, commodo placerat justo. Morbi tincidunt interdum eros tempus varius. Nullam consequat mauris vestibulum nisl tempor suscipit eget sed nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur at venenatis est. Proin lorem sem, rutrum quis porta non, luctus eget ipsum. Vestibulum feugiat sagittis nunc eu vulputate. Curabitur eu enim maximus, tincidunt nibh ac, posuere libero. Nunc vitae vestibulum mi. Suspendisse lacus nulla, feugiat a libero at, malesuada mollis lacus. Nulla eu aliquam enim.
-
-            Phasellus congue arcu id lorem maximus, eu pharetra eros rutrum. Vestibulum pretium ullamcorper erat, a scelerisque tortor iaculis quis. Etiam varius imperdiet ullamcorper. Pellentesque ac tempus leo. Mauris sollicitudin vel odio quis fringilla. Pellentesque tempor ligula at fermentum scelerisque. Nunc aliquam, enim vel congue ultrices, odio diam dictum ante, id pellentesque magna ex in arcu. Pellentesque non volutpat nisi, aliquam tincidunt diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce maximus tempor tortor, nec feugiat odio tincidunt ut. Integer rhoncus auctor justo sit amet iaculis.
+            <header class="centerheader"
+                    :class="{'mine' : eventType, 'events' : !eventType }">
+                    <nav @click="switchEventType">
+                        <span :class="{ 'center-nav-on' : eventType }">
+                            我的奴隶
+                        </span>
+                        <span :class="{ 'center-nav-on' : !eventType }">被虐事件</span>
+                    </nav>
+                    <p>
+                        <i :class="{'center-p-on': eventType}"></i>
+                        <i :class="{'center-p-on': !eventType}"></i>
+                    </p>
+                    <div class="bottom-cri"></div>
+            </header>
+            <div id="slave-box"
+                 :class="{'tobottom' : !eventType, 'tohide' : !hideStatus}">
+                <slave></slave>
+            </div>
+            <div id="history-box"
+                 :class="{'tobottom' : eventType, 'tohide' : hideStatus}">
+                <history v-for="el in historyList" :el="el"></history>
+            </div>
         </section>
 
         <section id="containright" :class="{'toright': tabon == 2, 'input_on': moneyType > -1, 'deposit' : moneyType == 0, 'withdraw' : moneyType == 1}">
@@ -75,7 +84,7 @@
                     </b>
                     <div id="number_Input">
                         <input disabled="disabled" v-model="inputNumber"/>
-                        <a id="single_delete" @click="deleteMoney" @dblclick="clearMoney">&#xe615;</a>
+                        <a id="single_delete" @click="deleteMoney">&#xe615;</a>
                     </div>
                 </section>
                 <section id="notice">
@@ -88,7 +97,7 @@
                     <ul>
                         <li @click="switchMoneyType(0)"><h4>充值</h4>更多的金币可以购买更多好友哦</li>
                         <li @click="switchMoneyType(1)"><h4>提现</h4>提出金币兑换成人民币</li>
-                        <li @click="swithPopupStatus('', 1)"><h4>金钱说明</h4>赶紧点击进来看看金币到底是什么吧</li>
+                        <li @click="swithPopupStatus({}, 1)"><h4>金钱说明</h4>赶紧点击进来看看金币到底是什么吧</li>
                     </ul>
                 </section>
                 <section id="number">
@@ -104,6 +113,7 @@
             </footer>
         </section>
     </article>
+
     <footer class="footer">
         <div class="tab"
              :class="{'tabon': tabon == 0 }"
@@ -226,7 +236,18 @@
         </div>
     </script>
 
-    <script type="text/x-template" id="rightsectionTpl"></script>
+    <script type="text/x-template" id="slaveTpl">
+        <div class="slave-block">
+            <h1>11111</h1>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="historyTpl">
+        <div class="history-time">
+            <h4 v-text="el.created_at"></h4>
+            <p v-text="el.desc"></p>
+        </div>
+    </script>
 
 <script src="../../unitTest/Oct3/home.js"></script>
 
