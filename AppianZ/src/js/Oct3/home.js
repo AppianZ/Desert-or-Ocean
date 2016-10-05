@@ -58,7 +58,7 @@ new Vue({
 	data: {
 		owner: $data.owner,
 		coin: '',//金币数组
-		tabon : 1, //导航类型
+		tabon : 0, //导航类型
 		listType: 0,//首屏的三个列表类型
 		showList: [],
 		payList: $data.pay_available_list,
