@@ -10,7 +10,8 @@
 </head>
 <body>
 <div id="main">
-    <popup :status="popupstatus"
+    <popup :status="popupStatus"
+           :type="popupType"
             :el="popupObj"
            :owner="owner"
            v-on:swithpopup="swithPopupStatus"
@@ -39,7 +40,7 @@
                     :el="el" :idx="index"
                     :type="listType"
                     v-if="listType === 0"
-                    v-on:swithpopup="swithPopupStatus(el)"
+                    v-on:swithpopup="swithPopupStatus(el,0)"
                 ></li>
                 <li is="list" v-for="(el,index) in valueList"
                       :el="el" :idx="index"
@@ -63,51 +64,41 @@
 
             Phasellus congue arcu id lorem maximus, eu pharetra eros rutrum. Vestibulum pretium ullamcorper erat, a scelerisque tortor iaculis quis. Etiam varius imperdiet ullamcorper. Pellentesque ac tempus leo. Mauris sollicitudin vel odio quis fringilla. Pellentesque tempor ligula at fermentum scelerisque. Nunc aliquam, enim vel congue ultrices, odio diam dictum ante, id pellentesque magna ex in arcu. Pellentesque non volutpat nisi, aliquam tincidunt diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce maximus tempor tortor, nec feugiat odio tincidunt ut. Integer rhoncus auctor justo sit amet iaculis.
         </section>
-        <section id="containright" :class="{'toright': tabon == 2}">
+
+        <section id="containright" :class="{'toright': tabon == 2, 'input_on': moneyType > -1, 'deposit' : moneyType == 0, 'withdraw' : moneyType == 1}">
             <header id="rightheader">
                 <section id="money">
-                    <span>经验币剩余</span>
-                    <b>
-                        <p>0123456789</p>
-                        <p>0123456789</p>
-                        <p>0123456789</p>
-                        <p>0123456789</p>
-                        <p>0123456789</p>
-                        <i>枚</i>
+                    <span v-text="moneyType == -1 ? '我的资产' : (moneyType == 0 ?'请输入您需要兑换的金币数量' : '请输入您需要提取的金币数量')"></span>
+                    <b :class="{'alreadyinput' : inputNumber !== ''}">
+                        <p v-for="g in 7">0123456789</p>
+                        <i>金</i>
                     </b>
                     <div id="number_Input">
-                        <input disabled="disabled" />
-                        <a id="single_delete">&#x1028;</a>
+                        <input disabled="disabled" v-model="inputNumber"/>
+                        <a id="single_delete" @click="deleteMoney" @dblclick="clearMoney">&#xe615;</a>
                     </div>
                 </section>
                 <section id="notice">
-                    <i>X</i>
-                    <h3>经验币是什么?</h3>
-                    <p>您可以使用经验币遇见有趣的人体验有趣的课 <br/>(1经验币 = 1人民币).</p>
+                    <h3>(10金 = 1人民币)</h3>
+                    <p v-if="moneyType == -1">您可以使用金币购买更多的好友</p>
                 </section>
             </header>
             <footer id="rightfooter">
                 <section id="method">
                     <ul>
-                        <li><h4>提现</h4>提出经验币兑换成人民币</li>
-                        <li><h4>充值</h4>更多的经验币可以快速参与众筹哦</li>
-                        <li><h4>获得经验币</h4>赶紧点击进来看看经验币到底是什么吧</li>
+                        <li @click="switchMoneyType(0)"><h4>充值</h4>更多的金币可以购买更多好友哦</li>
+                        <li @click="switchMoneyType(1)"><h4>提现</h4>提出金币兑换成人民币</li>
+                        <li @click="swithPopupStatus('', 1)"><h4>金钱说明</h4>赶紧点击进来看看金币到底是什么吧</li>
                     </ul>
                 </section>
                 <section id="number">
                     <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-                        <li>7</li>
-                        <li>8</li>
-                        <li>9</li>
-                        <li id="never_mind">算咯</li>
-                        <li>0</li>
-                        <li id="submit">输好啦</li>
+                        <li v-for="num in 9"
+                            @click="inputMoney(num)"
+                            v-text="num"></li>
+                        <li id="never_mind" @click="switchMoneyType(-1)">返回</li>
+                        <li @click="inputMoney(0)">0</li>
+                        <li id="submit" @click="submitMoey">确定</li>
                     </ul>
                 </section>
             </footer>
@@ -200,23 +191,35 @@
 
                     <div id="popup-block-content-box">
                         <div id="popup-block-desc">
-                            <b v-text="">您拥有的财富: <i v-text="owner.balance_total"></i></b>
+                            <b v-if="type == 0">您拥有的财富: <i v-text="owner.balance_total"></i></b>
+                            <b v-if="type == 1"> <i>金币兑换原则</i></b>
                         </div>
-                        <div id="popup-block-intro">
+                        <div class="popup-block-intro" v-if="type == 0">
                             <img :src="el.headimgurl"/>
                             <h3 v-text="el.nickname"></h3>
                             <h4 v-text="el.value_now"></h4>
                             <h5 v-text="el.balance_total"></h5>
                         </div>
+                        <div class="popup-block-intro" v-if="type == 1">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor urna, euismod ac pretium id, ornare sit amet elit. Suspendisse in eleifend tellus, et semper dolor. Aliquam nec convallis orci. Pellentesque ultricies, odio id tincidunt tempus, leo nisl fermentum orci, at pulvinar mauris diam vel urna. Nulla dui turpis, aliquam tempor massa ac, venenatis facilisis enim. Pellentesque finibus ligula a odio molestie, eget blandit augue iaculis. Maecenas finibus tristique iaculis. Mauris commodo, neque suscipit eleifend mollis, ligula arcu molestie quam, aliquam aliquam nulla elit pulvinar libero. Donec accumsan, orci et eleifend imperdiet, diam lacus luctus lacus, eu tempus massa massa ut lectus. Integer interdum augue at ex tristique lobortis. Pellentesque nec dignissim diam, vel mollis eros. Morbi maximus, arcu a porttitor lacinia, ante ipsum semper tellus, sed aliquam elit ligula et diam. Etiam id nisi ut est consequat tincidunt. Fusce dictum ipsum sit amet nulla fringilla, non commodo orci tincidunt.
+
+                                Nam finibus varius rhoncus. Fusce vel leo pulvinar mauris ullamcorper eleifend eu ut massa. Morbi vestibulum erat eget enim dictum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In non purus turpis. In bibendum gravida odio viverra venenatis. Aenean id magna iaculis, iaculis ante vitae, maximus ipsum. Duis fermentum enim eget elit efficitur, eu bibendum nibh sollicitudin.</p>
+                        </div>
                     </div>
 
                 </div>
                 <div id="popup-block-footer"
-                     :class="{'popup-block-footer' : !status,
-			 'popup-block-footer' : status}">
+                     :class="{'popup-block-footer0' : status && type == 0,
+                     'popup-block-footer1' : status && type == 1}">
                    <div class="popup-orange-btn"
+                        v-if="status && type == 0"
                     @click="pay(el.id)">
                         <div class="widely-text">确认购买</div>
+                    </div>
+                    <div class="popup-little-btn"
+                         v-if="status && type == 1"
+                         @click="hidePopup">
+                        <div class="little-text">知道啦</div>
                     </div>
                 </div>
             </div>

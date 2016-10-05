@@ -27,7 +27,7 @@ body {
 
 #containleft {
   position: absolute;
-  overflow:scroll;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
   top:0;
   left:0;
@@ -274,20 +274,22 @@ body {
 }
 
 .toleft {
-  display: none;
+  max-height: 1px!important;
+  overflow: hidden!important;
   transform: translate3d(-100%, 0, 0)!important;
   -webkit-transform: translate3d(-100%, 0 ,0)!important;
 }
 .toright {
-  display: block!important;
+  max-height: none!important;
+  overflow: scroll!important;
   transform: translate3d(0, 0, 0)!important;
   -webkit-transform: translate3d(0, 0 ,0)!important;
 }
 
 #containcenter,#containright {
-  display: none;
+  max-height: 1px;
+  overflow: hidden;
   position: absolute;
-  overflow: scroll;
   -webkit-overflow-scrolling: touch;
   top:0;
   left:0;
@@ -445,7 +447,7 @@ body {
       }
     }
 
-    #popup-block-intro {
+    .popup-block-intro {
       display: block;
       padding: pr(60) pr(30) pr(120);
       text-align: center;
@@ -490,6 +492,11 @@ body {
           content: '\e60c';
         }
       }
+      p {
+        color: #555;
+        line-height: 1.5;
+        @include fz(14px);
+      }
     }
   }
 }
@@ -499,21 +506,14 @@ body {
 }
 
 #popup-block-footer {
-  position: fixed;
   bottom: 0;
   height: pr(90);
   transform: translate3d(0,130%,0);
   -webkit-transform: translate3d(0,130%,0);
   width: 100%;
   text-align: center;
-  z-index: 30;
-  transition: transform .3s ease .2s;
-  -webkit-transition: -webkit-transform .3s ease .2s;
-  box-shadow: 0 pr(-25) pr(30) rgba(0, 0, 0, .1);
-  background: #ff9933;
-  .popup-block-footer {
-    display: none;
-  }
+  transition: transform .4s ease .1s;
+  -webkit-transition: -webkit-transform .4s ease .1s;
   .popup-orange-btn {
     width: 100%;
     height: pr(130);
@@ -553,22 +553,37 @@ body {
       }
     }
   }
+  .popup-little-btn {
+    margin: 0 auto;
+    width: pr(270);
+    height: pr(70);
+    line-height: pr(70);
+    @include fz(16px);
+    color: #fff;
+    background: #ff9933;
+    border-radius: pr(40);
+  }
 }
-#popup-block-footer.popup-block-footer {
+#popup-block-footer.popup-block-footer0 {
+  position: fixed;
+  z-index: 30;
   transform: translate3d(0,0,0);
   -webkit-transform: translate3d(0,0,0);
+  background: #ff9933;
+  box-shadow: 0 pr(-25) pr(30) rgba(0, 0, 0, .1);
+}
+#popup-block-footer.popup-block-footer1 {
+  position: relative;
+  transform: translate3d(0,-50%,0);
 }
 //购买弹窗结束
-
-
-
 
 
 //金币兑换开始
 #containright {
   #rightheader {
     position: relative;
-    height: pr(300);
+    height: pr(310);
     background: #ff9933;
     color: #fff;
     text-align: center;
@@ -585,60 +600,64 @@ body {
       z-index: -1;
     }
     #money {
-      padding: pr(25) 0 0 0;
+      padding: pr(35) 0 0 0;
       span {
-        opacity: .3;
+        opacity: .8;
         @include fz(12px);
         display: block;
       }
       b {
         position: relative;
-        line-height: pr(60);
-        @include fz(55px);
-        font-weight: bold;
+        line-height: pr(90);
+        @include fz(46px);
+        font-weight: 400;
         display: block;
-        margin: pr(15) 0 pr(25) 0;
-        height: pr(60);
+        margin: pr(30) 0 pr(25) 0;
+        height: pr(90);
         overflow: hidden;
-        letter-spacing: pr(-10);
+        letter-spacing: pr(-25);
         padding: 0 pr(15);
       }
       p {
-        width: pr(30);
+        width: pr(50);
+        font-weight: 500;
         word-break: break-all;
         display: inline-block;
         max-width: 0;
         overflow: hidden;
         letter-spacing: 0;
-        -webkit-transition:-webkit-transform 1.2s cubic-bezier(0.25, 0.1, 0.76, 1.22),opacity .4s;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.76, 1.22),opacity .4s;
+        -webkit-transition: -webkit-transform 1.2s cubic-bezier(0.25, 0.1, 0.76, 1.22),opacity .4s;
       }
       i {
-        @include fz(10px);
-        opacity: .2;
+        @include fz(14px);
+        opacity: .8;
         font-weight: 300;
         line-height: pr(10);
         display: inline-block;
-        margin: pr(40) 0 0 pr(5);
+        margin: pr(62) 0 0 pr(5);
         vertical-align: top;
       }
     }
   }
   #number_Input {
     position: absolute;
-    margin: pr(-85) 0 0 0;
+    margin: pr(-122) 0 0 0;
     opacity: 0;
     padding: 0 pr(25);
     text-indent: pr(7);
     overflow: hidden;
     #single_delete {
-      font-family: "iconfont";
+      font-family: "friend-trade";
       position: absolute;
-      top: 0;
+      top: pr(30);
       color: #fff;
       @include fz(24px);
       line-height: pr(60);
       right: pr(30);
-      opacity: .5;
+      opacity: .9;
       -webkit-transform: translate3d(pr(80),0,0);
     }
     #single_delete:active{
@@ -647,12 +666,11 @@ body {
     input {
       text-align: center;
       color: #fff;
-      height: pr(65);
+      height: pr(105);
       background: transparent;
       border: none;
-      @include fz(55px);
-      font-size: 55px;
-      line-height: pr(65);
+      @include fz(46px);
+      line-height: pr(105);
       border-bottom: 2px solid #ddd;
       width: 100%;
       border-radius: 0;
@@ -664,16 +682,16 @@ body {
   }
   #notice {
     padding: 0 pr(30);
-    i{
-      display: none;
-    }
     h3 {
+      opacity: .85;
       @include fz(12px);
       font-weight: bold;
       line-height: pr(28);
+      margin: pr(10) 0 0 0;
+      padding: pr(8) 0 pr(10);
     }
     p {
-      opacity: .4;
+      opacity: .7;
       @include fz(10px);
     }
   }
@@ -683,11 +701,11 @@ body {
     z-index: 2;
     position: relative;
     #method{
-      margin: pr(-5) 0 0 0;
+      margin: pr(5) 0 0 0;
       li {
         @include fz(10px);
         background: #fff;
-        margin: 0 0 pr(5) 0;
+        margin: 0 0 pr(10) 0;
         border-radius: pr(2);
         padding: pr(25) pr(25) pr(25) pr(80);
         color: #888;
@@ -695,7 +713,7 @@ body {
         position: relative;
         &:before {
           font-family: 'friend-trade';
-          content: '\e614';
+          content: '\e613';
           position: absolute;
           top: pr(20);
           left: pr(15);
@@ -703,7 +721,7 @@ body {
           color: #ddd;
         }
         &:nth-of-type(2):before {
-          content: '\e613';
+          content: '\e614';
         }
         &:nth-of-type(3):before {
           content: '\e612';
@@ -730,7 +748,7 @@ body {
       }
     }
     #number {
-      top: 0;
+      top: pr(25);
       position: absolute;
       background: #fff;
       width: 100%;
@@ -744,14 +762,16 @@ body {
       -webkit-transition:-webkit-transform .5s .2s ease;
       ul{
         letter-spacing: pr(-3);
+        text-align: center;
       }
       li {
-        width: 33%;
+        width: 32.5%;
         display: inline-block;
         letter-spacing: 0;
         text-align: center;
-        line-height: pr(80);
-        font-size: pr(16);
+        height: pr(130);
+        line-height: pr(130);
+        @include fz(17px);
         color: #666;
         border-left: 1px solid #F9F9F9;
         border-bottom: 1px solid #F9F9F9;
@@ -776,18 +796,17 @@ body {
   }
 }
 
-.input_on {
-  #money p {
-    opacity: .02;
+#containright.input_on {
+  #rightheader {
+    #number_Input {
+      opacity: 1;
+    }
+    #single_delete {
+      -webkit-transition:-webkit-transform .2s .3s ease-out;
+      -webkit-transform: translate3d(0,0,0);
+    }
   }
-  #number_Input {
-    opacity: 1;
-  }
-  #single_delete {
-    -webkit-transition:-webkit-transform .2s .5s ease-out;
-    -webkit-transform: translate3d(0,0,0);
-  }
-  #number{
+  #rightfooter #number{
     -webkit-transform: translate3d(0,pr(-85),0);
     z-index: 2;
     max-height: pr(900);
@@ -795,7 +814,19 @@ body {
   }
 }
 
-.deposit #money p,.deposit #money i {
+#containright.withdraw #money {
+  p {
+    opacity: .1;
+  }
+  .alreadyinput {
+    p {
+      opacity: 0;
+    }
+  }
+}
+
+
+#containright.deposit #money p,#containright.deposit #money i {
   opacity:0;
 }
 //金币兑换结束
