@@ -25,15 +25,15 @@
             <div class="rankswitch">
                 <span class="rank-pay"
                       :class="{'span-on' : listType === 0}"
-                      @click="switchList(0)"
+                      v-tap="{ methods : switchList , num : 0}"
                 >可购买</span>
                 <span class="rank-value"
                     :class="{'span-on' : listType === 1}"
-                    @click="switchList(1)"
+                      v-tap="{ methods : switchList , num : 1}"
                 >按身价</span>
                 <span class="rank-balance"
                     :class="{'span-on' : listType === 2}"
-                    @click="switchList(2)"
+                   v-tap="{ methods : switchList , num : 2}"
                 >按财富</span>
             </div>
             <p class="tip"
@@ -119,17 +119,17 @@
     <footer class="footer">
         <div class="tab"
              :class="{'tabon': tabon == 0 }"
-             @click="switchTab(0)">
+             v-tap="{ methods : switchTab , num : 0}">
             <span class="friend-trade-icon">&#xe606;</span>
         </div>
         <div class="tab"
              :class="{'tabon': tabon == 1 }"
-             @click="switchTab(1)">
+             v-tap="{ methods : switchTab , num : 1}">
             <span class="friend-trade-icon">&#xe60f;</span>
         </div>
         <div class="tab"
              :class="{'tabon': tabon == 2 }"
-             @click="switchTab(2)">
+             v-tap="{ methods : switchTab , num : 2}">
             <span class="friend-trade-icon">&#xe60e;</span>
         </div>
     </footer>
@@ -142,7 +142,7 @@
                         'backgroundSize' : 'cover',
                         'backgroundPosition' : 'center'}"
                     :class="{ headon: headType === 0, singleon : master.headimgurl === ''}"
-                    @click="switchHead()"
+                    v-tap="{ methods : switchHead}"
             ></figure>
             <figure class="master-head"
                 v-if="master.headimgurl !== ''"
@@ -173,7 +173,8 @@
     </script>
 
     <script type="text/x-template" id="listTpl">
-        <li class="record" @click="payStraight">
+        <li class="record"
+            v-tap="{ methods : payStraight }">
             <b v-text="idx + 1"></b>
             <figure :style="{ background: 'url('+ el.headimgurl +') no-repeat',
                         'backgroundSize' : 'cover',
@@ -267,6 +268,7 @@
 
 <script src="../../assets/lib/zw.js"></script>
 <script src="../../assets/lib/vue.js"></script>
+<script src="../../assets/lib/vue-tap2.js"></script>
 <script src="../../js/Oct3/home.js"></script>
 </body>
 </html>

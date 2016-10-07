@@ -24,7 +24,7 @@ Vue.component('list',{
 	methods: {
 		payStraight: function(){
 			if (this.type === 0) {
-				this.$emit('swithpopup');
+				this.$emit('swithpopup', this.el, 0);
 			}
 		}
 	}
@@ -108,9 +108,10 @@ new Vue({
 				}
 			});
 		},
-		switchTab : function(num) {
-			this.tabon = num;
-			if(num == 2) {
+		switchTab : function(obj) {
+			console.log(obj.num);
+			this.tabon = obj.num;
+			if(obj.num == 2) {
 				this.coin = this.owner.balance_total.toString();
 				if(this.coin == null || this.coin == 0)
 					$("#money b p").eq(0).css({"max-width":"300px","-webkit-transform": "translate3d(0,-"+(0) +"px,0)"});
@@ -124,11 +125,11 @@ new Vue({
 				this.inputNumber = '';
 			}
 		},
-		switchList : function(num){
-			this.listType = num;
-			if (num == 0) this.showList = this.payList;
-			else if (num == 1) this.showList = this.valueList;
-			else if (num == 2) this.showList = this.balanceList;
+		switchList : function(obj){
+			this.listType = obj.num;
+			if (obj.num == 0) this.showList = this.payList;
+			else if (obj.num == 1) this.showList = this.valueList;
+			else if (obj.num == 2) this.showList = this.balanceList;
 		},
 		swithPopupStatus : function(el, type) {
 			if (this.listType > 0) return;
