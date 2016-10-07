@@ -132,6 +132,22 @@ var $data = {
 		value_now: 3333,
 		balance_total: 333,
 	}],
+	oparetions: [{
+		id: 21,
+		desc: 'id为21',
+	}, {
+		id: 22,
+		desc: 'id为22的虐待描述',
+	}, {
+		id: 23,
+		desc: '23的虐待描述',
+	}, {
+		id: 26,
+		desc: 'id为26的虐待描述',
+	}, {
+		id: 25,
+		desc: 'id为25',
+	}],
 	slave_history: [{
 		created_at: '2016-22-22 33:22:22',
 		desc: '吴亮亮跑去学校购买了一盒酸奶,然后又去超市买了一个小面包,然后送给了嘎宝一个飞吻',

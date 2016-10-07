@@ -12,7 +12,7 @@
 <div id="main">
     <popup :status="popupStatus"
            :type="popupType"
-            :el="popupObj"
+           :el="popupObj"
            :owner="owner"
            v-on:swithpopup="swithPopupStatus"
     ></popup>
@@ -67,7 +67,8 @@
             <div id="slave-box"
                  :class="{'tobottom' : !eventType, 'tohide' : !hideStatus}">
                 <slave v-for="(el,index) in slaveList"
-                    :el="el" :idx="index"></slave>
+                    :el="el" :idx="index" :current="currentSlave"
+                    v-on:switchslave="switchCurrentSlave"></slave>
             </div>
             <div id="history-box"
                  :class="{'tobottom' : eventType, 'tohide' : hideStatus}">
@@ -206,10 +207,7 @@
                             <b v-if="type == 1"> <i>金币兑换原则</i></b>
                         </div>
                         <div class="popup-block-intro" v-if="type == 0">
-                            <img :src="el.headimgurl"/>
-                            <h3 v-text="el.nickname"></h3>
-                            <h4 v-text="el.value_now"></h4>
-                            <h5 v-text="el.balance_total"></h5>
+
                         </div>
                         <div class="popup-block-intro" v-if="type == 1">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor urna, euismod ac pretium id, ornare sit amet elit. Suspendisse in eleifend tellus, et semper dolor. Aliquam nec convallis orci. Pellentesque ultricies, odio id tincidunt tempus, leo nisl fermentum orci, at pulvinar mauris diam vel urna. Nulla dui turpis, aliquam tempor massa ac, venenatis facilisis enim. Pellentesque finibus ligula a odio molestie, eget blandit augue iaculis. Maecenas finibus tristique iaculis. Mauris commodo, neque suscipit eleifend mollis, ligula arcu molestie quam, aliquam aliquam nulla elit pulvinar libero. Donec accumsan, orci et eleifend imperdiet, diam lacus luctus lacus, eu tempus massa massa ut lectus. Integer interdum augue at ex tristique lobortis. Pellentesque nec dignissim diam, vel mollis eros. Morbi maximus, arcu a porttitor lacinia, ante ipsum semper tellus, sed aliquam elit ligula et diam. Etiam id nisi ut est consequat tincidunt. Fusce dictum ipsum sit amet nulla fringilla, non commodo orci tincidunt.
@@ -239,7 +237,22 @@
 
     <script type="text/x-template" id="slaveTpl">
         <div class="slave-block">
-            <h1>11111</h1>
+            <div class="slave-info">
+                <img :src="el.headimgurl"/>
+                <h3 v-text="el.nickname"></h3>
+                <h4 v-text="el.value_now"></h4>
+                <h5 v-text="el.balance_total"></h5>
+            </div>
+            <div class="opare-box" :class="{'opon': idx == current}">
+                <span v-for="op in oparetions"
+                      v-text="op.desc"
+                      @click="doSthToSlave(op.id)"></span>
+            </div>
+            <footer class="read_more" @click="switchReadMore"> 
+                <a class="go_read"
+                   :class="{'readon': idx == current}"
+                   v-text="idx == current ? '点击收起' : '查看更多'"></a>
+              </footer>
         </div>
     </script>
 

@@ -45,7 +45,20 @@ Vue.component('popup',{
 
 Vue.component('slave', {
 	template: '#slaveTpl',
-	props: ['el', 'idx'],
+	props: ['el', 'idx', 'current'],
+	data: function() {
+		return {
+			oparetions: $data.oparetions,
+		}
+	},
+	methods : {
+		switchReadMore: function(){
+			this.$emit('switchslave', this.idx);
+		},
+		doSthToSlave: function (id) {
+			console.log('执行操作' + id);
+		}
+	}
 });
 
 Vue.component('history', {
@@ -58,7 +71,7 @@ new Vue({
 	data: {
 		owner: $data.owner,
 		coin: '',//金币数组
-		tabon : 0, //导航类型
+		tabon : 1, //导航类型
 		listType: 0,//首屏的三个列表类型
 		showList: [],
 		payList: $data.pay_available_list,
@@ -66,11 +79,12 @@ new Vue({
 		balanceList: $data.balance_total_list,
 		popupObj: {},
 		popupStatus: false,//首屏弹层
-		popupType: 0, //0为固定底部大按钮,1为小按钮
-		eventType: true,
-		hideStatus: true,
+		popupType: 0, // 0为固定底部大按钮,1为小按钮
+		eventType: true, // 第二屏切换
+		hideStatus: true, // 控制第二屏
 		historyList: $data.slave_history,
 		slaveList: $data.slave_list,
+		currentSlave: -1,
 		moneyType: -1,//尾屏type,-1没有,0:充值,1提现
 		inputNumber: '',// 输入框的数字
 	},
@@ -129,6 +143,11 @@ new Vue({
 			setTimeout(function () {
 				_this.hideStatus = !_this.hideStatus;
 			},350);
+		},
+		switchCurrentSlave: function (idx) {
+			console.log(idx);
+			if(this.currentSlave == idx) this.currentSlave = -1;
+			else this.currentSlave = idx;
 		},
 		coinScroll: function() {
 			this.coin = this.owner.balance_total.toString().split("");
