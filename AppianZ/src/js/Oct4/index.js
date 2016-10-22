@@ -37,6 +37,7 @@
 		this.ulIdx = 0; //滑动后出现的ul下标,从0开始
 		this.ulDomArr = [];
 		this.idxArr = [];//更新后的ul的下标
+		this.jsonArr = [];//用来存储每个ul的li中显示的arr
 		this.liHeight = 40;
 		this.maxHeight = [];
 		this.distance = [];
@@ -54,18 +55,28 @@
 		};
 		this.resultArr = [];
 		this.initDomFuc();
-		this.initReady();
+		this.initReady(this.jsonData[0]);
 		this.initBinding();
 	}
 	
 	MultiPicker.prototype = {
 		constructor : MultiPicker,
+		generateArrData: function(targetArr){
+			var tempArr = [];
+			loop(0, targetArr.length, function(i){
+				tempArr.push({
+					"id": targetArr[i].id,
+					"value": targetArr[i].value
+				})
+			});
+			return tempArr;
+		},
 		checkArrDeep: function(parent){
 			if ('child' in parent) {
 				this.idxArr.push(this.ulIdx++);
+				this.jsonArr.push(this.generateArrData(parent.child));
 				this.checkArrDeep(parent.child[0]);
 			} else this.idxArr.push(this.ulIdx++);
-			console.log(this.idxArr);
 		},
 		initDomFuc : function(){
 			var _this = this;
@@ -81,14 +92,15 @@
 				'<div class="multi-picker-down-shadow"></div>' +
 				'<div class="multi-picker-line"></div>' +
 				'</div></div></div>';
-				$id(_this.container).innerHTML = html;
+			$id(_this.container).innerHTML = html;
+			_this.jsonArr.push(_this.generateArrData(_this.jsonData));
 		},
-		initReady : function () {
+		initReady : function (target) {
 			var _this = this;
 			this.ulIdx = 0;
 			this.idxArr.length = 0;
-			_this.checkArrDeep(_this.jsonData[0]);
-			
+			_this.checkArrDeep(target);
+			console.log(_this.jsonArr);
 			var parentNode = $id('multi-picker-container-' + _this.container).children[1];
 			if (_this.ulCount <= _this.idxArr.length) {
 				loop(_this.ulCount, _this.idxArr.length, function (i) {
@@ -96,28 +108,30 @@
 					newPickerDiv.setAttribute('class', 'multi-picker');
 					newPickerDiv.innerHTML = `<ul id="multi-picker-${_this.container}-${i}"></ul>`;
 					parentNode.insertBefore(newPickerDiv,parentNode.children[parentNode.children.length - 3]);
+					var tempDomUl = $id(`multi-picker-${_this.container}-${i}`);
+					_this.ulDomArr.push(tempDomUl);
+					
+					// 插入li,生成width,绑定事件
+					var tempArray = _this['array' +　_this.idxArr[i]] = [];
+					tempDomUl.addEventListener('touchstart',function(){
+						_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
+					}, false);
+					tempDomUl.addEventListener('touchmove',function(){
+						_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
+					}, false);
+					tempDomUl.addEventListener('touchend',function(){
+						_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
+					}, false);
 				});
-			} else {
-				
+			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
+				loop(_this.idxArr.length, _this.ulCount, function (i) {
+					var oldPicker = $class('multi-picker')[i];
+					oldPicker.parentNode.removeChild(oldPicker);
+					_this.ulDomArr.pop();
+					_this.jsonArr.pop();
+				})
 			}
-			
-			
-			
-			
-			/*loop(0,_this.ulCount,function(i) {
-				var tempDomUl = $id(`multi-picker-${_this.container}-${i}`);
-				_this.ulDomArr.push(tempDomUl);
-				var tempArray = _this['array' +　_this.idxArr[i]] = [];
-				tempDomUl.addEventListener('touchstart',function(){
-					_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
-				}, false);
-				tempDomUl.addEventListener('touchmove',function(){
-					_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
-				}, false);
-				tempDomUl.addEventListener('touchend',function(){
-					_this.touch(event,_this,tempDomUl,_this['array' +　_this.idxArr[i]],i);
-				}, false);
-			});*/
+			console.log(`_this.ulDomArr:  ${_this.ulDomArr}`);
 		},
 		initBinding :  function () {
 			var _this = this;
