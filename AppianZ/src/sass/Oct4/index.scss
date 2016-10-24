@@ -89,6 +89,7 @@ $styleColorOpacity : rgba(64,204,192,.8);
     overflow: hidden;
     position: relative;
     z-index: -1;
+    transition: width .3s ease;
   }
 
   & ul::-webkit-scrollbar {
@@ -101,6 +102,7 @@ $styleColorOpacity : rgba(64,204,192,.8);
     font-size: 16px;
     line-height: $liHeight;
     list-style: none;
+    color: #333;
   }
 
   & .multi-picker-up-shadow, .multi-picker-down-shadow {
