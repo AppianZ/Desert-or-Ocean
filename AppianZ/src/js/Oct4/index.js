@@ -55,7 +55,7 @@
 		};
 		this.resultArr = [];
 		this.initDomFuc();
-		this.initReady(this.jsonData[0]);
+		this.initReady(0,this.jsonData[0]);
 		this.initBinding();
 	}
 	
@@ -72,14 +72,15 @@
 			return tempArr;
 		},
 		checkArrDeep: function(parent){//需要改变
+			var _this = this;
 			if ('child' in parent) {
 				//初始化jsonArr。每一个ul对应的数组并迭代
-				this.jsonArr.push(this.generateArrData(parent.child));
-				this.checkArrDeep(parent.child[0]);
+				_this.jsonArr.push(_this.generateArrData(parent.child));
+				_this.checkArrDeep(parent.child[0]);
 			}
-			this.idxArr.push(this.ulIdx++);
+			_this.idxArr.push(this.ulIdx++);
 			//初始化resultArr数组的
-			this.resultArr.unshift({
+			_this.resultArr.unshift({
 				"id": parent.id,
 				"value": parent.value,
 			});
@@ -114,11 +115,13 @@
 			$id(_this.container).innerHTML = html;
 			_this.jsonArr.push(_this.generateArrData(_this.jsonData));
 		},
-		initReady : function (target) {
+		initReady : function (idx, target) {
 			var _this = this;
 			this.ulIdx = 0;
 			this.idxArr.length = 0;
-			_this.checkArrDeep(target);//查看某对象的深度
+			console.log(target);
+			_this.jsonArr.length = idx + 1;
+			_this.checkArrDeep(target);//查看某【对象】的深度
 			console.log(_this.jsonArr);
 			
 			var parentNode = $id(`multi-picker-container-${_this.container}`).children[1];//取到class='multi-picker-content',可以在里面插入ul
@@ -196,8 +199,16 @@
 				body.classList.remove('multi-picker-locked');
 			},false);
 		},
-		checkRange : function(ulIdx,resIdx,distance,maxHei) {
+		checkRange : function(idx) {
 			var _this = this;
+			var tempObj = _this.jsonData;
+			var targetIdx = 0;
+			loop(0, idx + 1, function (i) {
+				targetIdx = _this.distance[i] / 40;
+				console.log('当前ul的idx: '+ i + '  当前在数组中的下标: ' + targetIdx);
+				tempObj = i == 0 ?tempObj[targetIdx]: tempObj.child[targetIdx];
+			});
+			_this.initReady(idx, tempObj);
 		},
 		initPosition: function(dis, max, idx){
 			dis = dis < 0 ? 0 : dis;
@@ -246,9 +257,6 @@
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
-					console.log('distanceArr:' + that.distance[idx]);
-					
-					console.log(idx, that.end.index, that.jsonData);
 					//设置后续ul并设置result------------
 					that.checkRange(idx);
 					
