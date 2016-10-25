@@ -257,8 +257,8 @@
 					$selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
 					$selector.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
 					//设置结果数组
-					that.resultArr[idx] = that.jsonArr[idx][that.end.index];
-					console.log(that.resultArr);
+					/*that.resultArr[idx] = that.jsonArr[idx][that.end.index];
+					console.log(that.resultArr);*/
 					break;
 				case "touchmove":
 					event.preventDefault();
