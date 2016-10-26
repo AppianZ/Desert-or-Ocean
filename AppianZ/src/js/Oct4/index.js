@@ -89,24 +89,24 @@
 			arr.unshift(nullObj,nullObj);
 			arr.push(nullObj,nullObj);
 			loop(0, arr.length, function(i){
-				html += `<li data-id="${arr[i].id}">${arr[i].value}</li>>`
+				html += '<li data-id="' + arr[i].id + '">' + arr[i].value + '</li>';
 			});
 			targetUl.innerHTML = html;
 		},
 		initDomFuc : function(){
 			var _this = this;
 			var html = '';
-			html += `<div class="multi-picker-bg" id="multi-picker-bg-${_this.container}">
-				<div  class="multi-picker-container" id="multi-picker-container-${_this.container}">
-				<div class="multi-picker-btn-box">
-				<div class="multi-picker-btn" id="multi-picker-btn-cancel">返回</div>
-				<div class="multi-picker-btn" id="multi-picker-btn-save-${_this.container}">提交</div>
-				</div>
-				<div class="multi-picker-content">
-				<div class="multi-picker-up-shadow"></div>
-				<div class="multi-picker-down-shadow"></div>
-				<div class="multi-picker-line"></div>
-				</div></div></div>`;
+			html += '<div class="multi-picker-bg" id="multi-picker-bg-' + _this.container + '">'
+				+ '<div  class="multi-picker-container" id="multi-picker-container-' + _this.container + '">'
+				+ '<div class="multi-picker-btn-box">'
+				+ '<div class="multi-picker-btn" id="multi-picker-btn-cancel">返回</div>'
+				+ '<div class="multi-picker-btn" id="multi-picker-btn-save-' + _this.container + '">提交</div>'
+				+ '</div>'
+				+ '<div class="multi-picker-content">'
+				+ '<div class="multi-picker-up-shadow"></div>'
+				+ '<div class="multi-picker-down-shadow"></div>'
+				+ '<div class="multi-picker-line"></div>'
+				+ '</div></div></div>';
 			$id(_this.container).innerHTML = html;
 			_this.jsonArr.push(_this.generateArrData(_this.jsonData));
 		},
@@ -116,11 +116,12 @@
 			this.idxArr.length = idx;
 			_this.jsonArr.length = idx + 1;
 			_this.checkArrDeep(target);//查看某【对象】的深度
+			//取到class='multi-picker-content',可以在里面插入ul
 			
-			var parentNode = $id(`multi-picker-container-${_this.container}`).children[1];//取到class='multi-picker-content',可以在里面插入ul
+			var parentNode = $id('multi-picker-container-' + _this.container).children[1];
 			var tempMax = _this.ulCount <= _this.idxArr.length ? _this.ulCount : _this.idxArr.length;
 			loop(idx + 1, tempMax, function (i) {
-				var $picker = $id(`multi-picker-${_this.container}-${i}`);
+				var $picker = $id('multi-picker-' + _this.container + '-' + i);
 				_this.insertLiArr($picker, _this.jsonArr[i]);
 				_this.distance[i] = 0;
 				$picker.style.transform = 'translate3d(0, 0, 0)';
@@ -131,9 +132,9 @@
 				loop(_this.ulCount, _this.idxArr.length, function (i) {
 					var newPickerDiv = document.createElement('div');
 					newPickerDiv.setAttribute('class', 'multi-picker');
-					newPickerDiv.innerHTML = `<ul id="multi-picker-${_this.container}-${i}"></ul>`;
+					newPickerDiv.innerHTML = '<ul id="multi-picker-' + _this.container + '-' + i + '"></ul>';
 					parentNode.insertBefore(newPickerDiv,parentNode.children[parentNode.children.length - 3]);
-					var tempDomUl = $id(`multi-picker-${_this.container}-${i}`);
+					var tempDomUl = $id('multi-picker-' + _this.container + '-' + i);
 					_this.ulDomArr.push(tempDomUl);
 					_this.distance.push(0);
 					//插入li
@@ -164,8 +165,8 @@
 			_this.maxHeight.length = 0;
 			_this.resultArr.length = 0;
 			loop(0, _this.idxArr.length, function(i){
-				$class('multi-picker')[i].style.width = `${100/_this.idxArr.length}%`;
-				_this.maxHeight.push($id(`multi-picker-${_this.container}-${i}`).offsetHeight);
+				$class('multi-picker')[i].style.width = 100/_this.idxArr.length + '%';
+				_this.maxHeight.push($id('multi-picker-' + _this.container + '-' + i).offsetHeight);
 				_this.resultArr.push({
 					"id": _this.jsonArr[i][_this.distance[i]/40 + 2].id,
 					"value": _this.jsonArr[i][_this.distance[i]/40 + 2].value,
@@ -179,8 +180,7 @@
 			var bg = $id('multi-picker-bg-' + _this.container);
 			var container = $id('multi-picker-container-' + _this.container);
 			var body = doc.body;
-			alert(_this.input);
-			on('touchstart', _this.input,function(){
+			on('touchstart', _this.input, function(){
 				bg.classList.add('multi-picker-bg-up');
 				container.classList.add('multi-picker-container-up');
 				body.classList.add('multi-picker-locked');
@@ -283,13 +283,6 @@
 						$picker.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
 						$picker.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
 					}
-					/*if (this.distance[idx] <= -that.maxHeight[idx]) {
-						console.log(this.distance[idx], that.maxHeight[idx]);
-						$picker.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
-						$picker.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
-						$picker.style.transition = 'transform 0.3s ease-out';
-						$picker.style.webkitTransition = '-webkit-transform 0.3s ease-out';
-					}*/
 					if (Math.abs(offset).toFixed(0) % 5 === 0) {
 						var time = Date.now();
 						that.move.speed.push((Math.abs(offset) / (time - that.start.time)).toFixed(2));
