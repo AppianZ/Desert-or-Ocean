@@ -257,12 +257,13 @@
 				case "touchend":
 					that.end.Y = Math.abs(event.changedTouches[0].clientY);
 					var tempDis = that.distance[idx] + (that.start.Y - that.end.Y);
+					var temp = that.distance[idx];
 					that.distance[idx] = tempDis < 0 ? 0 : (tempDis < that.maxHeight[idx] - 200 ? tempDis : that.maxHeight[idx] - 200);
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
 					//设置后续ul;
-					if (Math.abs(that.start.Y - that.end.Y) > 20) that.checkRange(idx);
+					if (temp != that.distance[idx]) that.checkRange(idx);
 					
 					$picker.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
