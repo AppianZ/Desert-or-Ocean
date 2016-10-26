@@ -118,13 +118,21 @@
 		initReady : function (idx, target) {
 			var _this = this;
 			this.ulIdx = 0;
-			this.idxArr.length = 0;
-			console.log(target);
+			this.idxArr.length = idx;
 			_this.jsonArr.length = idx + 1;
 			_this.checkArrDeep(target);//查看某【对象】的深度
 			console.log(_this.jsonArr);
 			
 			var parentNode = $id(`multi-picker-container-${_this.container}`).children[1];//取到class='multi-picker-content',可以在里面插入ul
+			var tempMax = _this.ulCount <= _this.idxArr.length ? _this.ulCount : _this.idxArr.length;
+			loop(idx + 1, tempMax, function (i) {
+				var $picker = $id(`multi-picker-${_this.container}-${i}`);
+				console.log(_this.jsonArr[i]);
+				_this.insertLiArr($picker, _this.jsonArr[i]);
+				_this.distance[i] = 0;
+				$picker.style.transform = 'translate3d(0, 0, 0)';
+				$picker.style.webkitTransform = 'translate3d(0, 0, 0)';
+			});
 			if (_this.ulCount <= _this.idxArr.length) {
 				// 如果不足,则插入ul,从0开始计数
 				loop(_this.ulCount, _this.idxArr.length, function (i) {
@@ -151,6 +159,7 @@
 					}, false);
 				});
 			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
+				console.log(_this.idxArr);
 				loop(_this.idxArr.length, _this.ulCount, function (i) {
 					var oldPicker = $class('multi-picker')[i];
 					oldPicker.parentNode.removeChild(oldPicker);
@@ -161,7 +170,7 @@
 				})
 			}
 			
-			//重新设置宽度和ul的maxHeight
+			//统一重新设置宽度和ul的maxHeight
 			_this.maxHeight.length = 0;
 			loop(0, _this.idxArr.length, function(i){
 				$class('multi-picker')[i].style.width = `${100/_this.idxArr.length}%`;
@@ -240,7 +249,7 @@
 				this.move.speed[0] = this.move.speed[0] > 0.2 ? .2 : this.move.speed[0];
 			}
 		},
-		touch : function(event,that,$selector,array,idx) {
+		touch : function(event,that,$picker,array,idx) {
 			event = event || window.event;
 			event.preventDefault();
 			switch (event.type) {
@@ -257,13 +266,13 @@
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
-					//设置后续ul并设置result------------
+					//设置后续ul并设置result
 					that.checkRange(idx);
 					
-					$selector.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
-					$selector.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
-					$selector.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
-					$selector.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
+					$picker.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
+					$picker.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
+					$picker.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
+					$picker.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
 					//设置结果数组
 					/*that.resultArr[idx] = that.jsonArr[idx][that.end.index];
 					console.log(that.resultArr);*/
@@ -273,20 +282,20 @@
 					that.move.Y = event.touches[0].clientY;
 					var offset = that.start.Y - that.move.Y;
 					if (that.distance[idx] == 0 && offset < 0) { //如果滑动move在顶部
-						$selector.style.transform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
-						$selector.style.webkitTransform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
-						$selector.style.transition = 'transform 0.2s ease-out';
-						$selector.style.webkitTransition = '-webkit-transform 0.2s ease-out';
+						$picker.style.transform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
+						$picker.style.webkitTransform = 'translate3d(0,' + 1.5 * that.liHeight + 'px, 0)';
+						$picker.style.transition = 'transform 0.2s ease-out';
+						$picker.style.webkitTransition = '-webkit-transform 0.2s ease-out';
 					} else {
-						$selector.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
-						$selector.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
+						$picker.style.transform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
+						$picker.style.webkitTransform = 'translate3d(0,-' + (offset + that.distance[idx]) + 'px, 0)';
 					}
 					/*if (this.distance[idx] <= -that.maxHeight[idx]) {
 						console.log(this.distance[idx], that.maxHeight[idx]);
-						$selector.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
-						$selector.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
-						$selector.style.transition = 'transform 0.3s ease-out';
-						$selector.style.webkitTransition = '-webkit-transform 0.3s ease-out';
+						$picker.style.transform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
+						$picker.style.webkitTransform = 'translate3d(0, -' + (max + that.liHeight) + 'px, 0)';
+						$picker.style.transition = 'transform 0.3s ease-out';
+						$picker.style.webkitTransition = '-webkit-transform 0.3s ease-out';
 					}*/
 					if (Math.abs(offset).toFixed(0) % 5 === 0) {
 						var time = Date.now();

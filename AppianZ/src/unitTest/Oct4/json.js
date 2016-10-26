@@ -760,7 +760,14 @@ var $data = [{
 					"value": "集美区",
 					"child": [{
 						"id": "a",
-						"value": "aaa街道"
+						"value": "aaa街道",
+						"child" : [{
+							"id": "a",
+							"value": "a1街道",
+						},{
+							"id": "a",
+							"value": "a2街道",
+						}]
 					},{
 						"id": "b",
 						"value": "bbb街道"
