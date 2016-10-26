@@ -79,11 +79,6 @@
 				_this.checkArrDeep(parent.child[0]);
 			}
 			_this.idxArr.push(this.ulIdx++);
-			//初始化resultArr数组的
-			_this.resultArr.unshift({
-				"id": parent.id,
-				"value": parent.value,
-			});
 		},
 		insertLiArr: function(targetUl, arr){
 			var html = '';
@@ -121,13 +116,11 @@
 			this.idxArr.length = idx;
 			_this.jsonArr.length = idx + 1;
 			_this.checkArrDeep(target);//查看某【对象】的深度
-			console.log(_this.jsonArr);
 			
 			var parentNode = $id(`multi-picker-container-${_this.container}`).children[1];//取到class='multi-picker-content',可以在里面插入ul
 			var tempMax = _this.ulCount <= _this.idxArr.length ? _this.ulCount : _this.idxArr.length;
 			loop(idx + 1, tempMax, function (i) {
 				var $picker = $id(`multi-picker-${_this.container}-${i}`);
-				console.log(_this.jsonArr[i]);
 				_this.insertLiArr($picker, _this.jsonArr[i]);
 				_this.distance[i] = 0;
 				$picker.style.transform = 'translate3d(0, 0, 0)';
@@ -159,31 +152,35 @@
 					}, false);
 				});
 			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
-				console.log(_this.idxArr);
 				loop(_this.idxArr.length, _this.ulCount, function (i) {
 					var oldPicker = $class('multi-picker')[i];
 					oldPicker.parentNode.removeChild(oldPicker);
 					_this.ulDomArr.pop();
-					_this.jsonArr.pop();
 					_this.distance.pop();
-					_this.resultArr.pop();
 				})
 			}
 			
 			//统一重新设置宽度和ul的maxHeight
 			_this.maxHeight.length = 0;
+			_this.resultArr.length = 0;
 			loop(0, _this.idxArr.length, function(i){
 				$class('multi-picker')[i].style.width = `${100/_this.idxArr.length}%`;
 				_this.maxHeight.push($id(`multi-picker-${_this.container}-${i}`).offsetHeight);
+				_this.resultArr.push({
+					"id": _this.jsonArr[i][_this.distance[i]/40 + 2].id,
+					"value": _this.jsonArr[i][_this.distance[i]/40 + 2].value,
+				});
 			});
 			_this.ulCount = _this.idxArr.length;
+			console.log(_this.resultArr);
 		},
 		initBinding :  function () {
 			var _this = this;
 			var bg = $id('multi-picker-bg-' + _this.container);
 			var container = $id('multi-picker-container-' + _this.container);
 			var body = doc.body;
-			on('touchstart',_this.input,function(){
+			alert(_this.input);
+			on('touchstart', _this.input,function(){
 				bg.classList.add('multi-picker-bg-up');
 				container.classList.add('multi-picker-container-up');
 				body.classList.add('multi-picker-locked');
@@ -214,7 +211,6 @@
 			var targetIdx = 0;
 			loop(0, idx + 1, function (i) {
 				targetIdx = _this.distance[i] / 40;
-				console.log('当前ul的idx: '+ i + '  当前在数组中的下标: ' + targetIdx);
 				tempObj = i == 0 ?tempObj[targetIdx]: tempObj.child[targetIdx];
 			});
 			_this.initReady(idx, tempObj);
@@ -266,16 +262,13 @@
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
-					//设置后续ul并设置result
+					//设置后续ul;
 					that.checkRange(idx);
 					
 					$picker.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
 					$picker.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
-					//设置结果数组
-					/*that.resultArr[idx] = that.jsonArr[idx][that.end.index];
-					console.log(that.resultArr);*/
 					break;
 				case "touchmove":
 					event.preventDefault();
