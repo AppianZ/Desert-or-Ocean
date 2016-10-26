@@ -117,7 +117,6 @@
 			_this.jsonArr.length = idx + 1;
 			_this.checkArrDeep(target);//查看某【对象】的深度
 			//取到class='multi-picker-content',可以在里面插入ul
-			
 			var parentNode = $id('multi-picker-container-' + _this.container).children[1];
 			var tempMax = _this.ulCount <= _this.idxArr.length ? _this.ulCount : _this.idxArr.length;
 			loop(idx + 1, tempMax, function (i) {
@@ -263,7 +262,7 @@
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
 					//设置后续ul;
-					that.checkRange(idx);
+					if (Math.abs(that.start.Y - that.end.Y) > 20) that.checkRange(idx);
 					
 					$picker.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
