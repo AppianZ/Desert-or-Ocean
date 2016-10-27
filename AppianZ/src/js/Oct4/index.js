@@ -212,6 +212,9 @@
 				targetIdx = _this.distance[i] / 40;
 				tempObj = i == 0 ?tempObj[targetIdx]: tempObj.child[targetIdx];
 			});
+			console.log('================');
+			console.log('触摸滑动的idx',idx);
+			console.log(tempObj);
 			_this.initReady(idx, tempObj);
 		},
 		initPosition: function(dis, max, idx){
@@ -262,13 +265,12 @@
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
 					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
-					//设置后续ul;
-					if (temp != that.distance[idx]) that.checkRange(idx);
-					
 					$picker.style.transform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.webkitTransform = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.transition = 'transform ' + that.move.speed[0] + 's ease-out';
 					$picker.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
+					//设置后续ul;
+					if (temp != that.distance[idx]) that.checkRange(idx);
 					break;
 				case "touchmove":
 					event.preventDefault();
