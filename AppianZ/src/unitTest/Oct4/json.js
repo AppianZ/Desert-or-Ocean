@@ -813,28 +813,6 @@ var $data = [{
 					{
 						"id": "2c",
 						"value": "思明区",
-						"child": [{
-							"id": "a",
-							"value": "aaa街道"
-						},{
-							"id": "b",
-							"value": "bbb街道"
-						},{
-							"id": "c",
-							"value": "ccc街道"
-						},{
-							"id": "j",
-							"value": "jjj街道"
-						},{
-							"id": "k",
-							"value": "kkk街道"
-						},{
-							"id": "l",
-							"value": "lll街道"
-						},{
-							"id": "m",
-							"value": "mmm街道"
-						}]
 					},
 					{
 						"id": "2d",

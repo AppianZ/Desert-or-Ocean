@@ -51,7 +51,7 @@
 		};
 		this.end       = {
 			Y: 0,
-			index: 0
+			status: true,
 		};
 		this.resultArr = [];
 		this.initDomFuc();
@@ -152,12 +152,12 @@
 					}, false);
 				});
 			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
-				loop(_this.idxArr.length, _this.ulCount, function (i) {
-					var oldPicker = $class('multi-picker')[i];
+				for(var j = _this.ulCount - 1 ; j > _this.idxArr.length - 1; j--){
+					var oldPicker = $class('multi-picker')[j];
 					oldPicker.parentNode.removeChild(oldPicker);
 					_this.ulDomArr.pop();
 					_this.distance.pop();
-				})
+				}
 			}
 			
 			//统一重新设置宽度和ul的maxHeight
@@ -212,9 +212,6 @@
 				targetIdx = _this.distance[i] / 40;
 				tempObj   = i == 0 ? tempObj[targetIdx] : tempObj.child[targetIdx];
 			});
-			console.log('================');
-			console.log('触摸滑动的idx', idx);
-			console.log(tempObj);
 			_this.initReady(idx, tempObj);
 		},
 		initPosition: function (dis, max, idx) {
@@ -252,10 +249,14 @@
 			event.preventDefault();
 			switch (event.type) {
 				case "touchstart":
-					event.preventDefault();
-					that.move.speed = [];
-					that.start.Y    = event.touches[0].clientY;
-					that.start.time = Date.now();
+					if (that.end.status) {
+						that.end.status = !that.end.status;
+						event.preventDefault();
+						that.move.speed = [];
+						that.start.Y    = event.touches[0].clientY;
+						that.start.time = Date.now();
+					}
+					
 					break;
 				case "touchend":
 					that.end.Y         = Math.abs(event.changedTouches[0].clientY);
@@ -263,7 +264,6 @@
 					var temp           = that.distance[idx];
 					that.distance[idx] = tempDis < 0 ? 0 : (tempDis < that.maxHeight[idx] - 200 ? tempDis : that.maxHeight[idx] - 200);
 					that.initSpeed(that.move.speed, that.start.Y - that.end.Y, that.maxHeight[idx], idx);
-					that.end.index = that.distance[idx] / that.liHeight + 2; //数组下标
 					
 					$picker.style.transform        = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
 					$picker.style.webkitTransform  = 'translate3d(0,-' + that.distance[idx] + 'px, 0)';
@@ -271,6 +271,9 @@
 					$picker.style.webkitTransition = '-webkit-transform ' + that.move.speed[0] + 's ease-out';
 					//设置后续ul;
 					if (temp != that.distance[idx]) that.checkRange(idx);
+					setTimeout(function () {
+						that.end.status = true;
+					},that.move.speed[0] * 1000);
 					break;
 				case "touchmove":
 					event.preventDefault();
