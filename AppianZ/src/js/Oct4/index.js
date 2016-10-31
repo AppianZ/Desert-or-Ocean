@@ -152,7 +152,7 @@
 					}, false);
 				});
 			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
-				for(var j = _this.ulCount - 1 ; j > _this.idxArr.length - 1; j--){
+				for ( var j = _this.ulCount - 1; j > _this.idxArr.length - 1; j-- ) {
 					var oldPicker = $class('multi-picker')[j];
 					oldPicker.parentNode.removeChild(oldPicker);
 					_this.ulDomArr.pop();
@@ -273,7 +273,7 @@
 					if (temp != that.distance[idx]) that.checkRange(idx);
 					setTimeout(function () {
 						that.end.status = true;
-					},that.move.speed[0] * 1000);
+					}, that.move.speed[0] * 1000);
 					break;
 				case "touchmove":
 					event.preventDefault();
