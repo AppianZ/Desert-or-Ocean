@@ -64,7 +64,7 @@
 <article>
     <p>0.请在移动端下打开~~</p>
     <p>1.点击下面的输入演示样式</p>
-    <input id="multi-picker-input" type="text" placeholder="点我~~看固定效果" readonly/>
+    <input id="multiPickerInput" type="text" placeholder="点我~~看固定效果" readonly/>
     <div class="block">
         自定义json<br/><br/>
         可以执行不同的深度等级<br/><br/>
@@ -82,7 +82,7 @@
 <script>
     //---------------------函数调用开始---------------------
     new MultiPicker({
-        input : 'multi-picker-input',//点击触发插件的input框的id
+        input : 'multiPickerInput',//点击触发插件的input框的id
         container : 'targetContainer',//插件插入的容器id
         jsonData: $data,
         callbackFuc : function(arr){
