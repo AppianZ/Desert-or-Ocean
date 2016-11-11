@@ -381,13 +381,13 @@
 			
 			$selector.innerHTML = Html;
 			if (dir == 0) {
-				y                                     = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80;
+				y                                     = min > this.resultArr[ulIdx] ? 0 : -arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + this.liHeight * 2;
 				this.resultArr[ulIdx]                 = this.resultArr[ulIdx] < min ? min : this.resultArr[ulIdx];
 				this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
 			} else if (dir == 1) {
 				y                                     = max > this.resultArr[ulIdx] ?
-				-arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + 80 :
-				-arr.indexOf(max) * this.liHeight + 80;
+				-arr.indexOf(this.resultArr[ulIdx]) * this.liHeight + this.liHeight * 2 :
+				-arr.indexOf(max) * this.liHeight + this.liHeight * 2;
 				this.resultArr[ulIdx]                 = this.resultArr[ulIdx] > max ? max : this.resultArr[ulIdx];
 				this.recent_time[_this.idxArr[ulIdx]] = _this.resultArr[ulIdx];
 			} else {
