@@ -36,7 +36,7 @@
 			((config.range.length == 2 && config.range[0] < config.range[1]) ?
 				config.range : [1950, new Date().getFullYear() + 1]) : [];
 		this.recentTime  = config.recentTime;
-		this.callbackFuc = config.callbackFuc;
+		this.success = config.success;
 		
 		this.recentTimeType = config.recentTime.length == 0 ? 0 : 1;
 		this.ulCount        = 0;
@@ -83,9 +83,9 @@
 				return true;
 			} else {
 				alert('error,please open the console to see the errmsg');
-				console.log('构造函数的参数param或recentTime设置有误');
-				console.log('param必须是连续的1，recentTime的值必须与param中的值对应');
-				console.log('构造函数调用失败，请重新设置参数');
+				console.warn('构造函数的参数param或recentTime设置有误');
+				console.warn('param必须是连续的1，recentTime的值必须与param中的值对应');
+				console.warn('构造函数调用失败，请重新设置参数');
 				return false;
 			}
 		},
@@ -167,7 +167,15 @@
 						_this.initCommonArr(tempDomUl, tempArray, 1, 12, '月', i);
 						break;
 					case 2:
-						_this.initCommonArr(tempDomUl, tempArray, 1, 31, '日', i);
+						var tarYear = new Date().getFullYear();
+						var tarMonth = new Date().getMonth() + 1;
+						if(_this.idxArr[0] == 0 && _this.idxArr[1] == 1) {
+							tarYear = _this.resultArr[0];
+							tarMonth = _this.resultArr[1];
+						} else if (_this.idxArr[0] == 1) {
+							tarMonth = _this.resultArr[1];
+						}
+						_this.initCommonArr(tempDomUl, tempArray, 1, new Date(tarYear, tarMonth, 0).getDate(), '日', i);
 						break;
 					case 3:
 						_this.initCommonArr(tempDomUl, tempArray, 0, 23, '时', i);
@@ -199,7 +207,7 @@
 			}, false);
 			
 			on('touchstart', 'date-selector-btn-save-' + _this.container, function () {
-				_this.callbackFuc(_this.resultArr);
+				_this.success(_this.resultArr);
 				bg.classList.remove('date-selector-bg-up');
 				container.classList.remove('date-selector-container-up');
 				body.classList.remove('date-selector-locked');

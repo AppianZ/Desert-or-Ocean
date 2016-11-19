@@ -67,9 +67,9 @@
         <input id="date-selector-inputs" type="text" placeholder="点我~~看自定义效果" readonly/>
         <p>2.如何引用css和js文件？</p>
         <div class="block">
-            sass文件:引用productions/DateSelectorSimple/DateSelectorSimple.scss<br/><br/>
-            css文件:引用productions/DateSelectorSimple/DateSelectorSimple.css<br/><br/>
-            js文件:引用productions/DateSelectorSimple/DateSelectorSimple.js<br/><br/>
+            sass文件:引用DateSelectorSimple/DateSelectorSimple.scss<br/><br/>
+            css文件:引用DateSelectorSimple/DateSelectorSimple.css<br/><br/>
+            js文件:引用DateSelectorSimple/DateSelectorSimple.js<br/><br/>
         </div>
         <p>3.如何调用构造函数？</p>
         <div class="block">
@@ -81,7 +81,7 @@
             param : array类型,例如 [1,1,0,0,0]，分别设置['year','month','day','hour','minute'],1为需要，0为不需要
             <br/><br/>
             range ： array类型，设置年份范围，默认[1950,明年],在设置了需要年份的情况下才生效<br/><br/>
-            callbackfuc : function(arr){} 回调函数，可以自定义结果格式化
+            success : function(arr){} 回调函数，可以自定义结果格式化
         </div>
         <p>3.有什么优越性？</p>
         <div class="block">
@@ -130,11 +130,11 @@
             type : 1,
             //0：不需要tab切换，自定义滑动内容，建议小于三个；
             //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
-            param : [1,1,0,1,0],
+            param : [0,1,0,1,0],
             //设置['year','month','day','hour','minute'],1为需要，0为不需要
             range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
             recentTime : [],//如不需设置当前时间为特定时间点，则为空数组，如需特定设置当前时间点，数组的值对应param参数的对应值。
-            callbackFuc : function(arr){alert(arr)}//回调
+            success : function(arr){alert(arr)}//回调
         });
         //---------------------函数调用结束---------------------
         new DateSelector({
@@ -143,11 +143,11 @@
             type : 0,
             //0：不需要tab切换，自定义滑动内容，建议小于三个；
             //1：需要tab切换，【年月日】【时分】完全展示，固定死，可设置开始年份和结束年份
-            param : [0,0,1,1,1],
+            param : [0,1,1,1,1],
             //设置['year','month','day','hour','minute'],1为需要，0为不需要
             range : [1970,2017],//如果设置了需要年份的情况下，才生效的年份范围
-            recentTime : [32,6,30],//如不需要设置，被为空数组，如需要设置的开始的时间点，数组的值对应param参数的对应值。
-            callbackFuc : function(arr){alert(arr)}//回调
+            recentTime : [1,32,6,30],//如不需要设置，被为空数组，如需要设置的开始的时间点，数组的值对应param参数的对应值。
+            success : function(arr){alert(arr)}//回调
         });
     </script>
 
