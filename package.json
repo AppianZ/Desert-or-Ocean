@@ -12,10 +12,14 @@
   "private": true,
   "devDependencies": {
     "autoprefixer": "^6.3.5",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-0": "^6.5.0",
     "body-parser": "^1.15.1",
     "browser-sync": "^2.11.2",
+    "css-loader": "^0.26.0",
     "csshake": "^1.5.0",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
@@ -23,7 +27,13 @@
     "gulp-postcss": "^6.1.0",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "morgan": "^1.7.0"
+    "mob-date-selector": "^1.0.0",
+    "mob-multi-picker": "^1.1.0",
+    "morgan": "^1.7.0",
+    "open-browser-webpack-plugin": "0.0.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "babel": "^6.5.2",
