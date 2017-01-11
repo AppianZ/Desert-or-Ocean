@@ -149,7 +149,7 @@
 					}, false);
 					tempDomUl.addEventListener('touchend', function () {
 						_this.touch(event, _this, tempDomUl, tempArray, i);
-					}, false);
+					}, true);
 				});
 			} else { // 当上一次的ulCount 比当前ul的总数来的大的时候要清除子dom
 				for ( var j = _this.ulCount - 1; j > _this.idxArr.length - 1; j-- ) {
