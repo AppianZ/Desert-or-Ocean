@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>图形颜色渐变</title>
+    <style>
+        html,body {
+            background: #f3f3f3;
+        }
+        section  {
+            display: inline-block;
+            padding: 10px;
+            margin: 20px;
+            border: 3px solid #FD9840;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <section>
+        <p>线性渐变</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+            <defs>
+                <linearGradient id="grad1" x1="0" y1="0" x2="150" y2="100" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#FA6F3D"></stop>
+                    <stop offset=".2" stop-color="#85D64D"></stop>
+                    <stop offset=".5" stop-color="#E03253"></stop>
+                    <stop offset="1" stop-color="#F2AD5A"></stop>
+                </linearGradient>
+            </defs>
+            <rect x="10" y="10" fill="url(#grad1)" width="150" height="100"></rect>
+        </svg>
+    </section>
+
+    <section>
+        <p>径向渐变</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="350" height="200">
+            <defs>
+                <radialGradient id="grad2" cx="100" cy="150" r="150" fx="150" fy="10" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#FA6F3D"></stop>
+                    <stop offset=".2" stop-color="#85D64D"></stop>
+                    <stop offset=".5" stop-color="#E03253"></stop>
+                    <stop offset="1" stop-color="#F2AD5A"></stop>
+                </radialGradient>
+            </defs>
+            <rect x="10" y="10" fill="url(#grad2)" width="350" height="200"></rect>
+        </svg>
+    </section>
+
+    <section>
+        <p>笔刷的作用</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="360" height="210">
+            <defs>
+                <pattern id="p1" x="0" y="0" width="0.2" height="0.2" stroke="green">
+                    <circle cx="10" cy="10" r="5" fill="red"></circle>
+                    <polygon points="30 10 60 50 0 50" fill="yellow"></polygon>
+                </pattern>
+            </defs>
+            <rect x="10" y="10" fill="url(#p1)" width="350" height="200" stroke="blue"></rect>
+        </svg>
+    </section>
+</div>
+<script>
+
+</script>
+</body>
+</html>
