@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>svg-text</title>
+    <style>
+        html,body {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000">
+        <defs>
+            <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path stroke="#eee" fill="none" d="M 0 0 H 20 V 20"></path>
+            </pattern>
+        </defs>
+        <rect width="1200" height="1000" fill="url(#grid)"></rect>
+        <path d="M 100 0 V 500 M 0 200 H 1000" stroke="red"></path>
+
+        <text x="100" y="100" dx="20 40 60" style="font-size: 40px;font-family: Arial" text-anchor="middle" dominant-baseline="middle">ABC</text>
+
+        <text id="sin" x="100" y="300" style="font-size: 20px;font-family: 'Arial'"></text>
+    </svg>
+</div>
+<script>
+    var text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var NS = "http://www.w3.org/2000/svg";
+    var count = text.length;
+    var x = [];
+    var i = 0;
+    var t = 0;
+    var sin = document.getElementById('sin');
+
+    while (i < count) {
+        x.push(20);
+        var tspan = document.createElementNS(NS, 'tspan');
+        tspan.textContent = text[i];
+        sin.appendChild(tspan);
+        tspan.setAttribute('fill', 'hsl(' + Math.floor(360/26 * i)+ ',90%,60%)');
+        i++;
+    }
+    sin.setAttribute('dx', x.join(' '));
+
+    function setYArial(t) {
+        //每一次都是相对位置
+        var y = [];
+        var j = 0;
+        var last = 0;
+        var current = 0;
+        while (j < count){
+            current = -100 * Math.sin( 0.02 * j * x[j] + t );
+            y.push(Math.floor(current - last));
+            last = current;
+            j++;
+        }
+        sin.setAttribute('dy', y.join(' '));
+    }
+
+    function animation() {
+        t += 0.05;
+        setYArial(t);
+        requestAnimationFrame(animation);
+    }
+    animation();
+</script>
+</body>
+</html>
