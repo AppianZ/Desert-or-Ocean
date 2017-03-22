@@ -1,0 +1,65 @@
+<html>
+<head>
+</head>
+<body>
+
+<svg style="width:100%;height:250px;margin:0;padding:0;">
+    <defs>
+        <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff7654" stop-opacity=".9"></stop>
+            <stop offset="1" stop-color="#fff"></stop>
+        </linearGradient>
+        <linearGradient id="grad2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff7654" stop-opacity=".9"></stop>
+            <stop offset="1" stop-color="#ff7654" stop-opacity=".5"></stop>
+        </linearGradient>
+    </defs>
+    //绘制背景方框，大小为50*640
+    <path d="M0 110v50h6400v-50z" fill="url(#grad1)"></path>
+    //绘制二次贝塞尔曲线，q的控制点为(50,20)，其后跟随的t会自动对称该控制点，因此t命令中只要指定结束点即可
+    <path id="wave1" d="M0 110q50 20,100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0t100 0" fill="url(#grad2)"></path>
+
+</svg>
+<script>
+    (function(){
+        //利用正则获取传入元素的控制点高度并返回
+        var getHeight=function($ele){
+            var path=$ele.getAttribute('d');
+            var height=parseInt(/q\d{2}\s(\-*\d{1,2})/.exec(path)[1]);
+            return height;
+        };
+        //时间控制主函数
+        var myTimer=function(id,callback){
+            var $ele=document.querySelector(id);
+            //利用前面的函数获取高度
+            var height=getHeight($ele);
+            var num=height;
+            //高度递减时flag为true
+            var flag=true;
+            setInterval(function(){
+                if (flag) {
+                    height--;
+                    //如果高度达到最低点，则flag设为false，高度开始递增
+                    if (height <= -num) {flag = false;}
+                } else {
+                    height++;
+                    if (height >= num) {flag = true;}
+                };
+                //调用回调函数，改变元素属性值
+                callback($ele,height);
+            },50);
+        };
+        var changeHeight=function($ele,val){
+            //利用正则提取元素控制点高度
+            var array=$ele.getAttribute('d').split(/(q\d{2}\s)(\-*\d{1,2})/);
+            //改变控制点高度
+            array[2]=val;
+            //给元素写入改变后的高度
+            $ele.setAttribute('d',array.join(''));
+        };
+        //执行主函数
+        myTimer('#wave1',changeHeight);
+    })();
+</script>
+</body>
+</html>
