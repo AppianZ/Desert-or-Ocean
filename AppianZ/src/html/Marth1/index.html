@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //首字母大写
+    var str = 'aaa bbb ccc';
+    str = str.replace(/\b\w+\b/g,function (item) {
+        return item.substring(0,1).toUpperCase() + item.substring(1);
+    })
+    console.log(str);
+</script>
+
+<script>
+    var str1 = '135159971829';
+    //------小数处理
+    var reg = /(^-?\d+)(\.\d+)$/; //如果带小数点的数字
+    if(reg.test(str1)){
+        var int = reg.exec(str1)[1]; //截取整数部分
+        var point = reg.exec(str1)[2]; //截取小数部分
+
+        var res = int.replace(/(\d{1,2})(?=(\d{3})+$)/g,"$1, ") //对整数部分进行拆分
+        res += point;
+    }
+    //-----整数处理
+    var reg1 = /^-?\d+$/; //如果是整数
+    if(reg1.test(str1)){
+        res = str1.replace(/(\d{1,2})(?=(\d{4})+$)/g,"$1, ") //对整数部分进行拆分
+//        res += '.00' //末尾追加.00
+    }
+
+
+    console.log(res);
+</script>

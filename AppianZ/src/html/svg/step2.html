@@ -15,10 +15,27 @@
             margin: 20px;
             border: 3px solid #FD9840;
         }
+        #demo1 circle {
+            stroke-dasharray: 589.665283203125;
+            stroke-dashoffset: 200;
+        }
     </style>
 </head>
 <body>
 <div id="container">
+    <section >
+        <p>环形圈</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" id="demo1" style="transform: rotate(90deg) scaleX(-1);">
+            <defs>
+                <linearGradient id="grad0" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#000" stop-opacity="1"></stop>
+                    <stop offset="1" stop-color="#000" stop-opacity=".25"></stop>
+                </linearGradient>
+            </defs>
+            <circle id="circle" cx="50%" cy="50%" r="94px" stroke-width="10px" stroke="url(#grad0)" stroke-linecap="round" fill="none"></circle>
+        </svg>
+    </section>
+
     <section>
         <p>线性渐变</p>
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
@@ -64,7 +81,8 @@
     </section>
 </div>
 <script>
-
+    var path = document.getElementById('circle');
+    console.log(path.getTotalLength());
 </script>
 </body>
 </html>
