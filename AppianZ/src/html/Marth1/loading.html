@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>Title</title>
+    <style>
+        /*squares*/
+        .row .square {
+            float: left;
+            background: #ff8a00;
+            display: block;
+            overflow: hidden;
+            width: 30px;
+            height: 30px;
+            margin: 0 5px 5px 0;
+            opacity: 0;
+            -webkit-animation-name: gotime;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: ease-in;
+            -webkit-animation-duration: 1s;
+            animation-name: gotime;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in;
+            animation-duration: 1s;
+        }
+
+        /*line break */
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        .clearfix { display: inline-block; }
+
+        * html .clearfix { height: 1%; }
+        .clearfix { display: block; }
+
+        .one {
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+        }
+
+        .two {
+            -webkit-animation-delay: 0.15s;
+            animation-delay: 0.15s;
+        }
+
+        .three {
+            -webkit-animation-delay: 0.25s;
+            animation-delay: 0.25s;
+        }
+
+        .four {
+            -webkit-animation-delay: 0.25s;
+            animation-delay: 0.25s;
+        }
+
+        .five {
+            -webkit-animation-delay: .3s;
+            animation-delay: .3s;
+        }
+
+        .six {
+            -webkit-animation-delay: .35s;
+            animation-delay: .35s;
+        }
+
+        .seven {
+            -webkit-animation-delay: .4s;
+            animation-delay: .4s;
+        }
+
+        .eight {
+            -webkit-animation-delay: .45s;
+            animation-delay: .45s;
+        }
+
+        .nine {
+            -webkit-animation-delay: .5s;
+            animation-delay: .5s;
+        }
+
+        @-webkit-keyframes gotime {
+            0%{background: #f5836d;
+                opacity: 1;}
+            10%{background: #f5836d;
+                opacity: 0.9;}
+            20%{background: #f5836d;
+                opacity: 0.8;}
+            30%{background: #f5836d;
+                opacity: 0.7;}
+            40%{background: #f5836d;
+                opacity: 0.6;}
+            50%{background: #f5836d;
+                opacity: 0.5;}
+            60%{background: #f5836d;
+                opacity: 0.4;}
+            70%{background: #f5836d;
+                opacity: 0.3;}
+            80%{background: #f5836d;
+                opacity: 0.2;}
+            90% {background: #f5836d;
+                opacity: 0.1;}
+            100% {background: #f5836d;
+                opacity: 0.0;}
+        }
+
+        /*Animation -- Standard*/
+        @keyframes gotime {
+            0%{background: #f5836d;
+                opacity: 1;}
+            10%{background: #f5836d;
+                opacity: 0.9;}
+            20%{background: #f5836d;
+                opacity: 0.8;}
+            30%{background: #f5836d;
+                opacity: 0.7;}
+            40%{background: #f5836d;
+                opacity: 0.6;}
+            50%{background: #f5836d;
+                opacity: 0.5;}
+            60%{background: #f5836d;
+                opacity: 0.4;}
+            70%{background: #f5836d;
+                opacity: 0.3;}
+            80%{background: #f5836d;
+                opacity: 0.2;}
+            90% {background: #f5836d;
+                opacity: 0.1;}
+            100% {background: #f5836d;
+                opacity: 0.0;}
+        }
+
+        /* Loading animation style ends here */
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <!--Loading animation starts here-->
+    <div class="row clearfix">
+        <div class="square one"></div>
+        <div class="square two"></div>
+        <div class="square three"></div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="square eight"></div>
+        <div class="square nine"></div>
+        <div class="square four"></div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="square seven"></div>
+        <div class="square six"></div>
+        <div class="square five"></div>
+        <!--Loading animation ends here-->
+    </div>
+</div>
+</body>
+</html>
