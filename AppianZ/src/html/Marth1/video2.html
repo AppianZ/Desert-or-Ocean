@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <link href="//vjs.zencdn.net/5.11/video-js.min.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/5.11/video.min.js"></script>
+    <script src="jquery-1.8.3.min.js"></script>
+    <style>
+        #container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #EEEEEE;
+            box-shadow: 0 0 5px rgba(0,0,0,.2);
+            overflow: hidden;
+        }
+        #container p {
+            color: #aaa;
+            display: inline-block;
+            width: 200px;
+            border: 1px solid red;
+        }
+        .box {
+            position: absolute;
+            top: 0;
+            height: 300px;
+            width: 400px;
+            cursor: pointer;
+            transform: translate3d(0,0,0);
+            transition: transform .5s ease;
+        }
+        .box.active {
+            transform: translate3d(-300px,0,0);
+        }
+        #video-box-0 {
+            right: 0;
+            background: #abcdef;
+            z-index: 100;
+        }
+        #video-box-1{
+            right: -100px;
+            background: #FDAFAB;
+            z-index: 200;
+        }
+        #video-box-2 {
+            right: -200px;
+            background: #85D64D;
+            z-index: 300;
+        }
+        #video-box-3 {
+            right: -300px;
+            background: #FD9840;
+            z-index: 400;
+        }
+        .footer-box {
+            position: absolute;
+            width: 400px;
+            height: 90px;
+            background: #fafafa;
+            bottom: 0;
+        }
+        .footer {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            bottom: 0;
+            text-align: center;
+            transition: width .5s ease;
+        }
+        .footer.active {
+            width: 400px;
+        }
+        .video-box {
+            display: none;
+        }
+        .video-box>div{
+            width:100%;
+            position:relative;
+            padding-bottom:56.25%;    /*需要用padding来维持16:9比例,也就是9除以16*/
+            height: 0;
+        }
+        .video-box video{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%
+        }
+        .vjs-big-play-button {
+            display: inline-block!important;
+            line-height: 2em!important;
+            height: 2em!important;
+            width: 2em!important;
+            margin-top: -1em!important;
+            margin-left: -1em!important;
+            border-radius: 50%!important;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <p>
+        123312312<br/>
+        456456456465465
+    </p>
+    <div id="video-box-0" class="box">
+        <div class="video-box">
+            <video
+                    id="my-player-0"
+                    class="video-js vjs-default-skin vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    poster="//vjs.zencdn.net/v/oceans.png"
+                    data-setup='{}'
+            >
+                <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+                <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+        <div class="footer-box" id="footer-box-4">
+            <div class="footer">
+                qweqweqwe
+            </div>
+        </div>
+    </div>
+    <div id="video-box-1" class="box">
+        <div class="video-box">
+            <video
+                    id="my-player-1"
+                    class="video-js vjs-default-skin vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    poster="//vjs.zencdn.net/v/oceans.png"
+                    data-setup='{}'
+            >
+                <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+                <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+        <div class="footer-box" id="footer-box-1">
+            <div class="footer">
+                qweqweqwe
+            </div>
+        </div>
+    </div>
+    <div id="video-box-2" class="box">
+        <div class="video-box">
+            <video
+                    id="my-player-2"
+                    class="video-js vjs-default-skin vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    poster="//vjs.zencdn.net/v/oceans.png"
+                    data-setup='{}'
+            >
+                <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+                <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+
+        <div class="footer-box" id="footer-box-2">
+            <div class="footer">
+                qweqweqwe
+            </div>
+        </div>
+    </div>
+    <div id="video-box-3" class="box">
+        <div class="video-box">
+            <video
+                    id="my-player-3"
+                    class="video-js vjs-default-skin vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    poster="//vjs.zencdn.net/v/oceans.png"
+                    data-setup='{}'
+            >
+                <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+                <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+        <div class="footer-box" id="footer-box-3">
+            <div class="footer">
+                qweqweqwe
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var players = [videojs('my-player-0'),
+                videojs('my-player-1'),
+                videojs('my-player-2'),
+                videojs('my-player-3'),
+    ];
+
+    $(".box").click(function(){
+        var idx = $(this).attr('id').substr(-1);
+        var box = $('.box');
+        for(var k = 0; k < 4; k++) {
+            if(k <= idx) box.eq(k).addClass('active');
+            else box.eq(k).removeClass('active');
+            box.eq(k).find('.footer').removeClass('active');
+            box.eq(k).find('.video-box').hide();
+            if(k != idx) players[k].pause();
+        }
+        box.eq(idx).find('.footer').addClass('active');
+        box.eq(idx).find('.video-box').show();
+        return false;
+    });
+</script>
+</body>
+</html>
