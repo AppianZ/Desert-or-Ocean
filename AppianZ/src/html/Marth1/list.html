@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <script src="https://unpkg.com/vue@2.2.2/dist/vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        body, html {
+            height: 100%;
+            background: #F7F8F8;
+            font-family: -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+        }
+
+        #loading, #none {
+            display: inline-block;
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            -moz-transform: translate3d(-50%, -50%, 0);
+            -ms-transform: translate3d(-50%, -50%, 0);
+            -o-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+        }
+
+        #none {
+            width: 100%;
+            text-align: center;
+        }
+
+        #none p {
+            color: #898989;
+        }
+
+        #list .item {
+            position: relative;
+            display: block;
+            height: 50px;
+            padding: 12px;
+            margin: 0 0 1px 0;
+            background: #fff;
+        }
+
+        .item img {
+            display: inline-block;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            vertical-align: top;
+        }
+        .item h3 {
+            position: absolute;
+            display: inline-block;
+            width: 48%;
+            top: 15px;
+            left: 70px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #333;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .item p {
+            position: absolute;
+            display: inline-block;
+            width: 48%;
+            top: 40px;
+            left: 71px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #666;
+            font-size: 14px;
+            font-weight: 300;
+        }
+        .item span {
+            position: absolute;
+            display: inline-block;
+            top: 15px;
+            right: 10px;
+            width: 30%;
+            color: #EB2449;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: right;
+            letter-spacing: 1px;
+        }
+        #loadbtn p {
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div id="container" v-cloak>
+    <article id="loading" v-if="apply_status">
+        <svg id="svg" width='50px' height='50px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+             preserveAspectRatio="xMidYMid" class="uil-default">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(0 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(30 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.08333333333333333s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(60 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.16666666666666666s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(90 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.25s' repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(120 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.3333333333333333s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(150 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.4166666666666667s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(180 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5s' repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(210 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5833333333333334s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(240 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.6666666666666666s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(270 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.75s' repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(300 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.8333333333333334s'
+                         repeatCount='indefinite'/>
+            </rect>
+            <rect x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#8c8c8c'
+                  transform='rotate(330 50 50) translate(0 -30)'>
+                <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.9166666666666666s'
+                         repeatCount='indefinite'/>
+            </rect>
+        </svg>
+    </article>
+    <article v-else>
+        <section id="none" v-if="list.length === 0">
+            <img/>
+            <p>小主,当前无零钱收支明细</p>
+        </section>
+        <section id="list" v-if="list.length !== 0">
+            <div v-for="item in list" class="item">
+                <img v-if="item.description.channel" src="./channel.png">
+                <img v-else-if="new RegExp('REDPACKET').test(item.description.transferType)" src="./redpacket.png">
+                <img v-else :src="item.user.iconUrl">
+                <h3 v-if="item.description.channel"
+                    v-text="channelFormat(item.type, item.description.channel)"></h3>
+                <h3 v-else-if="new RegExp('REDPACKET').test(item.description.transferType)"
+                    v-text="transferTypeFormat(item.user.nickName, item.type, item.description.transferType)"></h3>
+                <h3 v-else v-text="rewardFormat(item.user.nickName, item.type, item.description.transferType, item.amount)"></h3>
+                <p v-text="dateFormat(item.createTime)"></p>
+                <span v-text="(item.amount > 0 ? '+' : '') + (item.amount / 100).toFixed(2) + '元'"></span>
+            </div>
+            <div v-if="!last" id="loadbtn">
+                <p v-if="loading_status">加载中...</p>
+                <p v-else @click="addlist()">点击加载更多</p>
+            </div>
+        </section>
+    </article>
+</div>
+<script>
+    var V = new Vue({
+        el: '#container',
+        data: {
+            apply_status: true,
+            list: [],
+            last: false,
+            loading_status: false,
+            response: {
+                "code": "SUCCESS",
+                "msg": null,
+                "payload": {
+                    "content": [{
+                        "id": "310217011617035200077601",
+                        "type": "recharge",
+                        "availableBalance": 5731,
+                        "createTime": 1484557432000,
+                        "amount": 10,
+                        "description": {"channel":"alipay"},
+                        "user": {
+                            "id": "58253cd72b8dda72119cee1c",
+                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                            "nickName": "康康康康康康哎呦喂",
+                            "signature": "笑一笑十年少",
+                            "gender": null
+                        }
+                    },{
+                            "id": "310217011617035200077601",
+                            "type": "recharge",
+                            "availableBalance": 5731,
+                            "createTime": 1484557432000,
+                            "amount": 10,
+                            "description": {"channel":"wx"},
+                            "user": {
+                                "id": "58253cd72b8dda72119cee1c",
+                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                                "nickName": "康康康康康康哎呦喂",
+                                "signature": "笑一笑十年少",
+                                "gender": null
+                            }
+                    },{
+                        "id": "310217011617035200077601",
+                        "type": "withdraw_failure",
+                        "availableBalance": 5731,
+                        "createTime": 1484557432000,
+                        "amount": 32210,
+                        "description": {"channel":"alipay"},
+                        "user": {
+                            "id": "58253cd72b8dda72119cee1c",
+                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                            "nickName": "康康康康康康哎呦喂",
+                            "signature": "笑一笑十年少",
+                            "gender": null
+                        }
+                    },{
+                        "id": "310217011617035200077601",
+                        "type": "withdraw_failure",
+                        "availableBalance": 5731,
+                        "createTime": 1484557432000,
+                        "amount": 10,
+                        "description": {"channel":"wx"},
+                        "user": {
+                            "id": "58253cd72b8dda72119cee1c",
+                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                            "nickName": "康康康康康康哎呦喂",
+                            "signature": "笑一笑十年少",
+                            "gender": null
+                        }
+                    },{
+                        "id": "310217011617035200077601",
+                        "type": "withdraw",
+                        "availableBalance": 5731,
+                        "createTime": 1484557432000,
+                        "amount": 10,
+                        "description": {"channel":"alipay"},
+                        "user": {
+                            "id": "58253cd72b8dda72119cee1c",
+                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                            "nickName": "康康康康康康哎呦喂",
+                            "signature": "笑一笑十年少",
+                            "gender": null
+                        }
+                    },{
+                        "id": "310217011617035200077601",
+                        "type": "withdraw",
+                        "availableBalance": 5731,
+                        "createTime": 1484557432000,
+                        "amount": 10,
+                        "description": {"channel":"wx"},
+                        "user": {
+                            "id": "58253cd72b8dda72119cee1c",
+                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                            "nickName": "康康康康康康哎呦喂",
+                            "signature": "笑一笑十年少",
+                            "gender": null
+                        }
+                    },{
+                            "id": "310216121009051300107701",
+                            "type": "transfer",
+                            "availableBalance": 4239,
+                            "createTime": 1481331914000,
+                            "amount": 1400,
+                            "description": {
+                                "transferType": "REWARD",
+                                "bizId": 2379
+                            },
+                            "user": {
+                                "id": "57aec6e216c87d0626cc5b8f",
+                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/test/user-icon/57aec6e216c87d0626cc5b8f/9c493fc7-4a5a-446a-996a-09a40981741e.jpg",
+                                "nickName": "希拉里",
+                                "signature": null
+                            }
+                        }, {
+                            "id": "310216120911264900102801",
+                            "type": "transfer",
+                            "availableBalance": 2819,
+                            "createTime": 1481254010000,
+                            "amount": -81,
+                            "description": {
+                                "transferType": "REWARD",
+                                "bizId": 2379
+                            },
+                            "user": {
+                                "id": "57d79c9216c87dd8f1441cd7",
+                                "iconUrl": "http://wx.qlogo.cn/mmopen/VzQsdzsGScOMWqhtlibbIDOBr4jzSWwSqmeAWwficjYqRPU3ugld3JahS7EKiaCjDlYzTIhHzfVI8lZeZnPUEOPBQ/0",
+                                "nickName": "David",
+                                "signature": null
+                            }
+                        },
+                        {
+                            "id": "310217011617035200077601",
+                            "type": "transfer",
+                            "availableBalance": 5731,
+                            "createTime": 1484557432000,
+                            "amount": 10,
+                            "description": {"transferType": "REDPACKET_CREATE",},
+                            "user": {
+                                "id": "58253cd72b8dda72119cee1c",
+                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                                "nickName": "康康康康康康哎呦喂",
+                                "signature": "笑一笑十年少",
+                                "gender": null
+                            }
+                        },
+                        {
+                            "id": "310217011617035200077601",
+                            "type": "transfer",
+                            "availableBalance": 5731,
+                            "createTime": 1484557432000,
+                            "amount": 10,
+                            "description": {"transferType": "REDPACKET_LOOP",},
+                            "user": {
+                                "id": "58253cd72b8dda72119cee1c",
+                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                                "nickName": "康康康康康康哎呦喂",
+                                "signature": "笑一笑十年少",
+                                "gender": null
+                            }
+                        },
+                        {
+                            "id": "310217011617035200077601",
+                            "type": "transfer",
+                            "availableBalance": 5731,
+                            "createTime": 1484557432000,
+                            "amount": 10,
+                            "description": {"transferType": "REDPACKET_REFUND",},
+                            "user": {
+                                "id": "58253cd72b8dda72119cee1c",
+                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
+                                "nickName": "康康康康康康哎呦喂",
+                                "signature": "笑一笑十年少",
+                                "gender": null
+                            }
+                        },
+                    ],
+                    "last": false,
+                    "totalPages": 2,
+                    "totalElements": 40,
+                    "numberOfElements": 20,
+                    "first": true,
+                    "sort": null,
+                    "size": 20,
+                    "number": 0
+                }
+            }
+        },
+        mounted: function () {
+            var _this = this;
+            _this.addlist();
+        },
+        methods: {
+            addlist: function () { // 列表请求
+                var _this  = this;
+                _this.loading_status = true;
+                //请求成功后
+                setTimeout(function () {
+                    _this.list = _this.list.concat(_this.response.payload.content);
+                    _this.last = _this.response.payload.last;
+                    _this.loading_status = false;
+                    _this.apply_status = false;
+                }, 1500);
+            },
+            channelFormat: function (type, desc) {
+                var title = '';
+                type === 'withdraw' ? (
+                        title = `提现至${desc === 'alipay' ? '支付宝' : '微信'}`
+                ) : (
+                        title = `${desc === 'alipay' ? '支付宝' : '微信'}${type === 'recharge' ? '充值' : '提现失败'}`
+                );
+                return title;
+            },
+            transferTypeFormat: function (name, type, desc) {
+                if (type === 'transfer') {
+                    return `${name}${desc === 'REDPACKET_CREATE' ? '发出红包' : (
+                            desc === 'REDPACKET_LOOT' ? '领取红包' : '未领取红包退回'
+                    )}`
+                } else {
+                    console.log('type不为transfer');
+                }
+            },
+            rewardFormat: function (name, type, desc, amount) {
+                if (type === 'transfer' && desc === 'REWARD') {
+                    return amount > 0 ? `获得${name}的动态赏金` : `我赞赏了${name}`;
+                } else {
+                    console.log('type不为transfer,并且description.transferType不是REWARD');
+                }
+            },
+            dateFormat: function (time) {
+                var date = new Date(time);
+                return `${date.getMonth() + 1}-${date.getDate()}
+                        ${('0' + date.getHours()).substr(-2)}:${('0' + date.getMinutes()).substr(-2)}`
+            },
+        }
+    })
+</script>
+</body>
+</html>
