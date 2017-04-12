@@ -7,6 +7,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="screen-orientation" content="portrait">
     <script src="https://unpkg.com/vue@2.2.2/dist/vue.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
     <style>
         * {
             padding: 0;
@@ -38,6 +39,13 @@
         #none {
             width: 100%;
             text-align: center;
+        }
+
+        #none img {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px auto;
         }
 
         #none p {
@@ -173,19 +181,19 @@
     </article>
     <article v-else>
         <section id="none" v-if="list.length === 0">
-            <img/>
+            <img src="none_icon.png"/>
             <p>小主,当前无零钱收支明细</p>
         </section>
         <section id="list" v-if="list.length !== 0">
             <div v-for="item in list" class="item">
-                <img v-if="item.description.channel" src="./channel.png">
-                <img v-else-if="new RegExp('REDPACKET').test(item.description.transferType)" src="./redpacket.png">
+                <img v-if="item.ext.channel" src="./channel.png">
+                <img v-else-if="new RegExp('REDPACKET').test(item.ext.transferType)" src="./redpacket.png">
                 <img v-else :src="item.user.iconUrl">
-                <h3 v-if="item.description.channel"
-                    v-text="channelFormat(item.type, item.description.channel)"></h3>
-                <h3 v-else-if="new RegExp('REDPACKET').test(item.description.transferType)"
-                    v-text="transferTypeFormat(item.user.nickName, item.type, item.description.transferType)"></h3>
-                <h3 v-else v-text="rewardFormat(item.user.nickName, item.type, item.description.transferType, item.amount)"></h3>
+                <h3 v-if="item.ext.channel"
+                    v-text="channelFormat(item.type, item.ext.channel)"></h3>
+                <h3 v-else-if="new RegExp('REDPACKET').test(item.ext.transferType)"
+                    v-text="transferTypeFormat(item.user.nickName, item.type, item.ext.transferType)"></h3>
+                <h3 v-else v-text="rewardFormat(item.user.nickName, item.type, item.ext.transferType, item.amount)"></h3>
                 <p v-text="dateFormat(item.createTime)"></p>
                 <span v-text="(item.amount > 0 ? '+' : '') + (item.amount / 100).toFixed(2) + '元'"></span>
             </div>
@@ -208,169 +216,7 @@
                 "code": "SUCCESS",
                 "msg": null,
                 "payload": {
-                    "content": [{
-                        "id": "310217011617035200077601",
-                        "type": "recharge",
-                        "availableBalance": 5731,
-                        "createTime": 1484557432000,
-                        "amount": 10,
-                        "description": {"channel":"alipay"},
-                        "user": {
-                            "id": "58253cd72b8dda72119cee1c",
-                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                            "nickName": "康康康康康康哎呦喂",
-                            "signature": "笑一笑十年少",
-                            "gender": null
-                        }
-                    },{
-                            "id": "310217011617035200077601",
-                            "type": "recharge",
-                            "availableBalance": 5731,
-                            "createTime": 1484557432000,
-                            "amount": 10,
-                            "description": {"channel":"wx"},
-                            "user": {
-                                "id": "58253cd72b8dda72119cee1c",
-                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                                "nickName": "康康康康康康哎呦喂",
-                                "signature": "笑一笑十年少",
-                                "gender": null
-                            }
-                    },{
-                        "id": "310217011617035200077601",
-                        "type": "withdraw_failure",
-                        "availableBalance": 5731,
-                        "createTime": 1484557432000,
-                        "amount": 32210,
-                        "description": {"channel":"alipay"},
-                        "user": {
-                            "id": "58253cd72b8dda72119cee1c",
-                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                            "nickName": "康康康康康康哎呦喂",
-                            "signature": "笑一笑十年少",
-                            "gender": null
-                        }
-                    },{
-                        "id": "310217011617035200077601",
-                        "type": "withdraw_failure",
-                        "availableBalance": 5731,
-                        "createTime": 1484557432000,
-                        "amount": 10,
-                        "description": {"channel":"wx"},
-                        "user": {
-                            "id": "58253cd72b8dda72119cee1c",
-                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                            "nickName": "康康康康康康哎呦喂",
-                            "signature": "笑一笑十年少",
-                            "gender": null
-                        }
-                    },{
-                        "id": "310217011617035200077601",
-                        "type": "withdraw",
-                        "availableBalance": 5731,
-                        "createTime": 1484557432000,
-                        "amount": 10,
-                        "description": {"channel":"alipay"},
-                        "user": {
-                            "id": "58253cd72b8dda72119cee1c",
-                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                            "nickName": "康康康康康康哎呦喂",
-                            "signature": "笑一笑十年少",
-                            "gender": null
-                        }
-                    },{
-                        "id": "310217011617035200077601",
-                        "type": "withdraw",
-                        "availableBalance": 5731,
-                        "createTime": 1484557432000,
-                        "amount": 10,
-                        "description": {"channel":"wx"},
-                        "user": {
-                            "id": "58253cd72b8dda72119cee1c",
-                            "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                            "nickName": "康康康康康康哎呦喂",
-                            "signature": "笑一笑十年少",
-                            "gender": null
-                        }
-                    },{
-                            "id": "310216121009051300107701",
-                            "type": "transfer",
-                            "availableBalance": 4239,
-                            "createTime": 1481331914000,
-                            "amount": 1400,
-                            "description": {
-                                "transferType": "REWARD",
-                                "bizId": 2379
-                            },
-                            "user": {
-                                "id": "57aec6e216c87d0626cc5b8f",
-                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/test/user-icon/57aec6e216c87d0626cc5b8f/9c493fc7-4a5a-446a-996a-09a40981741e.jpg",
-                                "nickName": "希拉里",
-                                "signature": null
-                            }
-                        }, {
-                            "id": "310216120911264900102801",
-                            "type": "transfer",
-                            "availableBalance": 2819,
-                            "createTime": 1481254010000,
-                            "amount": -81,
-                            "description": {
-                                "transferType": "REWARD",
-                                "bizId": 2379
-                            },
-                            "user": {
-                                "id": "57d79c9216c87dd8f1441cd7",
-                                "iconUrl": "http://wx.qlogo.cn/mmopen/VzQsdzsGScOMWqhtlibbIDOBr4jzSWwSqmeAWwficjYqRPU3ugld3JahS7EKiaCjDlYzTIhHzfVI8lZeZnPUEOPBQ/0",
-                                "nickName": "David",
-                                "signature": null
-                            }
-                        },
-                        {
-                            "id": "310217011617035200077601",
-                            "type": "transfer",
-                            "availableBalance": 5731,
-                            "createTime": 1484557432000,
-                            "amount": 10,
-                            "description": {"transferType": "REDPACKET_CREATE",},
-                            "user": {
-                                "id": "58253cd72b8dda72119cee1c",
-                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                                "nickName": "康康康康康康哎呦喂",
-                                "signature": "笑一笑十年少",
-                                "gender": null
-                            }
-                        },
-                        {
-                            "id": "310217011617035200077601",
-                            "type": "transfer",
-                            "availableBalance": 5731,
-                            "createTime": 1484557432000,
-                            "amount": 10,
-                            "description": {"transferType": "REDPACKET_LOOP",},
-                            "user": {
-                                "id": "58253cd72b8dda72119cee1c",
-                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                                "nickName": "康康康康康康哎呦喂",
-                                "signature": "笑一笑十年少",
-                                "gender": null
-                            }
-                        },
-                        {
-                            "id": "310217011617035200077601",
-                            "type": "transfer",
-                            "availableBalance": 5731,
-                            "createTime": 1484557432000,
-                            "amount": 10,
-                            "description": {"transferType": "REDPACKET_REFUND",},
-                            "user": {
-                                "id": "58253cd72b8dda72119cee1c",
-                                "iconUrl": "http://soundbus-image.img-cn-shenzhen.aliyuncs.com/sunbar/product/user-icon/58253cd72b8dda72119cee1c/4475d0a5-782a-4db4-bff6-1914f51a7e45.png",
-                                "nickName": "康康康康康康哎呦喂",
-                                "signature": "笑一笑十年少",
-                                "gender": null
-                            }
-                        },
-                    ],
+                    "content": [],
                     "last": false,
                     "totalPages": 2,
                     "totalElements": 40,
@@ -380,7 +226,7 @@
                     "size": 20,
                     "number": 0
                 }
-            }
+            } // 测试数据,可以不用管
         },
         mounted: function () {
             var _this = this;
@@ -390,13 +236,36 @@
             addlist: function () { // 列表请求
                 var _this  = this;
                 _this.loading_status = true;
-                //请求成功后
-                setTimeout(function () {
+                // 请求列表的ajax请求,api的使用可直接google
+                $.ajax({
+                     type: "GET", // 请求类型
+                     url: "", // 需要请求的url
+                     dataType: "json",
+                     data: {
+                        // 需要请求带的参数
+                     },
+                     beforeSend :function(xhr){
+                        // 从localstorage或其他本地方式获取token
+                        xhr.setRequestHeader('key名字', '值');//设置消息头
+                     },
+                     error: function(XHR,textStatus,errorThrown) {
+                        alert ("XHR="+XHR+"\ntextStatus="+textStatus+"\nerrorThrown=" + errorThrown);
+                     },
+                     success: function(data) {
+                         _this.list = _this.list.concat(data.payload.content);
+                         _this.last = data.payload.last;
+                         _this.loading_status = false;
+                         _this.apply_status = false;
+                     },
+                 });
+
+               /*  // 这是模拟异步请求返回后的操作
+               setTimeout(function () {
                     _this.list = _this.list.concat(_this.response.payload.content);
                     _this.last = _this.response.payload.last;
                     _this.loading_status = false;
                     _this.apply_status = false;
-                }, 1500);
+                }, 1500);*/
             },
             channelFormat: function (type, desc) {
                 var title = '';
@@ -420,7 +289,7 @@
                 if (type === 'transfer' && desc === 'REWARD') {
                     return amount > 0 ? `获得${name}的动态赏金` : `我赞赏了${name}`;
                 } else {
-                    console.log('type不为transfer,并且description.transferType不是REWARD');
+                    console.log('type不为transfer,并且ext.transferType不是REWARD');
                 }
             },
             dateFormat: function (time) {
