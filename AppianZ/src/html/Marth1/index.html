@@ -18,20 +18,20 @@
 </script>
 
 <script>
-    var str1 = '135159971829';
+    var str1 = '135159971829312.3432';
     //------小数处理
     var reg = /(^-?\d+)(\.\d+)$/; //如果带小数点的数字
     if(reg.test(str1)){
         var int = reg.exec(str1)[1]; //截取整数部分
         var point = reg.exec(str1)[2]; //截取小数部分
 
-        var res = int.replace(/(\d{1,2})(?=(\d{3})+$)/g,"$1, ") //对整数部分进行拆分
+        var res = int.replace(/(\d{1,2})(?=(\d{3})+$)/g,"$1,") //对整数部分进行拆分
         res += point;
     }
     //-----整数处理
     var reg1 = /^-?\d+$/; //如果是整数
     if(reg1.test(str1)){
-        res = str1.replace(/(\d{1,2})(?=(\d{4})+$)/g,"$1, ") //对整数部分进行拆分
+        res = str1.replace(/(\d{1,2})(?=(\d{4})+$)/g,"$1,") //对整数部分进行拆分
 //        res += '.00' //末尾追加.00
     }
 

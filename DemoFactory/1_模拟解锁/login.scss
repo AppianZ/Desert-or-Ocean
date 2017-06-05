@@ -1,0 +1,319 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1467165406_8704193.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1467165406_8704193.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1467165406_8704193.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1467165406_8704193.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1467165406_8704193.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: 'iconfont';
+  color: rgba(255,255,255,96);
+}
+
+$white : rgba(255,255,255,96);
+$dark  : rgba(255,255,255,0.5);
+$green : rgb(121,194,180);
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  background: rgb(26,33,41);
+}
+
+body #wrap {
+  position: absolute;
+  right: 0;
+  display: flex;
+  height: 100%;
+  width: 200%;
+  overflow: auto;
+  transition: all .5s ease-out;
+}
+
+#pinword {
+  width: 50%;
+  header{
+    display: inline-block;
+    width: 100%;
+    margin: 35px auto 25px;
+    h2 {
+      position: relative;
+      text-align: center;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        left: 50%;
+        margin: 0 0 0 -45px;
+        border: 1px solid $white;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        right: 50%;
+        margin: 0 -45px 0 0;
+        border: 1px solid $white;
+      }
+    }
+    h3 {
+      position: relative;
+      color: $dark;
+      text-align: center;
+      font-weight: 100;
+      letter-spacing: 14px;
+      margin: 20px 0 0 0;
+      b {
+        font-weight: 100;
+        color: $white;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        bottom: -20px;
+        left: 50%;
+        margin: 0 0 0 -30px;
+        background: $dark;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        bottom: -21px;
+        left: 50%;
+        margin: 0 0 0 -20px;
+        background: $green;
+      }
+    }
+  }
+
+  section {
+    margin: 15px 0 0 0;
+    #pin {
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin: 0 6px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0);
+        border: 1px solid $white;
+        transition: all .15s ease-out;
+      }
+      span.on {
+        background: $white;
+      }
+    }
+    #pin.shocks {
+       animation: shock .3s;
+    }
+    p {
+      color: $dark;
+      text-align: center;
+      margin: 13px 0 0 0;
+      font-size: 14px;
+    }
+    #key {
+      margin: 20px auto 0 ;
+      tr {
+        width: 100%;
+        text-align: center;
+        td {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          padding: 28px 0 0 0;
+          margin: 0 20px 15px;
+          text-align: center;
+          color: $white;
+          font-size: 12px;
+          font-weight: 100;
+          box-sizing: border-box;
+          border-radius: 50%;
+          i {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            color: $green;
+            font-size: 28px;
+            font-weight: bolder;
+            font-style: normal;
+          }
+          span {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            margin: 0 0 0 -9px;
+            font-size: 18px;
+            color: $green;
+            transform: rotate(180deg);
+          }
+          &:hover {
+            background: rgba(255,255,255,.4);
+            box-shadow: 0 0 20px rgba(255,255,255,.3);
+          }
+        }
+        &:last-child {
+          i {
+            top :8px;
+          }
+        }
+      }
+    }
+  }
+  footer {
+    margin: 10px 0 0 0;
+    text-align: center;
+    p {
+      color: $dark;
+    }
+  }
+}
+
+
+#password {
+  width: 50%;
+  header{
+    display: inline-block;
+    width: 100%;
+    margin: 75px auto;
+    h2 {
+      position: relative;
+      text-align: center;
+      &:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        left: 50%;
+        margin: 0 0 0 -45px;
+        border: 1px solid $white;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        top: 50%;
+        right: 50%;
+        margin: 0 -45px 0 0;
+        border: 1px solid $white;
+      }
+    }
+    h3 {
+      position: relative;
+      color: $dark;
+      text-align: center;
+      font-weight: 100;
+      letter-spacing: 14px;
+      margin: 20px 0 0 0;
+      b {
+        font-weight: 100;
+        color: $white;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        bottom: -20px;
+        left: 50%;
+        margin: 0 0 0 -30px;
+        background: $dark;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        bottom: -21px;
+        left: 50%;
+        margin: 0 0 0 -20px;
+        background: $green;
+      }
+    }
+  }
+
+  section {
+    text-align: center;
+    line-height: 45px;
+    margin: 40px 0 20px;
+    input {
+      display: inline-block;
+      width: 80%;
+      text-align: center;
+      padding: 3px 7px;
+      color: $white;
+      letter-spacing: 1px;
+      font-size: 16px;
+      background: rgba(0,0,0,0);
+      border: 0;
+      border-bottom: 1px solid $dark;
+      outline: 0;
+      transition: all .3s ease-out;
+      -webkit-appearance: none;
+      &:hover,&:active {
+        border-bottom: 1px solid $white;
+      }
+      &[type=text]{
+      }
+      &[type=password]{
+      }
+    }
+  }
+
+  footer {
+    margin: 60px 0 0 0;
+    text-align: center;
+    h3 {
+      color: $green;
+      height: 40px;
+      line-height: 40px;
+    }
+    p {
+      margin: 15px 0 0 0;
+      color: $dark;
+    }
+  }
+}
+
+
+
+@-webkit-keyframes shock {
+  0% {
+    -webkit-transform: translateX(-15px);
+  }
+  20% {
+    -webkit-transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateX(15px);
+  }
+  60% {
+    -webkit-transform: translateX(0);
+  }
+  80% {
+    -webkit-transform: translateX(-15px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}

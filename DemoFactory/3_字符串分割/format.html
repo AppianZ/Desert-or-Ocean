@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>字符串分割</title>
+    <style>
+        #ipt {
+            border: 1px solid #999;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>请输入需要分割的数组</h3>
+    <input id="ipt" type="number">
+    <button id="btn"> 确 认 分 割 </button>
+    <p id="result"></p>
+</body>
+</html>
+<script>
+    document.getElementById('btn').onclick = function () {
+        document.getElementById('result').innerHTML = strFormat(document.getElementById('ipt').value);
+    };
+
+    function strFormat(str) {
+        //------小数处理
+        var reg = /(^-?\d+)(\.\d+)$/; //如果带小数点的数字
+        if(reg.test(str)){
+            var int = reg.exec(str)[1]; //截取整数部分
+            var point = reg.exec(str)[2]; //截取小数部分
+
+            var res = int.replace(/(\d{1,2})(?=(\d{3})+$)/g,"$1, ");//对整数部分进行拆分
+            res += point;
+        }
+        //-----整数处理
+        var reg1 = /^-?\d+$/; //如果是整数
+        if(reg1.test(str)){
+            res = str.replace(/(\d{1,2})(?=(\d{4})+$)/g,"$1, "); //对整数部分进行拆分
+            res += '.00'; //末尾追加.00
+        }
+        return res;
+    }
+
+</script>
