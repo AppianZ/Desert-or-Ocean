@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>基本图形的绘制</title>
+    <style>
+        html,body {
+            background: #f3f3f3;
+        }
+        section  {
+            display: inline-block;
+            padding: 10px;
+            margin: 20px;
+            border: 3px solid #FD9840;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <section>
+        <p>用圆形画了一个微信</p>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="270" height="250">
+            <g id="greenCircle">
+                <!--Face-->
+                <circle cx="100" cy="100" r="100" fill="#85D64D" />
+                <!--Eyes-->
+                <circle cx="70" cy="80" r="10" fill="#136821" />
+                <circle cx="130" cy="80" r="10" fill="#136821" />
+            </g>
+            <g id="whiteCircle">
+                <!--Face-->
+                <circle cx="190" cy="170" r="70" fill="#fff" />
+                <!--Eyes-->
+                <circle cx="170" cy="150" r="8" fill="#136821" />
+                <circle cx="210" cy="150" r="8" fill="#136821" />
+            </g>
+        </svg>
+    </section>
+
+    <section>
+        <p>用矩形画了一个微信</p>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="270" height="250">
+            <g id="greenRect">
+                <!--Face-->
+                <rect x="10" y="10" width="100" height="60" fill="#85D64D" />
+                <!--Eyes-->
+                <rect x="40" y="30" width="10" height="10" rx="2" fill="#136821" />
+                <rect x="70" y="30" width="10" height="10" rx="2" fill="#136821" />
+            </g>
+            <g id="whiteRect">
+                <!--Face-->
+                <rect x="80" y="40" width="100" height="60" fill="#fff" />
+                <!--Eyes-->
+                <rect x="110" y="60" width="10" height="10" rx="5" fill="#136821" />
+                <rect x="140" y="60" width="10" height="10" rx="5" fill="#136821" />
+            </g>
+        </svg>
+    </section>
+
+    <section>
+        <p>用椭圆形画了一个微信</p>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="270" height="250">
+            <g id="greenEllipse">
+                <!--Face-->
+                <ellipse cx="100" cy="100" rx="100" ry="70" fill="#85D64D" />
+                <!--Eyes-->
+                <ellipse cx="70" cy="80" rx="10" ry="7" fill="#136821" />
+                <ellipse cx="130" cy="80" rx="10" ry="7" fill="#136821" />
+            </g>
+            <g id="whiteEllipse">
+                <!--Face-->
+                <ellipse cx="190" cy="170" rx="70" ry="50" fill="#fff" />
+                <!--Eyes-->
+                <ellipse cx="170" cy="150" rx="8" ry="6" fill="#136821" />
+                <ellipse cx="210" cy="150" rx="8" ry="6" fill="#136821" />
+            </g>
+        </svg>
+    </section>
+
+    <section>
+        <p>直线和多边形</p>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="270" height="250">
+            <line x1="120" y1="200" x2="230" y2="230" stroke="red" stroke-width="10"/>
+            <polyline points="10 10 100 100 150 50" stroke="#85D64D" fill="#fff"/>
+            <polygon points="10 110 100 200 150 150" stroke="#85D64D" fill="#fff"/>
+        </svg>
+    </section>
+</div>
+</body>
+</html>

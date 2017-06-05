@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>弹性图</title>
+    <style>
+        html,body,section {
+            width: 100%;
+            height: 500px;
+            background: #f3f3f3;
+        }
+    </style>
+<body>
+<div id="container">
+    <svg height="500" viewBox="-125 -125 250 250">
+        <path id="links" fill="none" stroke="#333"></path>
+    </svg>
+</div>
+</body>
+<script src="victor.js"></script>
+<script>
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var points = ['a','b','c','d','e','f'];
+    points = points.map(function (name,index,arr) {
+       return {
+           name: name,
+           color:'hsl(' + (360 * index/arr.length) + ',100%, 70%)',
+       }
+    });
+
+    var relation = 100;
+    var svg = document.querySelector('svg');
+
+    var Vector = window.Vector;
+
+    function random(min, max) {
+        return Math.round(min + (max - min) * Math.random());
+    }
+
+    points.forEach(function (point) {
+        var circle = document.createElementNS(SVGNS, 'circle');
+        var x = random(-75,75);
+        var y = random(-75,75);
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 5);
+        circle.setAttribute('fill', point.color);
+
+        svg.appendChild(circle);
+
+        point.circle = circle;
+        point.s = new Vector(x, y);
+        point.v = new Vector();
+        point.a = new Vector();
+    });
+
+    var lastFrameTime = +new Date();
+
+    function update() {
+        var frameTime = +new Date();
+        var t = frameTime - lastFrameTime;
+
+        t /= 200;
+
+        points.forEach(function (pa) {
+            var f = new Vector();
+            points.forEach(function (pb) {
+                if(pa == pb) return;
+
+                var x = Vector.fromPoints(pa.s, pb.s);
+                var delta = x.length() - relation;
+
+                f = f.add(x.normalize(delta * .1));
+            });
+
+            pa.a = f;
+            pa.v = pa.v.add(pa.a.multipy(t)).multipy(0.98);
+            pa.s = pa.s.add(pa.v.multipy(t));
+
+            pa.circle.setAttribute('cx',pa.s.x);
+            pa.circle.setAttribute('cy',pa.s.y);
+        });
+
+        var linkpath = [];
+        points.forEach(function(pa) {
+            var sa = pa.s;
+            points.forEach(function (pb) {
+                if(pa === pb) return;
+                var sb = pb.s;
+                linkpath = linkpath.concat(['M',sa.x,sa.y,'L',sb.x,sb.y]);
+            });
+        });
+
+        document.getElementById('links').setAttribute('d',linkpath.join(' '));
+
+        lastFrameTime = frameTime;
+        window.requestAnimationFrame(update);
+    }
+
+    update();
+    console.log(points);
+
+</script>
+</html>
