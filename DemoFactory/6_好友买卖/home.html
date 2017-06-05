@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>好友买卖</title>
+    <script src="https://o9tsh54u9.qnssl.com/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="./home.css?rev=@@hash"/>
+</head>
+<body>
+<div id="main">
+    <popup :status="popupStatus"
+           :type="popupType"
+           :el="popupObj"
+           :owner="owner"
+           v-on:swithpopup="swithPopupStatus"
+    ></popup>
+
+    <article id="switch">
+        <section id="containleft" :class="{'toleft' : tabon > 0}">
+            <header class="leftheader">
+                <info></info>
+            </header>
+            <div class="rankswitch">
+                <span class="rank-pay"
+                      :class="{'span-on' : listType === 0}"
+                      v-tap="{ methods : switchList , num : 0}"
+                >可购买</span>
+                <span class="rank-value"
+                    :class="{'span-on' : listType === 1}"
+                      v-tap="{ methods : switchList , num : 1}"
+                >按身价</span>
+                <span class="rank-balance"
+                    :class="{'span-on' : listType === 2}"
+                   v-tap="{ methods : switchList , num : 2}"
+                >按财富</span>
+            </div>
+            <p class="tip"
+               v-if="showList.length == 0"
+                v-text="'暂无' + (listType == 0?
+                '可购买好友,快去充值吧~': '好友,快去邀请好友吧~')"></p>
+            <ul>
+                <li is="list" v-for="(el,index) in showList"
+                    :el="el" :idx="index"
+                    :type="listType"
+                    v-on:swithpopup="swithPopupStatus(el,0)"
+                ></li>
+            </ul>
+        </section>
+
+        <section id="containcenter" :class="{'toleft' : tabon > 0, 'toright': tabon == 1}">
+            <header class="centerheader"
+                    :class="{'mine' : eventType, 'events' : !eventType }">
+                    <nav @click="switchEventType">
+                        <span :class="{ 'center-nav-on' : eventType }">
+                            我的奴隶
+                        </span>
+                        <span :class="{ 'center-nav-on' : !eventType }">被虐事件</span>
+                    </nav>
+                    <p>
+                        <i :class="{'center-p-on': eventType}"></i>
+                        <i :class="{'center-p-on': !eventType}"></i>
+                    </p>
+                    <div class="bottom-cri"></div>
+            </header>
+            <div id="slave-box"
+                 :class="{'tobottom' : !eventType, 'tohide' : !hideStatus}">
+                <slave v-for="(el,index) in slaveList"
+                    :el="el" :idx="index" :current="currentSlave"
+                    v-on:switchslave="switchCurrentSlave"></slave>
+            </div>
+            <div id="history-box"
+                 :class="{'tobottom' : eventType, 'tohide' : hideStatus}">
+                <history v-for="el in historyList" :el="el"></history>
+            </div>
+        </section>
+
+        <section id="containright" :class="{'toright': tabon == 2, 'input_on': moneyType > -1, 'deposit' : moneyType == 0, 'withdraw' : moneyType == 1}">
+            <header id="rightheader">
+                <section id="money">
+                    <span v-text="moneyType == -1 ? '我的资产' : (moneyType == 0 ?'请输入您需要兑换的金币数量' : '请输入您需要提取的金币数量')"></span>
+                    <b :class="{'alreadyinput' : inputNumber !== ''}">
+                        <p v-for="g in 7">0123456789</p>
+                        <i>金</i>
+                    </b>
+                    <div id="number_Input">
+                        <input disabled="disabled" v-model="inputNumber"/>
+                        <a id="single_delete" @click="deleteMoney">&#xe615;</a>
+                    </div>
+                </section>
+                <section id="notice">
+                    <h3>(10金 = 1人民币)</h3>
+                    <p v-if="moneyType == -1">您可以使用金币购买更多的好友</p>
+                </section>
+            </header>
+            <footer id="rightfooter">
+                <section id="method">
+                    <ul>
+                        <li @click="switchMoneyType(0)"><h4>充值</h4>更多的金币可以购买更多好友哦</li>
+                        <li @click="switchMoneyType(1)"><h4>提现</h4>提出金币兑换成人民币</li>
+                        <li @click="swithPopupStatus({}, 1)"><h4>金钱说明</h4>赶紧点击进来看看金币到底是什么吧</li>
+                    </ul>
+                </section>
+                <section id="number">
+                    <ul>
+                        <li v-for="num in 9"
+                            @click="inputMoney(num)"
+                            v-text="num"></li>
+                        <li id="never_mind" @click="switchMoneyType(-1)">返回</li>
+                        <li @click="inputMoney(0)">0</li>
+                        <li id="submit" @click="submitMoey">确定</li>
+                    </ul>
+                </section>
+            </footer>
+        </section>
+    </article>
+
+    <footer class="footer">
+        <div class="tab"
+             :class="{'tabon': tabon == 0 }"
+             v-tap="{ methods : switchTab , num : 0}">
+            <span class="friend-trade-icon">&#xe606;</span>
+        </div>
+        <div class="tab"
+             :class="{'tabon': tabon == 1 }"
+             v-tap="{ methods : switchTab , num : 1}">
+            <span class="friend-trade-icon">&#xe60f;</span>
+        </div>
+        <div class="tab"
+             :class="{'tabon': tabon == 2 }"
+             v-tap="{ methods : switchTab , num : 2}">
+            <span class="friend-trade-icon">&#xe60e;</span>
+        </div>
+    </footer>
+</div>
+
+    <script type="text/x-template" id="infoTpl">
+        <div class="infobox">
+            <figure class="owner-head"
+                    :style="{'background' : 'url('+ owner.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+                    :class="{ headon: headType === 0, singleon : master.headimgurl === ''}"
+                    v-tap="{ methods : switchHead}"
+            ></figure>
+            <figure class="master-head"
+                v-if="master.headimgurl !== ''"
+                :style="{ background: 'url('+ master.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+                :class="{ headon: headType === 1}"
+                @click="switchHead()"
+            ></figure>
+            <div class="baseInfo">
+                <h3>
+                    <span v-text="headType === 0 ? '昵称' : '主人'"
+                        :class="{'owner-span' : headType === 0,
+                            'master-span' : headType === 1}"
+                    ></span>
+                    <b v-text="headType === 0 ? owner.nickname : master.nickname"></b>
+                </h3>
+                <h4 class="value-now">
+                    <span>身价</span>
+                    <b v-text="headType === 0 ? owner.value_now : master.value_now"></b>
+                </h4>
+                <h4 class="balance-total">
+                    <span>财富</span>
+                    <b v-text="headType === 0 ? owner.balance_total : master.balance_total"></b>
+                </h4>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="listTpl">
+        <li class="record"
+            v-tap="{ methods : payStraight }">
+            <b v-text="idx + 1"></b>
+            <figure :style="{ background: 'url('+ el.headimgurl +') no-repeat',
+                        'backgroundSize' : 'cover',
+                        'backgroundPosition' : 'center'}"
+            ></figure>
+            <i v-text="el.nickname"></i>
+            <p :class="{'list-pay' : type == 0,
+                'list-value' : type == 1,
+                'list-balance' : type == 2}">
+                <span v-text="type < 2 ?
+                (el.value_now > 999999 ? '100W+' :  el.value_now):
+                (el.balance_total > 999999 ? '100W+' :  el.balance_total)"></span>
+            </p>
+        </li>
+    </script>
+
+    <script type="text/x-template" id="popupTpl">
+        <div>
+            <div id="popup-block" :class="{'popup-block' : status}">
+                <div id="popup-block-bg"
+                     :class="{'popup-block-bg' : status}"></div>
+                <div id="popup-block-content"
+                     :class="{'popup-block-content' : status}">
+                    <header id="popup-block-header">
+                        <span class="friend-trade-icon" @click="hidePopup">&#xe60d;</span>
+                    </header>
+
+                    <div id="popup-block-content-box">
+                        <div id="popup-block-desc">
+                            <b v-if="type == 0">您拥有的财富: <i v-text="owner.balance_total"></i></b>
+                            <b v-if="type == 1"> <i>金币兑换原则</i></b>
+                        </div>
+                        <div class="popup-block-intro" v-if="type == 0">
+
+                        </div>
+                        <div class="popup-block-intro" v-if="type == 1">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor urna, euismod ac pretium id, ornare sit amet elit. Suspendisse in eleifend tellus, et semper dolor. Aliquam nec convallis orci. Pellentesque ultricies, odio id tincidunt tempus, leo nisl fermentum orci, at pulvinar mauris diam vel urna. Nulla dui turpis, aliquam tempor massa ac, venenatis facilisis enim. Pellentesque finibus ligula a odio molestie, eget blandit augue iaculis. Maecenas finibus tristique iaculis. Mauris commodo, neque suscipit eleifend mollis, ligula arcu molestie quam, aliquam aliquam nulla elit pulvinar libero. Donec accumsan, orci et eleifend imperdiet, diam lacus luctus lacus, eu tempus massa massa ut lectus. Integer interdum augue at ex tristique lobortis. Pellentesque nec dignissim diam, vel mollis eros. Morbi maximus, arcu a porttitor lacinia, ante ipsum semper tellus, sed aliquam elit ligula et diam. Etiam id nisi ut est consequat tincidunt. Fusce dictum ipsum sit amet nulla fringilla, non commodo orci tincidunt.
+
+                                Nam finibus varius rhoncus. Fusce vel leo pulvinar mauris ullamcorper eleifend eu ut massa. Morbi vestibulum erat eget enim dictum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In non purus turpis. In bibendum gravida odio viverra venenatis. Aenean id magna iaculis, iaculis ante vitae, maximus ipsum. Duis fermentum enim eget elit efficitur, eu bibendum nibh sollicitudin.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="popup-block-footer"
+                     :class="{'popup-block-footer0' : status && type == 0,
+                     'popup-block-footer1' : status && type == 1}">
+                   <div class="popup-orange-btn"
+                        v-if="status && type == 0"
+                    @click="pay(el.id)">
+                        <div class="widely-text">确认购买</div>
+                    </div>
+                    <div class="popup-little-btn"
+                         v-if="status && type == 1"
+                         @click="hidePopup">
+                        <div class="little-text">知道啦</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="slaveTpl">
+        <div class="slave-block">
+            <div class="slave-info">
+                <img :src="el.headimgurl"/>
+                <h3 v-text="el.nickname"></h3>
+                <h4 v-text="el.value_now"></h4>
+                <h5 v-text="el.balance_total"></h5>
+            </div>
+            <div class="opare-box" :class="{'opon': idx == current}">
+                <span v-for="op in oparetions"
+                      v-text="op.desc"
+                      @click="doSthToSlave(op.id)"></span>
+            </div>
+            <footer class="read_more" @click="switchReadMore"> 
+                <a class="go_read"
+                   :class="{'readon': idx == current}"
+                   v-text="idx == current ? '点击收起' : '查看更多'"></a>
+              </footer>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="historyTpl">
+        <div class="history-time">
+            <h4 v-text="el.created_at"></h4>
+            <p v-text="el.desc"></p>
+        </div>
+    </script>
+
+<script src="./home_data.js"></script>
+<script src="./zw.js"></script>
+<script src="./vue.js"></script>
+<script src="./vue-tap2.js"></script>
+<script src="./home.js"></script>
+</body>
+</html>
