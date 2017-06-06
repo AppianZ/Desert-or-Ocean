@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>ContentEditor</title>
+    <link rel="stylesheet" href="./../../../dest/css/Oct2/contentEditor.css">
+</head>
+<body>
+<div id="container">
+    <div id="editor-section">
+        <h4>使用了vue2.0~.打开控制台查看mouse实时选中的文字~</h4>
+        <p>
+            <span @click="switchShowHtml">查看v-html</span>
+            <span @click="addNormalTxt">包裹p</span>
+            <span @click="addQuotation">包裹div</span>
+            <span @click="switchAddStatus">图片</span>
+            <span @click="clearHtml">清空样式</span>
+        </p>
+        <textarea id="show-html" v-model="title" class="unIgnoreMouse"></textarea>
+        <div id="show-text"
+							contenteditable="true"
+							v-if="!showHtmlStatus"
+							v-html="htmlTitle"></div>
+        <div class="add-img" v-if="addImgStatus">
+            <h3>填写图片在线连接</h3>
+            <input v-model="imgUrl" placeholder="https://"/>
+            <button @click="submitImg">确定</button>
+            <button @click="switchAddStatus">取消</button>
+        </div>
+    </div>
+</div>
+<script src="./vue2.0.js"></script>
+<script src="./contentEditor.js"></script>
+</body>
+</html>
