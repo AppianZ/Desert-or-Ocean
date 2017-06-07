@@ -1,0 +1,139 @@
+$rem: 75;
+@function r($px) {
+	@return $px / $rem * 1 + rem;
+}
+ 
+@mixin f($font-size) {
+	font-size: $font-size + px;
+
+	[data-dpr="2"] & {
+		font-size: $font-size * 2 + px;
+	}
+
+	[data-dpr="3"] & {
+		font-size: $font-size * 3 + px;
+	}
+}
+
+#container {
+	display: inline-block;
+	padding: 100px;
+	background: #ccc;
+}
+
+#sandClock {
+	position: relative;
+	display: inline-block;
+	text-align: center;
+	transform: scale(.95, 1.32);
+	&:before {
+		position: absolute;
+		display: inline-block;
+		content: '';
+		height: r(10);
+		width: r(230);
+		top: 0;
+		left: 50%;
+		transform: translate3d(-50%, 0, 0);
+		border-radius: r(10);
+		background: #fff;
+		z-index: 3;
+	}
+	&:after {
+		position: absolute;
+		display: inline-block;
+		content: '';
+		height: r(10);
+		width: r(230);
+		bottom: 0;
+		left: 50%;
+		transform: translate3d(-50%, 0, 0);
+		border-radius: r(10);
+		background: #fff;
+		z-index: 3;
+	}
+}
+#sandTop {
+	height: r(90);
+	width: r(160);
+	background: #f8f8f8;
+	border: r(9) solid #fff;
+	border-bottom-right-radius: r(200);
+	border-bottom-left-radius: r(200);
+	overflow: auto;
+	#cvstop {
+		width: r(160);
+		height: r(90);
+		border-bottom-right-radius: r(200);
+		border-bottom-left-radius: r(200);
+		float: left;
+	}
+}
+#sandBottom {
+	position: relative;
+	height: r(90);
+	width: r(160);
+	background: #f8f8f8;
+	margin: r(-9) 0 0 0;
+	border: r(9) solid #fff;
+	border-top-right-radius: r(200);
+	border-top-left-radius: r(200);
+	&:after {
+		position: absolute;
+		display: inline-block;
+		content: '';
+		background: rgba(228,84,94,.6);
+		height:r(11);
+		width: r(10);
+		top: r(-11);
+		left: 50%;
+		transform: translate3d(-50%, 0, 0);
+		z-index: 10;
+	}
+	&.end:after {
+		background: #f8f8f8;
+		height:r(12);
+		top: r(-11);
+		border-bottom-left-radius: r(0);
+		border-bottom-right-radius: r(0);
+	}
+	#cvsbottom {
+		width: r(160);
+		height: r(90);
+		border-top-right-radius: r(200);
+		border-top-left-radius: r(200);
+		float: left;
+	}
+}
+#water {
+	display: inline-block;
+	position: absolute;
+	width: r(17);
+	height: r(17);
+	top: r(0);
+	left: 50%;
+	transform: translate3d(r(-8), 0, 0);
+	animation: waterFall 3s infinite;
+	z-index: 0;
+	opacity: 0;
+	svg {
+		display: inline-block;
+		width: r(17);
+		height: r(17);
+	}
+}
+
+@keyframes waterFall {
+	0% {transform: translate3d(r(-8),0,0);opacity: 0}
+	30% {opacity: 0}
+	31% {opacity: 1}
+	99% {transform: translate3d(r(-8),r(180),0);opacity: 0}
+	100% {transform: translate3d(r(-8),0,0);opacity: 0}
+}
+@-webkit-keyframes waterFall {
+	0% {transform: translate3d(r(-8),0,0);opacity: 0}
+	30% {opacity: 0}
+	31% {opacity: 1}
+	99% {transform: translate3d(r(-8),r(180),0);opacity: 0}
+	100% {transform: translate3d(r(-8),0,0);opacity: 0}
+}

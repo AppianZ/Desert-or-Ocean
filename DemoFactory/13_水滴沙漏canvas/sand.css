@@ -1,0 +1,115 @@
+#container {
+  display: inline-block;
+  padding: 100px;
+  background: #ccc; }
+
+#sandClock {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  transform: scale(0.95, 1.32); }
+  #sandClock:before {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: 0.13333rem;
+    width: 3.06667rem;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 0.13333rem;
+    background: #fff;
+    z-index: 3; }
+  #sandClock:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    height: 0.13333rem;
+    width: 3.06667rem;
+    bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 0.13333rem;
+    background: #fff;
+    z-index: 3; }
+
+#sandTop {
+  height: 1.2rem;
+  width: 2.13333rem;
+  background: #f8f8f8;
+  border: 0.12rem solid #fff;
+  border-bottom-right-radius: 2.66667rem;
+  border-bottom-left-radius: 2.66667rem;
+  overflow: auto; }
+  #sandTop #cvstop {
+    width: 2.13333rem;
+    height: 1.2rem;
+    border-bottom-right-radius: 2.66667rem;
+    border-bottom-left-radius: 2.66667rem;
+    float: left; }
+
+#sandBottom {
+  position: relative;
+  height: 1.2rem;
+  width: 2.13333rem;
+  background: #f8f8f8;
+  margin: -0.12rem 0 0 0;
+  border: 0.12rem solid #fff;
+  border-top-right-radius: 2.66667rem;
+  border-top-left-radius: 2.66667rem; }
+  #sandBottom:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    background: rgba(228, 84, 94, 0.6);
+    height: 0.14667rem;
+    width: 0.13333rem;
+    top: -0.14667rem;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    z-index: 10; }
+  #sandBottom.end:after {
+    background: #f8f8f8;
+    height: 0.16rem;
+    top: -0.14667rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem; }
+  #sandBottom #cvsbottom {
+    width: 2.13333rem;
+    height: 1.2rem;
+    border-top-right-radius: 2.66667rem;
+    border-top-left-radius: 2.66667rem;
+    float: left; }
+
+#water {
+  display: inline-block;
+  position: absolute;
+  width: 0.22667rem;
+  height: 0.22667rem;
+  top: 0rem;
+  left: 50%;
+  transform: translate3d(-0.10667rem, 0, 0);
+  animation: waterFall 3s infinite;
+  z-index: 0;
+  opacity: 0; }
+  #water svg {
+    display: inline-block;
+    width: 0.22667rem;
+    height: 0.22667rem; }
+
+@keyframes waterFall {
+  0% {
+    transform: translate3d(-0.10667rem, 0, 0);
+    opacity: 0; }
+  30% {
+    opacity: 0; }
+  31% {
+    opacity: 1; }
+  99% {
+    transform: translate3d(-0.10667rem, 2.4rem, 0);
+    opacity: 0; }
+  100% {
+    transform: translate3d(-0.10667rem, 0, 0);
+    opacity: 0; } }
+
+/*# sourceMappingURL=sand.css.map */
