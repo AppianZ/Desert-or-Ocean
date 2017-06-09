@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>码表盘</title>
+	<link rel="stylesheet" type="text/css" href="./stopwatch.css?rev=@@hash"/>
+	<script src="./flexible.js"></script>
+</head>
+<body>
+<div id="container">
+	<div id="round_box">
+		<svg id="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+					<g id="circle">
+						<!--从右到左-->
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="99.975" y1="49.864" x2="87.739" y2="49.864"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="99.687" y1="44.642" x2="92.082" y2="45.442"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="98.854" y1="39.478" x2="91.3715" y2="41.063"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="97.486" y1="34.427" x2="90.2135" y2="36.7895"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="95.599" y1="29.55" x2="88.609" y2="32.66"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="93.211" y1="24.896" x2="82.611" y2="31.02"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="90.351" y1="20.517" x2="84.161" y2="25.017"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="87.048" y1="16.46" x2="81.3605" y2="21.5875"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="83.338" y1="12.771" x2="78.223" y2="18.4635"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="79.264" y1="9.489" x2="74.7715" y2="15.6865"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="74.869" y1="6.653" x2="68.649" y2="17.265"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="70.202" y1="4.292" x2="67.0945" y2="11.2845"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="65.313" y1="2.429" x2="62.9555" y2="9.714"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="60.257" y1="1.089" x2="58.6745" y2="8.574"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="55.088" y1="0.284" x2="54.2955" y2="7.8965"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="49.862" y1="0.024" x2="49.867" y2="12.268"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="44.64" y1="0.313" x2="45.45" y2="7.9155"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="39.476" y1="1.146" x2="41.0735" y2="8.626"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="34.427" y1="2.513" x2="36.7995" y2="9.788"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="29.549" y1="4.401" x2="32.6665" y2="11.3835"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="24.895" y1="6.788" x2="31.023" y2="17.384"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="20.516" y1="9.649" x2="25.0135" y2="15.8315"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="16.459" y1="12.952" x2="21.5815" y2="18.632"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="12.77" y1="16.661" x2="18.46" y2="21.7735"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="9.489" y1="20.735" x2="15.684" y2="25.2275"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="6.652" y1="25.13" x2="17.26" y2="31.238"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="4.29" y1="29.798" x2="11.2825" y2="32.903"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="2.429" y1="34.687" x2="9.7065" y2="37.0395"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="1.089" y1="39.743" x2="7.485" y2="41.3255"/>
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.3" stroke-miterlimit="10" x1="0.285" y1="44.913" x2="7.895" y2="45.7005"/>
+
+						<line fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.75" stroke-miterlimit="10" x1="0.025" y1="50.138" x2="12.269" y2="50.132"/>
+					</g>
+				</svg>
+		<span id="count">70</span>
+	</div>
+</div>
+
+<script>
+	const percent = 70 / 100;
+	const lines = document.getElementById('circle').getElementsByTagName('line');
+	const len = lines.length;
+	setTimeout(function () {
+		for ( let i = 1; i <= percent * len; i++ ) {
+			let item = lines[len - i];
+			item.style.stroke = '#fff';
+			item.style.transition = 'all .5s ease ' + i * 0.03 + 's';
+			item.style.webkitTransition = 'all .5s ease ' + i * 0.03 + 's';
+		}
+	}, 100);
+</script>
+</body>
+</html>

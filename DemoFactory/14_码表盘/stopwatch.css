@@ -1,0 +1,28 @@
+#container {
+  background: linear-gradient(166deg, #FF3333 17%, #FF7654 95%);
+  position: relative;
+  width: 100%;
+  height: 8.8rem; }
+
+#round_box {
+  position: absolute;
+  width: 8rem;
+  height: 4rem;
+  margin: 0 1rem;
+  top: 1.4rem;
+  z-index: 10; }
+  #round_box #round {
+    position: absolute;
+    z-index: 20; }
+  #round_box #count {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2.4rem;
+    bottom: -0.13333rem;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #fff;
+    z-index: 100; }
+
+/*# sourceMappingURL=stopwatch.css.map */
