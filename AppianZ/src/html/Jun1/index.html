@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>生成城市二级联动</title>
+</head>
+<body>
+<div id="container">
+	打开控制台
+</div>
+<script src="city.js"></script>
+<script>
+	var data = $city.map(item => {
+		if (item.child) {
+			item.child.map( it => {
+				if(it.child) delete it.child;
+				return it;
+			});
+		}
+		return item;
+	});
+	console.log(JSON.stringify(data));
+</script>
+</body>
+</html>
