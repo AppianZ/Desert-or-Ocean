@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>Vue左滑删除</title>
+	<script src="./flexible.js"></script>
+	<script src="./zepto1.2.0.js"></script>
+	<link rel="stylesheet" href="../../css/agent/userlist.css">
+</head>
+<body>
+<div id="container">
+	<div id="searchBox">
+		<input type="text" v-model="keyword" placeholder="客户名称搜索">
+	</div>
+	<ul id="list">
+		<li class="list-li" v-for="(el, index) in list"
+				@touchstart="touchStart(index)">
+			<div class="con"
+					 :class="{'on' : index === currentIdx && makesure}"
+					 @click="linkDetail(el.customerId)">
+				<h3 v-text="el.nickName"></h3>
+				<h4 v-text="el.account"></h4>
+				<span v-text="el.status === 0 ? '未开户' : '已开户'"
+							:class="{'none' : el.status === 0}"></span>
+			</div>
+			<div class="btn" @click="deleteItem(el.customerId, index)">删除</div>
+		</li>
+	</ul>
+	<tab :current="current"></tab>
+</div>
+
+<script src="./vue2.0.js"></script>
+<script src="./etouch1.0.js"></script>
+<script src="./slideLeft.js"></script>
+</body>
+</html>
