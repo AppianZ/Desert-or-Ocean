@@ -1,0 +1,121 @@
+$rem: 75;
+@function r($px) {
+	@return $px / $rem * 1 + rem;
+}
+
+@mixin f($font-size) {
+	font-size: $font-size + px;
+
+	[data-dpr="2"] & {
+		font-size: $font-size * 2 + px;
+	}
+
+	[data-dpr="3"] & {
+		font-size: $font-size * 3 + px;
+	}
+}
+
+ol, ul {
+	list-style: none; }
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	touch-action: none;
+	background: #f4f4f4;
+}
+
+#searchBox {
+	position: relative;
+	padding: r(20) r(30) r(20);
+	input {
+		outline: none;
+		padding: r(5) 0;
+		width: 100%;
+		height: r(50);
+		line-height: r(50);
+		border-radius: r(4);
+		border: r(1) solid #fff;
+		background: #fff;
+		color: #acacac;
+		font-size: r(32);
+		text-indent: r(55);
+	}
+}
+
+#list {
+	position: relative;
+	overflow: hidden;
+	min-height: r(130);
+	&:before {
+		position: absolute;
+		display: block;
+		top: r(80);
+		left: 50%;
+		width: r(200);
+		text-align: center;
+		content: '暂无客户';
+		font-size: r(18);
+		color: #acacac;
+		z-index: -1;
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+
+$liHeight : r(140);
+
+#list li {
+	position: relative;
+	list-style: none;
+	height: $liHeight;
+}
+
+#list .btn {
+	position: absolute;
+	height: $liHeight;
+	line-height: $liHeight;
+	width: r(200);
+	right: 0;
+	top: 0;
+	text-align: center;
+	font-size: r(32);
+	background: #EB3B3D;
+	color: #fff;
+	z-index: 1;
+}
+#list .con {
+	position: relative;
+	display: block;
+	height: $liHeight;
+	background: #ffffff;
+	transform: translate3d(0,0,0);
+	z-index: 2;
+	&:after {
+		content: '';
+		position: absolute;
+		height: r(2);
+		width: r(690);
+		left: r(30);
+		bottom: r(0);
+		background: #f8f8f8;
+	}
+	h3 {
+		padding: r(18) r(30) 0;
+		font-size: r(36);
+		color: #333;
+	}
+	h4 {
+		padding: r(5) r(30) 0;
+		font-size: r(32);
+		color: #aaa;
+	}
+}
+#list .con.on {
+	-webkit-transform: translate3d(r(-200),0,0) !important;
+	transform: translate3d(r(-200),0,0) !important;
+	-webkit-transition: all .35s ease !important;
+	transition: all .35s ease !important;
+}
