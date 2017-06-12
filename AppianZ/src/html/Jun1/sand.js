@@ -1,24 +1,22 @@
 /**
  * Created by appian on 2017/6/7.
  */
-
-const end = 1500; // 倒计时的秒数
-
+var end = 1500; // 倒计时的秒数
 // canvas开始
-let distance = 0;
-const distanceIncrease = 0.02; // 平移增量
-const ctxWidth = 500;
-const ctxHeight = 500;
-let handlerTop = null;
-let handlerBottom = null;
-const totalTime = 1800 * 1000; // 倒计时剩余的时间(毫秒)
-let remainTime = end * 1000; // 倒计时剩余的时间(毫秒)
-let time = remainTime / totalTime; // 倒计时剩余的时间(毫秒)的百分比
-const mistake = .15;
+var distance = 0;
+var distanceIncrease = 0.02; // 平移增量
+var ctxWidth = 500;
+var ctxHeight = 500;
+var handlerTop = null;
+var handlerBottom = null;
+var totalTime = 1800 * 1000; // 倒计时剩余的时间(毫秒)
+var remainTime = end * 1000; // 倒计时剩余的时间(毫秒)
+var time = remainTime / totalTime; // 倒计时剩余的时间(毫秒)的百分比
+var mistake = .15;
 
 function waveOne(ctx, progress) {
-	for (let i = 0; i < ctxWidth; ++i) {
-		let point = {
+	for (var i = 0; i < ctxWidth; ++i) {
+		var point = {
 			x: i,
 			y: 50 * Math.sin(0.01 * i + Math.PI - distance) + ctxHeight * (1 - progress)
 		};
@@ -27,8 +25,8 @@ function waveOne(ctx, progress) {
 }
 
 function waveTwo(ctx, progress) {
-	for (let i = 0; i < ctxWidth; ++i) {
-		let point = {
+	for (var i = 0; i < ctxWidth; ++i) {
+		var point = {
 			x: i,
 			y: 40 * Math.sin(0.01 * i + distance) + ctxHeight * (1 - progress)
 		};
@@ -37,8 +35,8 @@ function waveTwo(ctx, progress) {
 }
 
 function waveThree(ctx, progress) {
-	for (let i = 0; i < ctxWidth; ++i) {
-		let point = {
+	for (var i = 0; i < ctxWidth; ++i) {
+		var point = {
 			x: i,
 			y: 30 * Math.sin(0.01 * i + .5 * Math.PI + distance) + ctxHeight * (1 - progress)
 		};
@@ -83,16 +81,15 @@ function drawBottom(ctx, progress) {
 	}
 }
 
-let cvstop = document.getElementById('cvstop');
-let cvsbottom = document.getElementById('cvsbottom');
-alert(cvstop.getContext);
-
+var cvstop = document.getElementById('cvstop');
+var cvsbottom = document.getElementById('cvsbottom');
+ 
 if (cvstop.getContext) {
-	let ctx = cvstop.getContext('2d');
+	var ctx = cvstop.getContext('2d');
 	handlerTop = requestAnimationFrame(drawTop(ctx, time - mistake));
 }
 if (cvsbottom.getContext) {
-	let ctx = cvsbottom.getContext('2d');
+	var ctx = cvsbottom.getContext('2d');
 	handlerBottom = requestAnimationFrame(drawBottom(ctx, 1 - time - mistake));
 }
 // canvas结束
