@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>svg动画</title>
+    <style>
+        html,body {
+            background: #f3f3f3;
+        }
+        section  {
+            display: inline-block;
+            padding: 10px;
+            margin: 20px;
+            border: 3px solid #FD9840;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <section>
+        <p>animate基本动画(可叠加)</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100">
+            <rect x="10" y="10" width="50" height="30" fill="#85D64D">
+                <!--attributeType有xml和css,默认auto(先找css再找xml),性能消耗大,最好指定-->
+                <!--fill默认为remove(结束回到原点,就是把原动画移除),freeze(结束时停住)-->
+                <!--repeatCount="indefinite"指定循环次数,100,或者"indefinite"-->
+                <animate
+                    attributeType="XML"
+                    attributeName="x"
+                    from="10"
+                    to="100"
+                    dur="1s"
+                    fill="freeze"
+                    repeatCount="indefinite"
+                ></animate>
+                <!--attributeName="fill"时,如果不在外层rect上指定fill的初始值,或from和初始值不一致,会导致闪烁-->
+                <animate
+                        attributeType="XML"
+                        attributeName="fill"
+                        from="#85D64D"
+                        to="#f93"
+                        dur="1s"
+                        fill="freeze"
+                ></animate>
+            </rect>
+        </svg>
+    </section>
+
+    <section>
+        <p>animate摆动动画</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="100">
+            <rect x="10" y="10" width="50" height="30" fill="#85D64D">
+                <!--animate的id不能用肉串式-->
+                <!--因为animate的id会在begin属性中做加减运算-->
+                <!--begin属性设置了图形运动的起始位置-->
+                <!--也可以在begin属性中增加延时-->
+                <!--from和to的值要记得设置正确-->
+                <animate id="goright"
+                        attributeType="XML"
+                        attributeName="x"
+                        begin="0; goleft.end + 1s"
+                        from="10"
+                        to="100"
+                        dur="1s"
+                        fill="freeze"
+                ></animate>
+                <animate id="goleft"
+                         attributeType="XML"
+                         attributeName="x"
+                         begin="0;goright.end"
+                         from="100"
+                         to="10"
+                         dur="1s"
+                         fill="freeze"
+                ></animate>
+            </rect>
+        </svg>
+    </section>
+
+    <section>
+        <p>animateTransform变换动画</p>
+        <p>红点为原点,旋转半径为10</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -50 200 100">
+            <circle cx="0" cy="0" r="2" fill="red"></circle>
+            <rect x="10" y="10" width="50" height="30" fill="#85D64D">
+                <!--animateTransform是专门用来设置变换动画的-->
+                <!--type指定一个transform的类型-->
+                <!--animateTransform不能叠加,后面的会覆盖前面的-->
+                <animateTransform
+                         attributeType="XML"
+                         attributeName="transform"
+                         type="rotate"
+                         from="0"
+                         to="180"
+                         dur="2s"
+                         fill="freeze"
+                         repeatCount="indefinite"
+                ></animateTransform>
+            </rect>
+        </svg>
+    </section>
+
+    <section>
+        <p>animateMotion轨迹移动</p>
+        <p>在animateMotion中直接指定path属性</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -70 200 100">
+            <rect x="-3" y="-3" width="6" height="6" fill="#85D64D">
+                <!--animateMotion是指定一个运动的轨迹-->
+                <!--rotate是可以让图形沿着轨迹的切线方向运动-->
+                <animateMotion
+                        path="M 0 0 L 20 20 A 40 40  0 1 0 0 -20"
+                        dur="2s"
+                        rotate="auto"
+                        fill="freeze"
+                        repeatCount="indefinite"
+                ></animateMotion>
+            </rect>
+            <path d="M 0 0 L 20 20 A 40 40  0 1 0 0 -20" stroke="red" fill="none">
+            </path>
+        </svg>
+    </section>
+
+    <section>
+        <p>animateMotion轨迹移动</p>
+        <p>在animateMotion中使用mpath标签</p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -70 200 100">
+            <rect x="-3" y="-3" width="6" height="6" fill="#85D64D">
+                <!--mpath指定了一个图形的运动轨迹,不需要带url()-->
+                <animateMotion
+                        dur="2s"
+                        rotate="auto"
+                        fill="freeze"
+                        repeatCount="indefinite"
+                >
+                    <mpath xlink:href="#motionpath"></mpath>
+                </animateMotion>
+            </rect>
+            <path id="motionpath" d="M 0 0 L 20 20 A 40 40  0 1 0 0 -20" stroke="red" fill="none">
+            </path>
+        </svg>
+    </section>
+</div>
+<script>
+
+</script>
+</body>
+</html>

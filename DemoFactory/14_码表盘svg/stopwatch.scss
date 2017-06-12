@@ -1,0 +1,46 @@
+$rem: 75;
+@function r($px) {
+	@return $px / $rem * 1 + rem;
+}
+
+@mixin f($font-size) {
+	font-size: $font-size + px;
+
+	[data-dpr="2"] & {
+		font-size: $font-size * 2 + px;
+	}
+
+	[data-dpr="3"] & {
+		font-size: $font-size * 3 + px;
+	}
+}
+
+#container {
+	background: linear-gradient(166deg, #FF3333 17%, #FF7654 95%);
+	position: relative;
+	width: 100%;
+	height: r(660);
+}
+#round_box {
+	position: absolute;
+	width: r(600);
+	height: r(300);
+	margin: 0 r(75);
+	top: r(105);
+	z-index: 10;
+	#round {
+		position: absolute;
+		z-index: 20;
+	}
+	#count {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: r(180);
+		bottom: r(-10);
+		text-align: center;
+		font-size: r(120);
+		color: #fff;
+		z-index: 100;
+	}
+}

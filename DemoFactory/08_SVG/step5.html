@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>svg-textpath</title>
+</head>
+<body>
+<div id="container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000">
+        <path id="path1" d="M 100 200 Q 200 100 300 200 T 500 200" stroke="red" fill="none"></path>
+        <text x="0" text-anchor="end" dx="0 20 20"  dy="-20 20 20">
+            <textPath xlink:href="#path1" startOffset="100%">
+            这里是一行文字,用来测试textpath的文字结束
+            </textPath>
+        </text>
+    </svg>
+</div>
+</body>
+</html>

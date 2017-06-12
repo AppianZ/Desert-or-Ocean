@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>path绘图</title>
+    <style>
+        html,body {
+            background: #f3f3f3;
+        }
+        section  {
+            display: inline-block;
+            padding: 10px;
+            margin: 20px;
+            border: 3px solid #FD9840;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <section>
+            <p>直线命令</p>
+            <p> d="M 10 10 L 40 50 h -10 v 30 Z"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 10 10 L 40 50 h -10 v 30 Z" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>弧线laf=0 sf=0</p>
+            <p>d="M 20 20 A 7 12 10 0 0 70 70"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 A 7 12 10 0 0 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>弧线laf=0 sf=1</p>
+            <p>d="M 20 20 A 7 12 10 0 1 70 70"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 A 7 12 10 0 1 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>弧线laf=1 sf=0</p>
+            <p> d="M 20 20 A 7 12 10 1 0 70 70" </p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 A 7 12 10 1 0 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>弧线laf=1 sf=1</p>
+            <p> d="M 20 20 A 7 12 10 1 1 70 70"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 A 7 12 10 1 1 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>二次贝塞尔曲线</p>
+            <p> d="M 20 20 Q 80 20 70 70"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 Q 80 20 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>三次贝塞尔曲线</p>
+            <p> d="M 20 20 c 60 10 70 50 70 70"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 20 20 c 60 10 70 50 70 70" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+
+        <section>
+            <p>二次光滑贝塞尔</p>
+            <p>d="M 10 50 Q 20 10 50 50 T 70 50"</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <path d="M 10 50 Q 20 10 50 50 T 70 50" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+
+        <section>
+            <p>三次简化贝塞尔</p>
+            <p> d="M 10 50 C 10 10 50 10 85 50 S 90 80 120 50" </p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="100">
+                <path d="M 10 50 C 10 10 50 10 85 50 S 90 80 120 50" stroke="#85D64D" fill="white"></path>
+            </svg>
+        </section>
+    </div>
+</body>
+</html>

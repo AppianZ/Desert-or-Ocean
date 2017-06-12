@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>流星运行轨迹</title>
+</head>
+<body>
+<div id="container" style="background: #f93">
+    <svg width="1750" height="1500" xmlns="http://www.w3.org/2000/svg">
+        <rect x="-3" y="-3" width="6" height="6" fill="#85D64D">
+            <!--animateMotion是指定一个运动的轨迹-->
+            <!--rotate是可以让图形沿着轨迹的切线方向运动-->
+            <animateMotion
+                    path="M 500 90 L 200 270"
+                    dur="2s"
+                    rotate="auto"
+                    fill="freeze"
+                    repeatCount="indefinite"
+            ></animateMotion>
+        </rect>
+        <path d="M 500 90 L 200 270" stroke="red" fill="none">
+
+        </path>
+
+
+        <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDAEB0"></stop><stop offset=".5" stop-color="#fff"></stop></linearGradient>
+
+         <path id="starpath" d="M 400 90 L 100 270" stroke="yellow" fill="none"></path>
+        <polygon points="401 91 399 89 500 28 500 33" fill="url(#grad1)" transform="translate(-450,-60)">
+            <animateMotion
+                    path="M 400 90 L 100 270"
+                    dur="3s"
+                    fill="freeze"
+                    repeatCount="indefinite"
+            ></animateMotion>
+        </polygon>
+         <rect width="6" height="6" fill="green">
+             <animateMotion
+                     path="M 400 90 L 100 270"
+                     dur="2s"
+                     rotate="auto"
+                     fill="freeze"
+                     repeatCount="indefinite"
+             ></animateMotion>
+        </rect>
+
+        <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#star" transform="translate(100,-20)"></use>-->
+    </svg>
+</div>
+</body>
+</html>
