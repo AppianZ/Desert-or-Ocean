@@ -59,6 +59,8 @@ body {
   text-align: center;
   font-size: 0.42667rem;
   background: #EB3B3D;
+  border: 0.02667rem solid #f8f8f8;
+  box-sizing: border-box;
   color: #fff;
   z-index: 1; }
 
