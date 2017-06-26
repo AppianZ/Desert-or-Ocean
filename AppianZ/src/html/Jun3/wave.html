@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="screen-orientation" content="portrait">
+	<title>Title</title>
+	<style>
+
+		.wave {
+			background: url(./wave.svg) repeat-x;
+			width: 6400px;
+			height: 198px;
+			animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+			transform: translate3d(0, 0, 0);
+		}
+
+		.wave:nth-of-type(2) {
+			animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite;
+			opacity: 1;
+		}
+
+		@keyframes wave {
+			0% {
+				margin-left: 0;
+			}
+			100% {
+				margin-left: -1600px;
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="ocean">
+		<div class="wave"></div>
+		<!--<div class="wave"></div>-->
+	</div>
+</div>
+</body>
+</html>
