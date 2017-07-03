@@ -29,7 +29,7 @@ body {
 
 #list {
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   min-height: 1.73333rem; }
   #list:before {
     position: absolute;

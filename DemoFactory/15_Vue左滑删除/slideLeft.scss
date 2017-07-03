@@ -48,7 +48,7 @@ body {
 
 #list {
 	position: relative;
-	overflow: hidden;
+	overflow: auto;
 	min-height: r(130);
 	&:before {
 		position: absolute;

@@ -1,40 +1,40 @@
 /**
-*  @description 手势构造函数，暂支持tap和上下左右滑动，支持事件代理
-*  @param {String} id
-*  @param {String} selector(可选)  支持复杂选择器
-*  @param {function} fn
-*
-*  @example  事件代理例子 !!!!!第一个参数仅支持id!!!!!!
-*	支持复杂选择器代理
-*	etouch('#pox','.ul li span',function(e,touch) {
-*		console.log('我仅仅至少一个tap啊！');
-*		console.log(touch);
-*	}).on('swiper',function(e,touch) {
-*		console.log('实时获取');
-*	}).on('up',function(e,touch) {
-*		console.log('上滑回调');
-*	}).on('down',function(e,touch) {
-*		console.log('下滑回调');
-*	}).on('left',function(e,touch) {
-*		console.log('左滑回调');
-*	}).on('right',function(e,touch) {
-*		console.log('右滑回调');
-*	});
-*
-* @example  直接事件绑定
-*  etouch('li',function(e,touch) {
-*		console.log(this,e,touch);
-*	}).on('left',function() {
-*
-*  })
-*  e为事件对象，touch为触摸返回对象
-*/
+ *  @description 手势构造函数，暂支持tap和上下左右滑动，支持事件代理
+ *  @param {String} id
+ *  @param {String} selector(可选)  支持复杂选择器
+ *  @param {function} fn
+ *
+ *  @example  事件代理例子 !!!!!第一个参数仅支持id!!!!!!
+ *	支持复杂选择器代理
+ *	etouch('#pox','.ul li span',function(e,touch) {
+ *		console.log('我仅仅至少一个tap啊！');
+ *		console.log(touch);
+ *	}).on('swiper',function(e,touch) {
+ *		console.log('实时获取');
+ *	}).on('up',function(e,touch) {
+ *		console.log('上滑回调');
+ *	}).on('down',function(e,touch) {
+ *		console.log('下滑回调');
+ *	}).on('left',function(e,touch) {
+ *		console.log('左滑回调');
+ *	}).on('right',function(e,touch) {
+ *		console.log('右滑回调');
+ *	});
+ *
+ * @example  直接事件绑定
+ *  etouch('li',function(e,touch) {
+ *		console.log(this,e,touch);
+ *	}).on('left',function() {
+ *
+ *  })
+ *  e为事件对象，touch为触摸返回对象
+ */
 (function(window, undefined) {
   function swipeDirection(x1, x2, y1, y2) {
     return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? (x1 - x2 > 0 ? 'left' : 'right') : (y1 - y2 > 0 ? 'up' : 'down');
   }
   //事件代理用的函数
-
+  
   function delegate(agent, type, selector, fn) {
     //为了复杂的选择器实现
     if (typeof selector != "string") {
@@ -55,7 +55,7 @@
       }
       return bubble;
     }, false);
-
+    
     function filiter(agent, selector, target) {
       var nodes = agent[0].querySelectorAll(selector);
       for (var i = 0; i < nodes.length; i++) {
@@ -66,14 +66,14 @@
     }
   }
   //事件代理用的函数结束
-
+  
   function eTouch(root, selector, fn) {
     this.root = document.querySelectorAll(root); //root委托元素
     if (!this.root) {
       console.log('root不存在');
       return;
     }
-
+    
     this.target = {//当前点击的对象
       el : null,
       w : null,
@@ -105,15 +105,15 @@
         this.clock = false;
     }
   }
-
+  
   eTouch.prototype.init = function() {
     this.touchObj.distanceX = 0;
     this.touchObj.distanceY = 0;
   }
   eTouch.prototype.operate = function(fn) {
     var touchObj = this.touchObj, //缓存touchObj
-      isTap = this.isTap,
-      _this = this;
+        isTap = this.isTap,
+        _this = this;
     delegate(this.root, 'touchstart', this.selector, function(e) {
       _this.target.el = this; //存储点击对象是谁
       _this.target.w = this.getBoundingClientRect().width;
@@ -143,7 +143,7 @@
     })
     return this;
   }
-
+  
   //把3个状态提取出来
   function touchStart(e, touchObj, module) {
     module.init(); //滑动或者点击结束要初始化
@@ -155,7 +155,7 @@
     touchObj.clientY = touches.clientY;
     module.time = +new Date();
   }
-
+  
   function touchMove(e, target, touchObj, module) {
     var touches = e.touches[0];
     touchObj.status = 'swiper';
@@ -170,7 +170,7 @@
     module.p = module.p + 0.5 * touchObj.distanceY * touchObj.distanceY / touchObj.distanceX;
     var pAvg = module.p / module.count;
     var touchS = (2/3) * (2 * pAvg * touchObj.distanceX) * Math.sqrt(2 * pAvg * touchObj.distanceX);
-
+    
     var targetH = target.h;
     var targetW = target.w;
     var targetS = 0;
@@ -179,7 +179,7 @@
     } else {
       targetS = (2/3) * ( targetH * targetH * Math.abs(touchObj.distanceX) / targetW) * Math.sqrt( targetH * targetH * Math.abs(touchObj.distanceX) / targetW);
     }
-
+    
     /*
      * 以上是
      * 手指划过微积分算法
@@ -195,7 +195,7 @@
       module.trigger(touchObj.status, e, touchObj);
     }
   }
-
+  
   function touchEnd(e, target, touchObj, module, fn) {
     var touches = e.changedTouches[0];
     var time = +new Date() - module.time;
@@ -207,31 +207,25 @@
     var y1 = touchObj.pageY;
     var y2 = touchObj.pageY + touchObj.distanceY;
     touchObj.status = swipeDirection(x1, x2, y1, y2);
-
-    // 手指停留时间大于150ms 并且 滑动位移大于30，则触发滑动事件 否则为tap
-    if( time > 50 &&
-      ( Math.abs(touchObj.distanceX) > 15 || Math.abs(touchObj.distanceY) > 15 )
-    ) {
-      module.trigger(touchObj.status, e, touchObj);
-    } else if(
-      time < 50 &&
-      ( Math.abs(touchObj.distanceX) < 10 && Math.abs(touchObj.distanceY) < 10 )
-    ) {
+    
+    //当手指触摸时间＜150和位移小于2px则为tap事件
+    if (time < 150 && Math.abs(touchObj.distanceX) < 2 && Math.abs(touchObj.distanceY) < 2) {
       module.isTap = true;
       if (module.isTap) {
         touchObj.status = 'tap';
-        // 返二个参数 指向被触发的dom，和当前构造函数
+        //返二个参数 指向被触发的dom，和当前构造函数
         setTimeout(function() {
           module.isTap = false;
           fn.call(target, e, touchObj);
-        }, 100);
+        }, 30);
       }
+    } else { //否则为滑动或者双击，双击暂不想做
+      module.trigger(touchObj.status, e, touchObj);
     }
-
     module.count = 0;
     module.p = 0;
   }
-
+  
   if (typeof define === 'function' && (define.amd || define.cmd)) {
     define(function() {
       return eTouch(root, selector, fn);
@@ -241,5 +235,5 @@
       return new eTouch(root, selector, fn);
     };
   }
-
+  
 })(window, undefined);
