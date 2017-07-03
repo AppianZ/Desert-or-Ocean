@@ -90,12 +90,12 @@ new Vue({
 			"account": "1003-1003-1003",
 			"nickName": "江大大",
 			"status": 1
-		},{
+		}, {
 			"userId": "1004",
 			"account": "1004-1004-1004",
 			"nickName": "胡大大",
 			"status": 1
-		},{
+		}, {
 			"userId": "1005",
 			"account": "1005-1005-1005",
 			"nickName": "习大大",
