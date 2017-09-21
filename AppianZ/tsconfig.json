@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "system",
+    "target": "es5",
+    "sourceMap": true,
+    "outDir": [
+      "src/js/**/*.ts"
+    ],
+  },
+  "include": [
+    "src/js/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
