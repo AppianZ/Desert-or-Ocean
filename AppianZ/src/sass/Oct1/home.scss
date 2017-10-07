@@ -1,0 +1,50 @@
+@import "../reset";
+
+body, html {
+  height: 100%;
+}
+
+#container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  overflow: hidden;
+  canvas {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+#titleBox {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  text-align: center;
+  h3 {
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+  }
+}
+
+@media screen and (min-width: 750px) {
+  #titleBox {
+    h3 {
+      letter-spacing: 5px;
+      font-size: 28px;
+      color: red;
+      text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #titleBox {
+    h3 {
+      letter-spacing: 5px;
+      font-size: 28px;
+      color: blue;
+      text-shadow: 1px 1px 10px red;
+    }
+  }
+}

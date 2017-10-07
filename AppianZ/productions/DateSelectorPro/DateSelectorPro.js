@@ -472,7 +472,7 @@
 			console.log('应得到的结果' + _this.resultArr);
 		},
 		initPosition: function (dis, max, idx) {
-			dis     = dis < 0 ? 0 : dis;
+			dis     = dis < 0 ? 0 : dis;``
 			dis     = dis > max ? max : dis;
 			var sub = dis % this.liHeight;
 			if (sub < this.liHeight / 2) {
