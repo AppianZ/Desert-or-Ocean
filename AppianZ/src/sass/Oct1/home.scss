@@ -1,5 +1,22 @@
 @import "../reset";
 
+$rem: 75;
+@function r($px) {
+  @return $px / $rem * 1 + rem;
+}
+
+@mixin f($font-size) {
+  font-size: $font-size + px;
+
+  [data-dpr="2"] & {
+    font-size: $font-size * 2 + px;
+  }
+
+  [data-dpr="3"] & {
+    font-size: $font-size * 3 + px;
+  }
+}
+
 body, html {
   height: 100%;
 }
@@ -8,7 +25,7 @@ body, html {
   position: relative;
   height: 100%;
   width: 100%;
-  background: #eee;
+  background: #fafafa;
   overflow: hidden;
   canvas {
     height: 100%;
@@ -23,28 +40,71 @@ body, html {
   transform: translate3d(-50%, -50%, 0);
   text-align: center;
   h3 {
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+    color: #333;
+    font-weight: 400;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  }
+  p {
+    font-weight: 200;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.050);
+  }
+  a {
+    display: block;
+    font-weight: 300;
   }
 }
 
 @media screen and (min-width: 750px) {
   #titleBox {
+    width: 430px;
     h3 {
       letter-spacing: 5px;
       font-size: 28px;
-      color: red;
-      text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+    }
+    p {
+      padding: 2px 0 23px;
+      color: rgb(210, 210, 210);
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+    a {
+      padding: 0;
+      margin: 0;
+      height: 28px;
+      line-height: 28px;
+      letter-spacing: 2px;
+      color: rgba(109, 109, 109, 0.8);
+      font-size: 14px;
+      cursor: pointer;
+      transform: translate3d(0, -5px,0);
+      transition: all .5s ease -.1s;
+      &:hover, &:active {
+        font-size: 15px;
+        color: rgba(102, 102, 102, 1);
+        transform: translate3d(0,0,0);
+      }
     }
   }
 }
 
 @media screen and (max-width: 750px) {
   #titleBox {
+    width: 100%;
     h3 {
       letter-spacing: 5px;
-      font-size: 28px;
-      color: blue;
-      text-shadow: 1px 1px 10px red;
+      @include f(18);
+    }
+    p {
+      padding: r(2) 0 r(35);
+      color: rgba(102, 102, 102, 0.9);
+      @include f(14);
+    }
+    a {
+      padding: r(2) 0;
+      margin: 0 0 r(5);
+      color: #555;
+      @include f(12);
+      cursor: pointer;
     }
   }
 }
