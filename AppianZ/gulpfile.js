@@ -11,6 +11,8 @@ var changed = require('gulp-changed');
 var ts = require("gulp-typescript");
 var tsProject = ts.createProject("tsconfig.json");
 
+var rev = require('gulp-rev');
+
 
 gulp.task('serve', ['scssToCss', 'tsc'], function () {
   browserSync.init({
@@ -51,3 +53,14 @@ gulp.task('tsc', function () {
 });
 
 gulp.task('default', ['serve']); //默认任务
+
+
+gulp.task('build:testjs', function () {
+  // js的源路径
+  return gulp.src('./src/js/Apr1/*.js')
+    .pipe(rev())
+    // js的输出目标路径
+    .pipe(gulp.dest('./public/'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('./public/'))
+});

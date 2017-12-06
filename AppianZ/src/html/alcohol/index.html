@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>Title</title>
+    <link rel="stylesheet" href="./../../../dest/css/alcohol/index.css"/>
+</head>
+<body>
+<div id="container">
+    <header><div></div></header>
+    <h5>精酿工作室</h5>
+    <p>店主精选推荐</p>
+    <article>
+        <section v-for="el in list">
+            <div class="img">
+                <img :src="el.url"/>
+            </div>
+            <div class="title">
+                <p v-text="el.name"></p>
+                <span v-text="el.price"></span>
+                <b v-text="el.unit"></b>
+            </div>
+        </section>
+    </article>
+    <footer>
+        <p>开业大吉, 美酒热销中 ~  4️⃣ 瓶包邮<br/>长按识别二维码, 加他品美酒 👉 </p>
+        <div>
+            <img src="qr.jpeg"/>
+        </div>
+    </footer>
+</div>
+<script src="./../../js/vue.min.js"></script>
+<script src="./../../js/alcohol/index.js"></script>
+</body>
+</html>
