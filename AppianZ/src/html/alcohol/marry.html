@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>Title</title>
+    <link rel="stylesheet" href="./../../../dest/css/alcohol/marry.css"/>
+    <script src="//at.alicdn.com/t/font_504616_nlz3r5ibyb2lc8fr.js"></script>
+</head>
+<body>
+<div id="container">
+    <header>
+        <div>
+            <div class="title1"></div>
+            <div class="title2"></div>
+            <div class="title3">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-kehuxinxi-xiangqing-sidai"></use>
+                </svg>
+            </div>
+            <span class="span1">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-Xmas_C-2"></use>
+                </svg>
+            </span>
+            <span class="span2">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-Xmas_C-1"></use>
+                </svg>
+            </span>
+            <span class="span3">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-Xmas_C-"></use>
+                </svg>
+            </span>
+            <span class="span4">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-Xmas_C-1"></use>
+                </svg>
+            </span>
+        </div>
+    </header>
+    <h5>精酿工作室</h5>
+    <p>店主精选推荐</p>
+    <article>
+        <section v-for="el in list">
+            <div class="img">
+                <img :src="el.url"/>
+            </div>
+            <div class="title">
+                <p v-text="el.name"></p>
+                <span v-text="el.price"></span>
+                <b v-text="el.unit"></b>
+            </div>
+        </section>
+    </article>
+    <footer>
+        <p>开业大吉, 美酒热销中 ~  4️⃣ 瓶包邮<br/>长按识别二维码, 加他品美酒 👉 </p>
+        <div>
+            <img src="qr.jpeg"/>
+        </div>
+    </footer>
+</div>
+<script src="./../../js/vue.min.js"></script>
+<script src="./../../js/alcohol/index.js"></script>
+</body>
+</html>
