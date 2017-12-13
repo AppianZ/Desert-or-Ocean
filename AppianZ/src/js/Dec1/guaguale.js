@@ -19,9 +19,10 @@ GuaGuaLe.prototype = {
    * @returns {{frontFillColor: string, backFillColor: string, backFontColor: string, backFontSize: number, msg: string}}
    */
   mergeAttr: function (desAttr) {
+    desAttr = desAttr || {};
     var defaultAttr = {
       frontFillColor: '#AFAFAE',
-      backFillColor: '#FDD8A7',
+      backFillColor: '#FDD09A',
       backFontColor: '#CC2031',
       backFontSize: 24,
       msg: '什么都没刮到'
