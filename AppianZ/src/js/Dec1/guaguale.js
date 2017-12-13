@@ -49,30 +49,50 @@ GuaGuaLe.prototype = {
 
     var _this = this;
 
-    //设置事件
+    //设置鼠标事件
     this.$eleFront.addEventListener('mousedown', function(e) {
-      _this.mouseDown(e);
+      _this.eventDown(e);
     })
     this.$eleFront.addEventListener('mousemove', function(e) {
-      _this.mouseMove(e);
+      _this.eventMove(e);
     })
     this.$eleFront.addEventListener('mouseup', function() {
-      _this.mouseUp();
+      _this.eventUp();
+    })
+
+    // 绑定touch事件
+    this.$eleFront.addEventListener('touchstart', function(e) {
+      _this.eventDown(e);
+    })
+    this.$eleFront.addEventListener('touchmove', function(e) {
+      _this.eventMove(e);
+    })
+    this.$eleFront.addEventListener('touchend', function() {
+      _this.eventUp();
     })
   },
 
-  mouseDown: function (event) {
+  eventDown: function (event) {
     this.isStart = true;
+    event.preventDefault();
+    if (event.changedTouches) {
+      event = event.changedTouches[event.changedTouches.length - 1];
+    }
     this.startPoint = this.frontCanvas.getCanvasPoint(event.pageX, event.pageY);
   },
 
-  mouseMove: function (event) {
+  eventMove: function (event) {
     if (!this.isStart)return;
+    event.preventDefault();
+    if (event.changedTouches) {
+      event = event.changedTouches[event.changedTouches.length - 1];
+    }
     var p = this.frontCanvas.getCanvasPoint(event.pageX, event.pageY);
     this.frontCanvas.clearRect(p);
   },
 
-  mouseUp: function() {
+  eventUp: function() {
+    event.preventDefault();
     this.isStart = false;
   }
 };
