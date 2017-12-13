@@ -3,15 +3,6 @@
 <head>
     <title>guaguale</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="./../../js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="./../../js/Dec1/canvas2d.js"></script>
-    <script type="text/javascript" src="./../../js/Dec1/guaguale.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var guaguale = new GuaGuaLe("front", "back");
-            guaguale.init({msg: "￥500"});
-        });
-    </script>
     <style type="text/css">
         body {
             background: #fff;
@@ -22,8 +13,6 @@
         #front, #back {
             position: absolute;
             display: inline-block;
-            width: 200px;
-            height: 80px;
             border-radius: 5px;
             border: 1px solid #444;
             box-sizing: border-box;
@@ -31,11 +20,15 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <canvas id="back" width="200" height="80"></canvas>
     <canvas id="front" width="200" height="80"></canvas>
 </div>
-
+<script type="text/javascript" src="./../../js/Dec1/canvas2d.js"></script>
+<script type="text/javascript" src="./../../js/Dec1/guaguale.js"></script>
+<script type="text/javascript">
+    var guaguale = new GuaGuaLe("front", "back");
+    guaguale.init({msg: "￥500"});
+</script>
 </body>
 </html>

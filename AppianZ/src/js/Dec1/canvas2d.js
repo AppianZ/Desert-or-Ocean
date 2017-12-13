@@ -83,9 +83,9 @@ function Canvas2D($canvas) {
   /**
    * 当屏幕大小发生变化，重新计算offset
    */
-  $(window).resize(function () {
+  window.onresize = function () {
     pageOffset = $canvas.offset();
-  });
+  };
 
   /**
    * 将页面上的左边转化为canvas中的坐标
