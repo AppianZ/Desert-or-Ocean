@@ -7,8 +7,8 @@
  */
 Element.prototype.offset = function () {
   return {
-    top: this.offsetTop,
-    left: this.offsetLeft,
+    top: this.offsetTop + 10,
+    left: this.offsetLeft + 10,
   };
 }
 
