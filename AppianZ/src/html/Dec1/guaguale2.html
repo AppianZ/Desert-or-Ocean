@@ -43,12 +43,9 @@
 </div>
 <script type="text/javascript" src="./../../js/Dec1/guaguale2.js"></script>
 <script type="text/javascript">
-    var guaguale = new GuaGuaLe("front");
-    guaguale.init({
-        percent: .7,
-        success: function() {
-        }
-    });
+    new GuaGuaLe("front").init(function() {
+        console.log('刮刮乐成功的回调');
+    }, .4);
 </script>
 </body>
 </html>

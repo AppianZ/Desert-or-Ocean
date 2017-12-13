@@ -18,6 +18,8 @@ function Canvas2D($canvas) {
     height = $canvas.offsetHeight,
     pageOffset = $canvas.offset();
 
+  var targetClearArray = [];
+
   /**
    * 绘制矩形的函数
    * 根据是否需要填充, 绘制全充满矩形 or 只绘制矩形边框。
@@ -82,9 +84,20 @@ function Canvas2D($canvas) {
    */
   this.clearRect = function (point) {
     context.clearRect(point.x, point.y, 10, 10);
+    var coordinate = Math.floor(point.x/10) + '.' + Math.floor(point.y/10);
+    if(targetClearArray.indexOf(coordinate) < 0) targetClearArray.push(coordinate);
     return this;
   };
 
+  /**
+   * 检测橡皮擦清空的区域所占百分比是否达到了要求
+   * @param percent
+   * @returns boolean
+   */
+  this.checkClearRect = function (percent) {
+    return targetClearArray.length / (width * height / 100) < percent;
+  }
+  
   /**
    * 设置画笔宽度
    * @param newWidth
@@ -120,35 +133,26 @@ function Canvas2D($canvas) {
 function GuaGuaLe(idFront) {
   this.$eleFront = document.getElementById(idFront);
   this.frontCanvas = new Canvas2D(this.$eleFront);
+  this.success = function () {}
+  this.percent = .5;
+  this.frontFillColor = '#AFAFAE';
   this.isStart = false;
 }
 
 GuaGuaLe.prototype = {
   constructor: GuaGuaLe,
-
   /**
    * 将用户的传入的参数和默认参数做合并
    * @param desAttr
    * @returns {{frontFillColor: string, backFillColor: string, backFontColor: string, backFontSize: number, msg: string}}
    */
-  mergeAttr: function (desAttr) {
-    desAttr = desAttr || {};
-    var defaultAttr = {
-      frontFillColor: '#AFAFAE',
-      percent: .8,
-      success: function () {
-        console.log('here is success callback');
-      }
-    };
-    defaultAttr = Object.assign({}, defaultAttr, desAttr);
-    return defaultAttr;
-  },
-
-  init: function (desAttr) {
-    var attr = this.mergeAttr(desAttr);
+  init: function (func, percent, color) {
+    this.success = func || this.success;
+    this.percent = percent || this.percent;
+    this.frontFillColor = color || this.frontFillColor;
 
     // 初始化前面的canvas
-    this.frontCanvas.penColor(attr.frontFillColor);
+    this.frontCanvas.penColor(this.frontFillColor);
     this.frontCanvas.drawRect({x: 0, y: 0}, {x: this.frontCanvas.width(), y: this.frontCanvas.height()}, true);
 
     var _this = this;
@@ -192,7 +196,12 @@ GuaGuaLe.prototype = {
       event = event.changedTouches[event.changedTouches.length - 1];
     }
     var p = this.frontCanvas.getCanvasPoint(event.pageX, event.pageY);
-    this.frontCanvas.clearRect(p);
+    if (this.frontCanvas.checkClearRect(this.percent)) {
+      this.frontCanvas.clearRect(p);
+    } else {
+      document.getElementById('front').style.display = 'none';
+      this.success();
+    }
   },
 
   eventUp: function() {
