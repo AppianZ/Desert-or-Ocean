@@ -13,18 +13,20 @@
         #front {
             position: absolute;
             display: inline-block;
-            height: 80px;
-            width: 200px;
+            height: 120px;
+            width: 400px;
             border-radius: 5px;
             border: 1px solid #444;
             box-sizing: border-box;
+            opacity: 1;
+            transition: opacity .3s ease;
         }
         #div {
             position: absolute;
             display: inline-block;
-            height: 80px;
-            width: 200px;
-            line-height: 80px;
+            height: 120px;
+            width: 400px;
+            line-height: 120px;
             text-align: center;
             color: #CC2031;
             background: #9BDDF0;
@@ -38,14 +40,18 @@
 <div class="container">
     <div id="div">
         这里可以自定义
+        <button id="btn">点击</button>
     </div>
-    <canvas id="front" width="200" height="80"></canvas>
+    <canvas id="front" width="400" height="120"></canvas>
 </div>
 <script type="text/javascript" src="./../../js/Dec1/guaguale2.js"></script>
 <script type="text/javascript">
     new GuaGuaLe("front").init(function() {
         console.log('刮刮乐成功的回调');
     }, .4);
+    document.getElementById('btn').onclick = function () {
+        console.log(123123);
+    }
 </script>
 </body>
 </html>

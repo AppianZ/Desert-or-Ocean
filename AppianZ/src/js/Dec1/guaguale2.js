@@ -199,7 +199,10 @@ GuaGuaLe.prototype = {
     if (this.frontCanvas.checkClearRect(this.percent)) {
       this.frontCanvas.clearRect(p);
     } else {
-      document.getElementById('front').style.display = 'none';
+      document.getElementById('front').style.opacity = 0;
+      setTimeout(function () {
+        document.getElementById('front').style.display = 'none';
+      }, 300)
       this.success();
     }
   },
