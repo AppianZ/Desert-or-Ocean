@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>测试vue1的双向绑定4</title>
+</head>
+<body>
+<div id="container">
+    <div id="app">
+        <input type="text" v-model="text"/>
+        {{text}}
+    </div>
+</div>
+<script>
+    function defineReactive (obj, key, val) {
+
+        var dep = new Dep();
+
+        Object.defineProperty(obj, key, {
+            get: function() {
+                if (Dep.target) dep.addSub(Dep.target);
+                return val;
+            },
+            set: function (newVal) {
+                if (newVal === val) return;
+                val = newVal;
+                // 作为发布者发出通知
+                dep.notify();
+            }
+        })
+    }
+    
+    function observe(objs, vm) {
+        Object.keys(objs).forEach(function (key) {
+            defineReactive(vm, key, objs[key]);
+        })
+    }
+
+    function Dep () {
+        this.subs = [];
+    }
+
+    Dep.prototype = {
+        addSub: function(sub) {
+            this.subs.push(sub);
+        },
+        notify: function() {
+            this.subs.forEach(function(sub) {
+                sub.update();
+            });
+        },
+    }
+
+    function Watcher(vm, node, name, nodeType) {
+        Dep.target = this;
+        this.name = name;
+        this.node = node;
+        this.vm = vm;
+        this.nodeType = nodeType;
+        this.update();
+        Dep.target = null;
+    }
+
+    Watcher.prototype = {
+        update: function () {
+            this.get();
+            if (this.nodeType == 'text') {
+                this.node.nodeValue = this.value;
+            }
+            if (this.nodeType == 'input') {
+                this.node.value = this.value;
+            }
+        },
+        get: function () {
+            this.value = this.vm[this.name];
+        }
+    }
+
+    function compile (node, vm) {
+        var reg = /\{\{(.*)\}\}/;
+        if (node.nodeType === 1) {
+            var attr = node.attributes;
+            // 解析指令
+            for (var i = 0; i < attr.length; i++) {
+                if (attr[i].nodeName == 'v-model') {
+                    var name = attr[i].nodeValue;
+                    node.addEventListener('input', function (e) {
+                        // 给相应的data属性复制, 从而触发defineProperty的set
+                        vm[name] = e.target.value;
+                    })
+                    // 将data的值赋给该node
+                    node.value = vm[name];
+                    node.removeAttribute('v-model');
+                }
+            }
+            new Watcher(vm, node, name, 'input');
+        }
+
+        if (node.nodeType === 3) {
+            if (reg.test(node.nodeValue)) {
+                var name = RegExp.$1; //获取匹配到的字符串
+                name = name.trim();
+                // node.nodeValue = vm[name]; // 将data 赋值给 该文本节点
+
+                new Watcher(vm, node, name, 'text');
+            }
+        }
+    }
+
+    function nodeToFragment (node, vm) {
+        var flag = document.createDocumentFragment();
+        var child;
+        while (child = node.firstChild) {
+            compile(child, vm);
+            flag.appendChild(child); // 劫持所有child子节点
+        }
+        return flag;
+    }
+
+    function Vue(options) {
+        this.data = options.data;
+        var data = this.data;
+
+        observe(data, this);
+
+        var id = options.el;
+        var dom = nodeToFragment(document.getElementById(id), this);
+
+        document.getElementById(id).appendChild(dom);
+    }
+
+    var V = new Vue({
+        el: 'app',
+        data: {
+            text: 'hi appian',
+        }
+    })
+</script>
+</body>
+</html>

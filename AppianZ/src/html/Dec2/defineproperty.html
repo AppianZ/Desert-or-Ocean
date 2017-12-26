@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>测试vue1的双向绑定</title>
+</head>
+<body>
+<div id="container">
+    <div id="app">
+        <input id="ipt" type="text"/>
+        <p id="p"></p>
+    </div>
+</div>
+<script>
+    var ipt = document.getElementById('ipt');
+    var p = document.getElementById('p');
+
+    var obj = {
+        test: 'hi',
+    };
+    var Value;
+
+    // 'hi' 已经被覆盖
+    Object.defineProperty(obj, 'test', {
+        get: function(){
+            return Value;
+        },
+        set: function(value) {
+            ipt.innerHTML = value;
+            p.innerHTML = value;
+        },
+    })
+//    obj.test = 'hello!!';
+    ipt.addEventListener('keyup', function (e) {
+        obj.test = e.target.value;
+    })
+//    console.log(obj.test); // 'hi' 已经被覆盖
+</script>
+</body>
+</html>

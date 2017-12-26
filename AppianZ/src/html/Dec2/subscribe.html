@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>测试发布订阅</title>
+</head>
+<body>
+<div id="container">
+    
+</div>
+<script>
+    var pub = {
+        publish: function() {
+            dep.notify();
+        }
+    }
+
+    var sub1 = { update: function() {console.log(1);} }
+    var sub2 = { update: function() {console.log(2);} }
+    var sub3 = { update: function() {console.log(3);} }
+
+    function Dep () {
+        this.subs = [sub1, sub2, sub3];
+    }
+
+    Dep.prototype.notify = function () {
+        this.subs.forEach(function(sub) {
+            sub.update();
+        })
+    }
+
+    var dep = new Dep();
+
+    // 执行发布
+    pub.publish();
+</script>
+</body>
+</html>
