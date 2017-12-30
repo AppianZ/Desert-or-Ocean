@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>Title</title>
+    <link rel="stylesheet" href="./../../../dest/css/alcohol/year.css"/>
+    <script src="//at.alicdn.com/t/font_504616_p08j21tcebd6xbt9.js"></script>
+</head>
+<body>
+<div id="container">
+    <header>
+        <div>
+            <div class="title1">
+                <div></div>
+            </div>
+            <div class="title2"></div>
+            <div class="title3">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-kehuxinxi-xiangqing-sidai"></use>
+                </svg>
+            </div>
+            <span v-for="el in 26" :class="'span' + el"></span>
+        </div>
+        <h5></h5>
+        <p class="p"></p>
+    </header>
+    <article>
+        <section>
+            <span v-for="s in 2"></span>
+            <div class="img">
+                <img src="./maotai.jpeg"/>
+            </div>
+            <div class="title">
+                <p class="hot" v-text="'【纯粮酒】传统工艺至尊茅台'"></p>
+                <h4 style="padding: 10px 0 0;">浓香茅台53°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>100</i>
+                    <b>元/瓶</b>
+                </h4>
+                <h4>酱香茅台53°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>200</i>
+                    <b>元/瓶</b>
+                </h4>
+            </div>
+        </section>
+        <section style="height: 220px;">
+            <span v-for="s in 2"></span>
+            <div class="img" style="top: 40px;">
+                <img src="./ganhong.jpeg"/>
+            </div>
+            <div class="title">
+                <p class="hot" v-text="'【纯粮酒】传统工艺至尊干红'"></p>
+                <h4>赤霞珠干红13°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>60</i>
+                    <b>元/瓶</b>
+                </h4>
+                <h4>启航干红&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>568</i>
+                    <b>元/瓶</b>
+                </h4>
+                <h4>金酿干红&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>588</i>
+                    <b>元/瓶</b>
+                </h4>
+            </div>
+        </section>
+        <section v-for="el in list">
+            <span v-for="s in 2"></span>
+            <div class="img">
+                <img :src="el.url"/>
+            </div>
+            <div class="title">
+                <p :class="el.hot? 'hot' : ''" v-text="el.name"></p>
+                <h5 v-text="el.desc"></h5>
+                <i v-text="el.price"></i>
+                <b v-text="el.unit"></b>
+            </div>
+        </section>
+        <section style="height: 260px; border-bottom: none;">
+            <span v-for="s in 2"></span>
+            <div class="img" style="width: 220px; height: 220px;">
+                <img src="./qr.jpeg"/>
+            </div>
+                <div class="footer1">过好年, 品好酒! <br/>美酒热销进行中 ~ </div>
+                <div class="footer2">长按识别二维码<br/>
+                   👈 加他品美酒</div>
+        </section>
+    </article>
+</div>
+<script src="./../../js/vue.min.js"></script>
+<script src="./../../js/alcohol/index.js"></script>
+</body>
+</html>
