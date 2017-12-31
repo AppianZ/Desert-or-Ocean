@@ -33,12 +33,9 @@
                 <img src="./maotai.jpeg"/>
             </div>
             <div class="title">
-                <p class="hot" v-text="'【纯粮酒】传统工艺至尊茅台'"></p>
-                <h4 style="padding: 10px 0 0;">浓香茅台53°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <i>100</i>
-                    <b>元/瓶</b>
-                </h4>
-                <h4>酱香茅台53°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <p class="hot" v-text="'【纯粮酒】飞天茅台酿造工艺'"></p>
+                <h5>唇齿留香 回味无穷</h5>
+                <h4>酱香茅台53°(限购版)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <i>200</i>
                     <b>元/瓶</b>
                 </h4>
@@ -51,15 +48,15 @@
             </div>
             <div class="title">
                 <p class="hot" v-text="'【纯粮酒】传统工艺至尊干红'"></p>
-                <h4>赤霞珠干红13°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h4>赤霞珠干红13°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <i>60</i>
                     <b>元/瓶</b>
                 </h4>
-                <h4>启航干红&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h4>启航干红(珍藏版)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <i>568</i>
                     <b>元/瓶</b>
                 </h4>
-                <h4>金酿干红&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h4>金酿干红(珍藏版)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <i>588</i>
                     <b>元/瓶</b>
                 </h4>
@@ -72,9 +69,17 @@
             </div>
             <div class="title">
                 <p :class="el.hot? 'hot' : ''" v-text="el.name"></p>
-                <h5 v-text="el.desc"></h5>
-                <i v-text="el.price"></i>
-                <b v-text="el.unit"></b>
+                <h5 v-if="!el.multi" v-text="el.desc"></h5>
+                <i v-if="!el.multi" v-text="el.price"></i>
+                <b v-if="!el.multi" v-text="el.unit"></b>
+                <h4 v-if="el.multi">大曲五粮63°&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>75</i>
+                    <b>元/瓶</b>
+                </h4>
+                <h4 v-if="el.multi">浓香五粮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i>100</i>
+                    <b>元/瓶</b>
+                </h4>
             </div>
         </section>
         <section style="height: 260px; border-bottom: none;">
@@ -82,8 +87,9 @@
             <div class="img" style="width: 220px; height: 220px;">
                 <img src="./qr.jpeg"/>
             </div>
-                <div class="footer1">过好年, 品好酒! <br/>美酒热销进行中 ~ </div>
-                <div class="footer2">长按识别二维码<br/>
+                <div class="footer1">新年到, 品好酒! 美酒热销进行中 ~ </div>
+                <div class="footer2"><img src="./qr3.jpeg" alt=""/></div>
+                <div class="footer3">长按识别二维码<br/>
                    👈 加他品美酒</div>
         </section>
     </article>

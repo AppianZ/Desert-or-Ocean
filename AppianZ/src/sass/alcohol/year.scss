@@ -72,8 +72,8 @@ body:before {
           border-radius: 50%;
           border: 15px solid #fff;
           box-sizing: border-box;
-          background: url('https://ohovav7hg.qnssl.com/jiuavatar.png?a=1') no-repeat;
-          background-size: 110%;
+          background: url('https://ohovav7hg.qnssl.com/jiuavatar.png?a=2') no-repeat;
+          background-size: 100%;
           background-position: 0 180%;
         }
       }
@@ -460,7 +460,7 @@ body:before {
       width: 100%;
       height: 50px;
       color: #e6d3a0;
-      background: url('https://ohovav7hg.qnssl.com/clogan.png') no-repeat;
+      background: url('https://ohovav7hg.qnssl.com/slogan.png') no-repeat;
       background-size: contain;
       background-position: center;
       opacity: .8;
@@ -600,10 +600,18 @@ body:before {
     line-height: 1.6;
   }
   .footer2 {
-    padding: 20px 0  0 270px;
+    display: inline-block;
+    padding: 40px 0  0 270px;
+    width: 100px;
+    height: 100px;
+  }
+  .footer3 {
+    display: inline-block;
+    padding: 0 0 10px 20px;
     color: #F1745F;
     font-weight: 600;
-    font-size: 28px;
-    line-height: 1.6;
+    font-size: 24px;
+    line-height: 1.8;
+    vertical-align: text-bottom;
   }
 }

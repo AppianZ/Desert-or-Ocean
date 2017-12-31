@@ -28,14 +28,15 @@ var list = [{
   unit: '元/瓶',
   url: './daqu53.jpeg',
 }, {
-  name: '【纯粮酒】传统工艺大曲五粮63°',
+  name: '【纯粮酒】传统工艺大曲五粮',
   desc: '唇齿留香 意犹未尽',
+  multi: true,
   price: '   75',
   unit: '元/瓶',
   url: './daqu65.jpeg',
 }, {
   name: '【纯粮酒】传统工艺红茅烧45°',
-  desc: '甘甜顺喉 回味无穷',
+  desc: '甘甜顺喉 富含多种氨基酸',
   price: '   50',
   unit: '元/瓶',
   url: './hongmaosao.jpeg',
