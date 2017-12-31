@@ -615,3 +615,48 @@ body:before {
     vertical-align: text-bottom;
   }
 }
+
+
+.intro {
+  margin: 30px 0 0 0;
+  position: relative;
+  width: 100%;
+  background: url('https://ohovav7hg.qnssl.com/intro.jpg') no-repeat;
+  padding: 50% 0;
+  background-size: cover;
+  background-position: top center;
+  &:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 0;
+  }
+  > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    color: #fff;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 2;
+    h3 {
+      display: inline-block;
+      width: 72%;
+    }
+    h4 {
+      font-size: 32px;
+      margin: 0 0 60px;
+      font-weight: 400;
+      color: rgba(230, 211, 160, 0.84);
+    }
+    p {
+      font-size: 24px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+  }
+}
