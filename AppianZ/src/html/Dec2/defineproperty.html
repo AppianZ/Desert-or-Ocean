@@ -10,6 +10,7 @@
 <div id="container">
     <div id="app">
         <input id="ipt" type="text"/>
+        <p>input中输入的内容如下:</p>
         <p id="p"></p>
     </div>
 </div>
@@ -20,23 +21,43 @@
     var obj = {
         test: 'hi',
     };
-    var Value;
+    var Value = 'yoho';
 
-    // 'hi' 已经被覆盖
+    console.log(obj.test);
+
+    // 通过数据描述符来描述一个对象
     Object.defineProperty(obj, 'test', {
+        value: 'hello',
+        writable : true,
+        enumerable : true,
+        configurable : true
+    })
+
+    // 通过存取描述符来描述一个对象
+    // 'hi' 已经被覆盖
+   /* Object.defineProperty(obj, 'test', {
+        // 如果同时使用 存取描述符 和 数据描述符 value 的话会报错
+        value: 'hello',
         get: function(){
             return Value;
         },
         set: function(value) {
             ipt.innerHTML = value;
             p.innerHTML = value;
+            Value = value;
         },
-    })
+    })*/
 //    obj.test = 'hello!!';
-    ipt.addEventListener('keyup', function (e) {
+   /* ipt.addEventListener('keyup', function (e) {
         obj.test = e.target.value;
-    })
-//    console.log(obj.test); // 'hi' 已经被覆盖
+        console.log(obj);
+    })*/
+
+    console.log(obj.test);
+    obj.test = 'ohyeah';
+    console.log(obj.test);
+
+    //    console.log(obj.test); // 'hi' 已经被覆盖
 </script>
 </body>
 </html>
