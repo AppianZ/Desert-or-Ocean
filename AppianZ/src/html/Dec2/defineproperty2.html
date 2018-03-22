@@ -15,7 +15,6 @@
 </div>
 <script>
     function compile (node, vm) {
-        var reg = /\{\{(.*)\}\}/;
         if (node.nodeType === 1) {
             var attr = node.attributes;
             // 解析指令
@@ -29,7 +28,7 @@
         }
 
         if (node.nodeType === 3) {
-            if (reg.test(node.nodeValue)) {
+            if (/\{\{(.*)\}\}/.test(node.nodeValue)) {
                 var name = RegExp.$1; //获取匹配到的字符串
                 name = name.trim();
                 node.nodeValue = vm.data[name]; // 将data 赋值给 该文本节点
@@ -40,6 +39,7 @@
     function nodeToFragment (node, vm) {
         var flag = document.createDocumentFragment();
         var child;
+        console.log(node.firstChild);
         while (child = node.firstChild) {
             compile(child, vm);
             flag.appendChild(child); // 劫持所有child子节点
