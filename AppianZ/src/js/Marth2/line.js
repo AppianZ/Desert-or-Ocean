@@ -8,12 +8,12 @@
     var canvas = document.getElementById('lineChart'); //
     var ctx  = canvas.getContext('2d');
 
-    var dict = [], len = 480;// 模拟480个数据
+    var dict = [], len = 40;// 模拟480个数据
     var tempY, xArr = [], yArr = [];
 
     // 模拟志鑫传入的均匀的数据
     for(var r = 0; r < len; r++) {
-      tempY = parseInt(Math.random() * 100 + 900)
+      tempY = parseInt(Math.random() * 100 + 500)
       xArr.push(canvas.width/len * r);
       yArr.push(tempY);
     }
@@ -35,56 +35,48 @@
     // 将值域区间成比例放大
     var time = (maxY - minY)/canvas.height * 1.5;
 
-    // 画横线
-    ctx.strokeStyle = 'green';
-    ctx.setLineDash([5, 2]);
-    ctx.lineWidth = .4;
-
-    // 第一条线
+    // 画粉底
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(xArr[len - 1], 0);
+    for(var i = 1 ;i < len; i++){
+      ctx.lineWidth = .5;
+      ctx.strokeStyle = 'transparent';
+      ctx.lineTo(dict[i].x, dict[i].y/time);
+    }
+    ctx.lineTo(dict[len - 1].x, canvas.height - 25);
+    ctx.lineTo(dict[1].x, canvas.height - 25);
+    ctx.lineTo(dict[1].x, dict[1].y/time);
     ctx.stroke();
 
-    // 第二条线
-    ctx.beginPath();
-    ctx.moveTo(0, ((maxY - minY) * .3333)/time);
-    ctx.lineTo(xArr[len - 1], ((maxY - minY) * .3333)/time);
-    ctx.stroke();
-
-    // 第三条线
-    ctx.beginPath();
-    ctx.moveTo(0, ((maxY - minY) * .6666)/time);
-    ctx.lineTo(xArr[len - 1], ((maxY - minY) * .6666)/time);
-    ctx.stroke();
-
-    // 第四条线
-    ctx.beginPath();
-    ctx.moveTo(0, (maxY - minY)/time);
-    ctx.lineTo(xArr[len - 1], (maxY - minY)/time);
-    ctx.stroke();
-
-    // 画原点
-    ctx.moveTo(dict[0].x, dict[0].y/ time);
+    var gradient = ctx.createLinearGradient(dict[len - 1].x, dict[len - 1].y/time, dict[len - 1].x, canvas.height - 30);
+    gradient.addColorStop(0,"#FEF6F6");
+    gradient.addColorStop(1,"#FFFBFB")
+    ctx.fillStyle = gradient;
+    ctx.shadowBlur = 0;
+    ctx.shadowColor= "rgba(0,0,0,0)";
+    ctx.fill();
 
     //画折线
     ctx.beginPath();
     for(var i = 1 ;i < len; i++){
       ctx.setLineDash([10 , 0]);
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 1.8;
+      ctx.strokeStyle = '#E44D51';
       ctx.lineTo(dict[i].x, dict[i].y/time);
     }
+    ctx.shadowOffsetY = 7;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor="rgba(228, 77, 81, 0.5)";
     ctx.stroke();
 
     //画横坐标的点
     for(var i = 0; i < dict.length; i++){
       var x = xArr[i];
-      if (i % 120 != 0) continue;
+      if (i % (len/4) != 0) continue;
       ctx.beginPath();
       ctx.fillStyle = 'red';
       ctx.fill();
-      ctx.fillText(dict[i].x, x, canvas.height - 30, 60);//画文字
+      ctx.fillText(dict[i].x, x - 10, canvas.height - 10, 160);//画文字
+      ctx.shadowColor="rgba(0,0,0,0)";
     }
   }
 })();

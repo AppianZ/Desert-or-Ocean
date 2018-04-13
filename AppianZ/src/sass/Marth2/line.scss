@@ -30,5 +30,7 @@ body {
   height: r(500);
   margin: r(40) 0;
   padding: r(30) r(40) r(0) r(120);
-  background: #ededed;
+  background: #fff;
+  border: 1px solid red;
+  box-sizing: border-box;
 }
