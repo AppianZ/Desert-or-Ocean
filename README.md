@@ -3,17 +3,6 @@
 (ෆ ͒•∘̬• ͒)◞ 点击进入首页 ↓↓↓<br/>
 [Desert-or-Ocean](http://appianz.github.io/Desert-or-Ocean/) <br/><br/>
 
-> [简易版日期选择器 DateSelectorSimple.Demo.](http://appianz.github.io/Desert-or-Ocean/DateSelectorSimple.html) 
-
-> [简易版日期选择器说明书 DateSelectorSimple. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateSelectorSimple)
-
-<br/>
-
-> [优质版日期选择器 DateSelectorPro.Demo.](http://appianz.github.io/Desert-or-Ocean/DateSelectorPro.html)
-
-> [优质版日期选择器说明书 DateSelectorPro. Instructions.](https://github.com/AppianZ/Desert-or-Ocean/tree/master/AppianZ/productions/DateSelectorPro)
-
-<br/>
 This is a personal exercise project.(,,• ₃ •,,)<br/>
 Maybe it's nonsense,<br/>
 but it may be a significant step to me to be a qualified engineer.<br/><br/>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PROCESSBAR</title>
+    <style>
+        .svgs {
+            position: relative;
+            height: 5rem;
+            width: 5rem;
+            margin: 0 auto;
+            transform: rotate(-90deg);
+        }
+    </style>
+    <script src="./../../assets/lib/flexible.js"></script>
+</head>
+<body>
+<div id="container">
+    <div class="svgs">
+        <svg class="svg" width="100%" height="100%" :xmlns="svgNS">
+            <defs>
+                <linearGradient id="grad" :x1="Math.min(1, interval)" y1="0" x2="0" :y2="Math.max(0, (1 - (interval)))">
+                    <stop offset="0" :stop-color="'rgb(' + startColor.join(',') + ')'"></stop>
+                    <stop offset="1" :stop-color="linearColor"></stop>
+                </linearGradient>
+            </defs>
+            <!--<rect x="0" y="0" width="100%" height="100%" fill="url(#grad)"></rect>-->
+            <path :d="drawArcByRadiusDeg(x, y, r, 359.99, clockwise).path" stroke="#ddd" fill-opacity="0" :stroke-width="storkeWidth + 1"></path>
+            <path v-if="step > 0" :d="drawArcByRadiusDeg(x, y, r, (percent / frequency * i * 359.9999), clockwise).path" stroke="url(#grad)" fill-opacity="0" :stroke-width="storkeWidth" stroke-linecap="round"></path>
+            <circle v-if="percent > 0 && finish" :cx="drawArcByRadiusDeg(x, y, r, (percent / frequency * i * 359.9999), clockwise).x" :cy="drawArcByRadiusDeg(x, y, r, (percent / frequency * i * 359.9999), clockwise).y" r="3" fill="#ffffff"></circle>
+        </svg>
+    </div>
+</div>
+<script src="./../../assets/lib/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#container',
+        data: {
+            step: 12000, // 当前的数值
+            targetStep: 10000, // 满环的数值
+            svgNS: 'http://www.w3.org/2000/svg',
+            startColor: [115, 0, 150], // 起始位置的rgb
+            endColor: [255, 0, 113], // 结束位置的rgb
+            storkeWidth: 10,
+            x: 170,
+            y: 90,
+            r: 80,
+            clockwise: 1, // x,y圆心位置  r圆弧的半径  clockwise顺时针
+            i: 0,
+            frequency: 180, // 增长的评论
+            fontSize: 0, // flexible 的字体大小
+            finish: true // 动画是否未结束
+        },
+        computed: {
+            percent: function () {
+                return this.step > 0 ? Math.min((this.step / this.targetStep), 1) : 0
+            },
+            interval: function () {
+                return this.percent / 0.3 / this.frequency * this.i
+            },
+            linearColor: function () {
+                return 'rgb(' + Math.floor(this.linearRGB(this.startColor[0], this.endColor[0])) + ','
+                        + Math.floor(this.linearRGB(this.startColor[1], this.endColor[1])) + ','
+                        + Math.floor(this.linearRGB(this.startColor[2], this.endColor[2])) + ')'
+            }
+        },
+        mounted: function() {
+            this.fontSize = Number(document.getElementsByTagName('HTML')[0].style.fontSize.replace('px', ''))
+            this.animation()
+        },
+        methods: {
+            linearRGB: function(start, end) {
+                return start > end ?
+                        Math.max(end, (start + ((end - start) * this.interval))) :
+                        Math.min(end, (start + ((end - start) * this.interval)))
+            },
+            animation: function () {
+                if (this.i >= this.frequency) {
+                    if (this.percent >= 1) this.finish = false
+                    return
+                }
+                this.i = this.i + .5
+                requestAnimationFrame(this.animation)
+            },
+            format: function (x) {
+                return x * this.fontSize / 37.5
+            },
+            drawArcByRadiusDeg: function (startX, startY, r, deg, clockwise) {
+                startX = this.format(startX)
+                startY = this.format(startY)
+                r = this.format(r)
+                var cw = typeof clockwise !== 'undefined' ? clockwise : 1
+                var x = startX - r + r * Math.cos(deg * Math.PI / 180)
+                var y = startY + (cw === 1 ? 1 : -1) * r * Math.sin(deg * Math.PI / 180)
+                var bigOrSmall = deg > 180 ? 1 : 0
+                return {
+                    x: x,
+                    y: y,
+                    path: 'M ' + startX + ' ' + startY + ' A ' + r + ' ' + r + ' 0 ' + bigOrSmall + ' ' + cw + ' ' + x + ' ' + y
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
