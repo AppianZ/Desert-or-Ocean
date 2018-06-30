@@ -43,7 +43,7 @@ Vue.component('upload',{
 new Vue({
 	el: '#container',
 	methods: {
-		uploadFront(file) {
+    uploadImage(file) {
 			console.log('--- base64 ---');
 			console.log(file);
 		},
