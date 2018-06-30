@@ -43,8 +43,8 @@ Vue.component('upload',{
 new Vue({
 	el: '#container',
 	methods: {
-		uploadFront(file) {
-			console.log('--- 身份证正面的base64 ---');
+    uploadImage(file) {
+			console.log('--- uploadImage base64 ---');
 			console.log(file);
 		},
 		uploadBack(file) {
