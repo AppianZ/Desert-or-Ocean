@@ -43,8 +43,8 @@ Vue.component('upload',{
 new Vue({
 	el: '#container',
 	methods: {
-    uploadImage(file) {
-			console.log('--- uploadImage的base64 ---');
+		uploadFront(file) {
+			console.log('--- base64 ---');
 			console.log(file);
 		},
 	},
